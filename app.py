@@ -65,6 +65,7 @@ def AddInternFormCom():
     
     return render_template('publishInternSuccess.html', intern=job_title)
 
+
 @app.route("/goManageInternship", methods=['GET'])
 def GoManageInternship():
 
@@ -76,10 +77,8 @@ def GoManageInternship():
     result = cursor.fetchall()
     cursor.close()
 
-    return render_template('test.html', a=result)
+    return render_template('manageData.html', data=result)
 
-
-  
 
         
 if __name__ == '__main__':
