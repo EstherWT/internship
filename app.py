@@ -41,8 +41,9 @@ def AddInternFormCom():
     workingHour = request.form['workingHour']
     accomodation = request.form['accomodation']
 
-    console.log(job_title, job_desc, job_salary, job_location,
-          workingDay, workingHour,accomodation)
+    return  render_template('searchStudent.html', a=job_title, b=job_desc, c=job_salary, 
+                            d=job_location,
+          e=workingDay, f=workingHour, g=accomodation)
 
     #insert_sql = "INSERT INTO student VALUES (%s, %s)"
     #cursor = db_conn.cursor()
