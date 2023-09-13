@@ -80,7 +80,7 @@ def GoManageInternship():
     data = [{'job_title': 'Job 1', 'intern_salary': 1000},
         {'job_title': 'Job 2', 'intern_salary': 1500}]
     
-    return render_template('manageIntern.html', data=result)
+    return render_template('manageIntern.html', data=data)
 
 
         
