@@ -77,7 +77,7 @@ def GoManageInternship():
     result = cursor.fetchall()
     cursor.close()
     
-    return render_template('manageIntern.html', data=data)
+    return render_template('manageIntern.html', data=result)
 
 
         
