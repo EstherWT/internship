@@ -66,7 +66,7 @@ def AddInternFormCom():
     return render_template('publishInternSuccess.html', intern=job_title)
 
 
-@app.route("/goManageInternship", methods=['POST'])
+@app.route("/goManageInternship", methods=['GET'])
 def GoManageInternship():
 
     com_id = 1
