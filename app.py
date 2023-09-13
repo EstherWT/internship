@@ -41,7 +41,7 @@ def AddInternFormCom():
     workingHour = request.form['workingHour']
     accomodation = request.form['accomodation']
 
-    return  render_template('searchStudent.html', a=job_title, b=job_desc, c=job_salary, 
+    return  render_template('test.html', a=job_title, b=job_desc, c=job_salary, 
                             d=job_location,
           e=workingDay, f=workingHour, g=accomodation)
 
