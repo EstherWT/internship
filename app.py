@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request
 from pymysql import connections
 import os
 import boto3
@@ -28,11 +28,12 @@ output = {}
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('publishIntern.html')
+    return render_template('student.html')
 
 @app.route("/addInternFormCom", methods=['POST'])
 def AddInternFormCom():
 
+    com_id = 1
     job_title = request.form['job_title']
     job_desc = request.form['job_description']
     job_salary = request.form['job_salary']
@@ -41,25 +42,22 @@ def AddInternFormCom():
     workingHour = request.form['workingHour']
     accommodation = request.form['accommodation']
 
-  
-      #Get total ID
+    #Get total ID
     countstatement = "SELECT COUNT(*) FROM Internship"
     cursor = db_conn.cursor()
     cursor.execute(countstatement)
     result = cursor.fetchone()
     intern_id = result[0] + 1
 
+    insert_sql = "INSERT INTO student VALUES (%s, %s)"
+    cursor.execute(insert_sql, (intern_id, com_id, job_title, job_desc, 
+                               job_salary, job_location, workingDay, workingHour,
+                               accommodation,))
     
-    return render_template('test.html', a=job_title, b=job_desc, c=job_salary, 
-                            d=job_location,
-          e=workingDay, f=workingHour, g=accommodation, h=intern_id)
-    #insert_sql = "INSERT INTO student VALUES (%s, %s)"
-    #cursor = db_conn.cursor()
+    cursor.close()
+    
+    return render_template('publishInternSuccess.html', intern=job_title)
 
-    #cursor.close()
-
-    #print("all modification done...")
-    #return render_template('AddStudOutput.html', name=stud_name)
 
 
 
