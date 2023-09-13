@@ -41,7 +41,7 @@ def AddInternFormCom():
     workingHour = request.form['workingHour']
     accomodation = request.form['accomodation']
 
-    print("%s %s %s %s %s %s %s", job_title, job_desc, job_salary, job_location,
+    console.log("%s %s %s %s %s %s %s", job_title, job_desc, job_salary, job_location,
           workingDay, workingHour,accomodation)
 
     #insert_sql = "INSERT INTO student VALUES (%s, %s)"
