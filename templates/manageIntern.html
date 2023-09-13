@@ -111,10 +111,10 @@
                                     <div class="percentage">Action</div>
                                 </div>
                                 
-                                         {% set count = 1 %}
+                              
                                     {% for row in data %}
                                     <div class="table-row">
-                                        <div class="serial">{{count}}</div>
+                                        <div class="serial">{{loop.index}}</div>
                                         <div class="country">{{row.job_title}}</div>
                                         <div class="visit">{{row.intern_salary}}</div>
                                         <div class="percentage">
@@ -125,7 +125,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {% set count = count + 1 %}
+                              
                                 {% endfor %}
 
                             </div>
