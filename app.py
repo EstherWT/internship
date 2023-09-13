@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from pymysql import connections
 import os
 import boto3
@@ -11,7 +11,7 @@ custombucket = "hwt-internship"
 customregion = "us-east-1"
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='assets')
 
 bucket = custombucket
 region = customregion
