@@ -110,18 +110,18 @@
                                     <div class="visit">Allowance</div>
                                     <div class="percentage">Action</div>
                                 </div>
-                                <div class="table-row">
-                                    <div class="serial">001</div>
-                                    <div class="country">Software Engineer</div>
-                                    <div class="visit">1000.00</div>
-                                    <div class="percentage">
-                                        <div class="button-group-area mt-10">
-                                            <a href="#" class="genric-btn success circle arrow">View</a>
-                                            <a href="#" class="genric-btn primary circle arrow">Edit</a>
-                                            <a href="#" class="genric-btn danger circle arrow">Delete</a>
+                                  {%for index, row in enumerate(data, start=1) %}
+                                        <div class="serial">{{index}}</div>
+                                        <div class="country">{{data.job_title}}</div>
+                                        <div class="visit">{{data.intern_salary}}</div>
+                                        <div class="percentage">
+                                            <div class="button-group-area mt-10">
+                                                <a href="#" class="genric-btn success circle arrow">View</a>
+                                                <a href="#" class="genric-btn primary circle arrow">Edit</a>
+                                                <a href="#" class="genric-btn danger circle arrow">Delete</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    {% endfor %}
 
                             </div>
                         </div>
