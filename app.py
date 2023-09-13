@@ -79,6 +79,18 @@ def GoManageInternship():
     
     return render_template('manageIntern.html', data=result)
 
+@app.route('/viewIntern/<int:internship_id>')
+def view_internship(internship_id):
+
+    statement = "SELECT * FROM Internship WHERE intern_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (internship_id))
+    result = cursor.fetchone()
+
+    return render_template('viewIntern.html', intern=result)
+
+
+
 
         
 if __name__ == '__main__':
