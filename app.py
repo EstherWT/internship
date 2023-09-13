@@ -60,8 +60,7 @@ def AddInternFormCom():
     except Exception as e:
         db_conn.rollback()  # Rollback the transaction in case of an error
         print(f"Error: {str(e)}")  # Print the error for debugging
-    finally:
-        db_conn.close()  # Close the database connection
+
     
     return render_template('publishInternSuccess.html', intern=job_title)
 
