@@ -39,11 +39,11 @@ def AddInternFormCom():
     job_location = request.form['job_location']
     workingDay = request.form['workingDay']
     workingHour = request.form['workingHour']
-    accomodation = request.form['accomodation']
+    accommodation = request.form['accommodation']
 
     return  render_template('test.html', a=job_title, b=job_desc, c=job_salary, 
                             d=job_location,
-          e=workingDay, f=workingHour, g=accomodation)
+          e=workingDay, f=workingHour, g=accommodation)
 
     #insert_sql = "INSERT INTO student VALUES (%s, %s)"
     #cursor = db_conn.cursor()
