@@ -7,14 +7,8 @@
 	<font color="DodgerBlue" size="5" style="font-family: avenir">
 		<body bgcolor="lightgrey">
 			<h1>SEARCH SUCCESSFUL</h1><br>
-           {{a}}
-          {{b}}
-          {{c}}
-          {{d}}
-          {{e}}
-          {{f}}
-          {{g}}
-		{{h}}
+          {% for row in data %}
+            <li>{{ row.job_title }}</li>
 		</body>
 	</font>
 </center>
