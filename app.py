@@ -41,7 +41,8 @@ def AddInternFormCom():
     workingHour = request.form['workingHour']
     accommodation = request.form['accommodation']
 
-    countstatement = "SELECT * FROM Internship"
+  
+    countstatement = "SELECT COUNT(*) FROM Internship"
     cursor = db_conn.cursor()
     cursor.execute(countstatement)
     result = cursor.fetchone()
