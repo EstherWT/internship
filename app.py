@@ -70,7 +70,7 @@ def AddInternFormCom():
 def GoManageInternship():
 
     com_id = 1
-    statement = "SELECT job_title, intern_salary FROM Internship WHERE com_id = %s"
+    statement = "SELECT intern_id, job_title, intern_salary FROM Internship WHERE com_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (com_id))
 
