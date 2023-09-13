@@ -42,14 +42,17 @@ def AddInternFormCom():
     accommodation = request.form['accommodation']
 
   
+      #Get total ID
     countstatement = "SELECT COUNT(*) FROM Internship"
     cursor = db_conn.cursor()
     cursor.execute(countstatement)
     result = cursor.fetchone()
+    intern_id = result[0] + 1
+
     
     return render_template('test.html', a=job_title, b=job_desc, c=job_salary, 
                             d=job_location,
-          e=workingDay, f=workingHour, g=accommodation, h=result[0])
+          e=workingDay, f=workingHour, g=accommodation, h=intern_id)
     #insert_sql = "INSERT INTO student VALUES (%s, %s)"
     #cursor = db_conn.cursor()
 
