@@ -111,13 +111,12 @@
                                     <div class="percentage">Action</div>
                                 </div>
                                 
-                              		{{data}}
+                              		
                                     {% for row in data %}
-				    {{row}}
                                     <div class="table-row">
                                         <div class="serial">{{loop.index}}</div>
-                                        <div class="country">{{row.job_title}}</div>
-                                        <div class="visit">{{row.intern_salary}}</div>
+                                        <div class="country">{{row[1]}}</div>
+                                        <div class="visit">{{row[2]}}</div>
                                         <div class="percentage">
                                             <div class="button-group-area mt-10">
                                                 <a href="#" class="genric-btn success circle arrow">View</a>
