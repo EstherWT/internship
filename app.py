@@ -50,9 +50,8 @@ def AddInternFormCom():
     intern_id = result[0] + 1
 
 
-    intern_data = (intern_id, com_id, job_title, job_desc, job_salary, job_location, workingDay, workingHour, accommodation)
     insert_sql = "INSERT INTO Internship VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    cursor.execute(insert_sql, (intern_data,))
+    cursor.execute(insert_sql, (intern_id, com_id, job_title, job_desc, job_salary, job_location, workingDay, workingHour, accommodation,))
 
     cursor.close()
     
