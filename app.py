@@ -28,7 +28,7 @@ output = {}
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('viewIntern.html')
+    return render_template('publishIntern.html')
 
 @app.route("/addInternFormCom", methods=['POST'])
 def AddInternFormCom():
@@ -44,10 +44,11 @@ def AddInternFormCom():
 
     #Get total ID
     countstatement = "SELECT COUNT(*) FROM Internship"
-    cursor = db_conn.cursor()
-    cursor.execute(countstatement)
+    count_cursor = db_conn.cursor()
+    count_cursor.execute(countstatement)
     result = cursor.fetchone()
     intern_id = result[0] + 1
+    count_cursor.close()
 
     insert_sql = "INSERT INTO Internship VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
@@ -65,63 +66,18 @@ def AddInternFormCom():
     return render_template('publishInternSuccess.html', intern=job_title)
 
 
+@app.route("/goManageInternship", methods=['POST'])
+def GoManageInternship():
 
+    com_id = 1
+    statement = "SELECT job_title, intern_salary FROM Internship WHERE com_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (com_id))
 
-@app.route("/searchstud", methods=['POST'])
-def GetStud():
-    try:
-        stud = request.form['search']
+    result = cursor.fetchone()
+    cursor.close()
 
-        # Corrected SQL statement with placeholder
-        statement = "SELECT stud_id, stud_name FROM student WHERE stud_id = %s"
-        cursor = db_conn.cursor()
-        cursor.execute(statement, (stud,))
-        
-        # Fetch the result
-        result = cursor.fetchone()
-
-        if result:
-            stud_id, stud_name = result
-            return render_template('searchStudent.html', name=stud_name, id=stud_id)
-        else:
-            return render_template('searchError.html', id=stud)
-        
-    except Exception as e:
-        return str(e)
-        
-    finally:
-        cursor.close()
-
-
-@app.route("/updatestud", methods=['POST'])
-def UpStud():
-    try:
-        stud = request.form['update_id']
-        name = request.form['update_name']
-
-        # Corrected SQL statement with placeholder
-        statement_get = "SELECT stud_name FROM student WHERE stud_id = %s"
-        cursor = db_conn.cursor()
-        cursor.execute(statement_get, (stud,))
-        
-        # Fetch the result
-        result = cursor.fetchone()
-
-        if result:
-
-            stud_name = result[0]
-            statement = "UPDATE student SET stud_name = %s WHERE stud_id = %s"
-            cursor.execute(statement, (name, stud))
-          
-            return render_template('updateStudent.html', new=name, id=stud, old=stud_name)
-        else:
-            return render_template('updateError.html', id=stud)
-        
-    except Exception as e:
-        return str(e)
-        
-    finally:
-        cursor.close()
+    return render_template('test.html', a=result)
 
 
         
