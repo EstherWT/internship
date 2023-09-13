@@ -110,8 +110,10 @@
                                     <div class="visit">Allowance</div>
                                     <div class="percentage">Action</div>
                                 </div>
-                                  {%for index, row in enumerate(data, start=1) %}
-                                        <div class="serial">{{index}}</div>
+                                
+                                    {% set count = 1 %}
+                                    {% for row in data %}
+                                        <div class="serial">{{count}}</div>
                                         <div class="country">{{data.job_title}}</div>
                                         <div class="visit">{{data.intern_salary}}</div>
                                         <div class="percentage">
@@ -121,6 +123,7 @@
                                                 <a href="#" class="genric-btn danger circle arrow">Delete</a>
                                             </div>
                                         </div>
+                                        {% endfor %}
                                     {% endfor %}
 
                             </div>
