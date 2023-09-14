@@ -30,6 +30,10 @@ output = {}
 def home():
     return render_template('publishIntern.html')
 
+@app.route("/backToManage", methods=['GET', 'POST'])
+def home():
+    return render_template('manageIntern.html')
+
 @app.route("/addInternFormCom", methods=['POST'])
 def AddInternFormCom():
 
@@ -89,8 +93,15 @@ def view_internship(internship_id):
 
     return render_template('viewIntern.html', intern=result)
 
+@app.route('/editIntern/<int:internship_id>')
+def edit_internship(internship_id):
 
+    statement = "SELECT * FROM Internship WHERE intern_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (internship_id))
+    result = cursor.fetchone()
 
+    return render_template('viewIntern.html', intern=result)
 
         
 if __name__ == '__main__':
