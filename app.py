@@ -50,7 +50,7 @@ def AddInternFormCom():
     countstatement = "SELECT intern_id FROM Internship ORDER BY intern_id DESC LIMIT 1;"
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement)
-    result = cursor.fetchone()
+    result = count_cursor.fetchone()
     intern_id = result[0] + 1
     count_cursor.close()
 
