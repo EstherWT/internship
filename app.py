@@ -30,10 +30,6 @@ output = {}
 def home():
     return render_template('publishIntern.html')
 
-@app.route("/backToManage", methods=['GET', 'POST'])
-def home():
-    return render_template('manageIntern.html')
-
 @app.route("/addInternFormCom", methods=['POST'])
 def AddInternFormCom():
 
