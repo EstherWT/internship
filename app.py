@@ -28,7 +28,7 @@ output = {}
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('viewIntern.html')
+    return render_template('publishIntern.html')
 
 @app.route("/addInternFormCom", methods=['POST'])
 def AddInternFormCom():
