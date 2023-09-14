@@ -30,6 +30,10 @@ output = {}
 def home():
     return render_template('publishIntern.html')
 
+@app.route("/internshipPublication", methods=['GET', 'POST'])
+def home():
+    return render_template('publishIntern.html')
+
 @app.route("/addInternFormCom", methods=['POST'])
 def AddInternFormCom():
 
@@ -41,9 +45,9 @@ def AddInternFormCom():
     workingDay = request.form['workingDay']
     workingHour = request.form['workingHour']
     accommodation = request.form['accommodation']
-
-    #Get total ID
-    countstatement = "SELECT COUNT(*) FROM Internship"
+    
+    #Get last ID
+    countstatement = "SELECT intern_id FROM Internship ORDER BY intern_id DESC LIMIT 1;"
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement)
     result = cursor.fetchone()
