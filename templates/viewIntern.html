@@ -133,11 +133,11 @@
                 
                             <div class="mt-10"> <!--Accommodation-->
                                 <span class="single-input"><i class="fa fa-home" aria-hidden="true"></i>
-                                    {% ifequal intern[8] "Yes" %}
+                                        {% if intern[8] == "Yes" %}
                                     Provide Accommodation
                                    {% else %}
                                    Does Not Provide Accommodation
-                                   {% endifequal %}
+                                   {% endif %}
                                 </span>
                             </div>
 
