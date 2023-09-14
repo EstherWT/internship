@@ -51,7 +51,7 @@ def AddInternFormCom():
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement)
     result = count_cursor.fetchone()
-    intern_id = result + 1
+    intern_id = int(result[0]) + 1
     count_cursor.close()
 
     insert_sql = "INSERT INTO Internship VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
