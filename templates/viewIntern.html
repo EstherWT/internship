@@ -106,32 +106,33 @@
                         
                         <form action="#" id="viewIntern">
 
-                            <div class="mt-10">
-                                     <span class="single-input">{{ intern[1] }}</span>
+                            {{intern}}
+
+                            <div class="mt-10"> <!--Title-->
+                                <span class="single-input">{{ intern[1] }}</span>
                             </div>
 
-                            <div class="mt-10">
-                               <span class="single-input">{{ intern[2] }}</span>
+                            <div class="mt-10"> <!--Description-->
+                                <span class="single-textarea">{{ intern[2] }}</span>
+
+                            <div class="mt-10"> <!--Salary-->
+                                <span class="single-input">RM {{ intern[2] }}</span>
                             </div>
 
-                            <div class="mt-10">
-                               <span class="single-input">{{ intern[3] }}</span>
+                            <div class="mt-10"> <!--Location-->
+                                <span class="single-textarea">{{ intern[2] }}</span>
                             </div>
 
-                            <div class="mt-10">
-                                <textarea class="single-textarea" name="job_location" placeholder="Location" required value=""></textarea>
+                            <div class="mt-10"> <!--Working Day-->
+                                <span class="single-input">{{ intern[1] }}</span>
                             </div>
 
-                            <div class="mt-10">
-                                <input type="text" name="workingDay" placeholder="Working Day(s)" required class="single-input" value="">
-                            </div>
-
-                            <div class="mt-10">
-                                <input type="text" name="workingHour" placeholder="Working Hour(s)" required class="single-input" value="">
+                            <div class="mt-10"> <!--Working Hour-->
+                                <span class="single-input">{{ intern[1] }}</span>
                             </div>
                 
-                            <div class="mt-10">
-                                <input type="text" name="accommodation" placeholder="accommodation" required class="single-input" value="Does Not Provide Accommodation">
+                            <div class="mt-10"> <!--Accommodation-->
+                                <span class="single-input">{{ intern[1] }}</span>
                             </div>
 
                         </form>
