@@ -108,32 +108,39 @@
 
                             {{intern}}
 
-                            <div class="mt-10"> <!--Title-->
-                                <span class="single-input">{{ intern[1] }}</span>
+                             <div class="mt-10"> <!--Title-->
+                                <span class="single-input">{{ intern[2] }}</span>
                             </div>
 
                             <div class="mt-10"> <!--Description-->
-                                <span class="single-textarea">{{ intern[2] }}</span>
+                                <span class="single-textarea">{{ intern[3] }}</span>
 
                             <div class="mt-10"> <!--Salary-->
-                                <span class="single-input">RM {{ intern[2] }}</span>
+                                <span class="single-input">RM {{ intern[4] }}</span>
                             </div>
 
                             <div class="mt-10"> <!--Location-->
-                                <span class="single-textarea">{{ intern[2] }}</span>
+                                <span class="single-textarea">{{ intern[5] }}</span>
                             </div>
 
                             <div class="mt-10"> <!--Working Day-->
-                                <span class="single-input">{{ intern[1] }}</span>
+                                <span class="single-input">{{ intern[6] }}</span>
                             </div>
 
                             <div class="mt-10"> <!--Working Hour-->
-                                <span class="single-input">{{ intern[1] }}</span>
+                                <span class="single-input">{{ intern[7] }}</span>
                             </div>
                 
                             <div class="mt-10"> <!--Accommodation-->
-                                <span class="single-input">{{ intern[1] }}</span>
+                                <span class="single-input"><i class="fa fa-home" aria-hidden="true"></i>
+                                    {% ifequal intern[8] "Yes" %}
+                                    Provide Accommodation
+                                   {% else %}
+                                   Does Not Provide Accommodation
+                                   {% endifequal %}
+                                </span>
                             </div>
+
 
                         </form>
 
