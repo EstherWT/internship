@@ -31,7 +31,7 @@ def home():
     return render_template('publishIntern.html')
 
 @app.route("/internshipPublication", methods=['GET', 'POST'])
-def home():
+def publichInternPage():
     return render_template('publishIntern.html')
 
 @app.route("/addInternFormCom", methods=['POST'])
