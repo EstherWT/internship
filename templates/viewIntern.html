@@ -106,8 +106,6 @@
                         
                         <form action="#" id="viewIntern">
 
-                            {{intern}}
-
                              <div class="mt-10"> <!--Title-->
                                 <span class="single-input">{{ intern[2] }}</span>
                             </div>
@@ -145,8 +143,8 @@
                         </form>
 
                         <div class="mt-30" style="text-align: center;">
-                            <a href="#" class="genric-btn success circle arrow">Edit</a>
-                            <a href="#" class="genric-btn danger circle arrow">Back</a>
+                            <a href="{{ url_for('edit_internship', internship_id=intern[0]) }}" class="genric-btn success circle arrow">Edit</a>
+                            <a href="/backToManage" class="genric-btn danger circle arrow">Back</a>
                         </div>
                     </div>
 
