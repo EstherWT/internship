@@ -116,7 +116,7 @@ def update_internship():
     workingHour = request.form['workingHour']
     accommodation = request.form['accommodation']
 
-    statement = "UPDATE Internship SET job_title = %s, job_description = %, intern_salary = %s, location = %s, workingDay = %s, workingHour = %s, accommodation = %s WHERE intern_id = %s;"
+    statement = "UPDATE Internship SET job_title = %s, job_description = %s, intern_salary = %s, location = %s, workingDay = %s, workingHour = %s, accommodation = %s WHERE intern_id = %s;"
     cursor = db_conn.cursor()
     cursor.execute(statement, (job_title, job_desc, job_salary, job_location, workingDay, workingHour, accommodation, intern_id))
     db_conn.commit()  # Commit the changes to the database
