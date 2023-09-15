@@ -126,9 +126,6 @@ def update_internship():
     else:
         print("No rows were updated. It's possible that the intern_id does not exist.")
 
-    except mysql.connector.Error as err:
-        print("Error:", err)
-
     finally:
         cursor.close()
         db_conn.close()
