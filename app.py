@@ -136,6 +136,16 @@ def delete_internship(internship_id):
 
     return redirect("/goManageInternship")
 
+#Extra function
+def getCompanyInfo(com_id)
+
+    statement = "SELECT * FROM Comapany WHERE com_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (com_id))
+    result = cursor.fetchone()
+
+    return result
+
         
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
