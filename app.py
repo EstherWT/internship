@@ -91,9 +91,12 @@ def view_internship(internship_id):
     cursor.execute(statement, (internship_id))
     result = cursor.fetchone()
 
-    comResult = getCompanyInfo(result[1])
+    com_statement = "SELECT * FROM Comapany WHERE com_id = %s"
+    com_cursor = db_conn.cursor()
+    com_cursor.execute(statement, (result[1]))
+    com_result = com_cursor.fetchone()
 
-    return render_template('viewIntern.html', intern=result, com=comResult)
+    return render_template('viewIntern.html', intern=result, com=com_result)
 
 @app.route('/editIntern/<int:internship_id>')
 def edit_internship(internship_id):
@@ -137,16 +140,6 @@ def delete_internship(internship_id):
     cursor.close()
 
     return redirect("/goManageInternship")
-
-#Extra function
-def getCompanyInfo(com_id)
-
-    statement = "SELECT * FROM Comapany WHERE com_id = %s"
-    cursor = db_conn.cursor()
-    cursor.execute(statement, (com_id))
-    result = cursor.fetchone()
-
-    return result
 
         
 if __name__ == '__main__':
