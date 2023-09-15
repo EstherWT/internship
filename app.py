@@ -103,7 +103,7 @@ def edit_internship(internship_id):
 
     return render_template('editIntern.html', intern=result)
 
-@app.route('/updateIntern')
+@app.route('/updateIntern', methods=['POST'])
 def update_internship():
 
     com_id = 1
