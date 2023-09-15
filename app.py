@@ -126,8 +126,24 @@ def update_internship():
     else:
         print("No rows were updated. It's possible that the intern_id does not exist.")
 
-        
- 
+@app.route('/deleteIntern/<int:internship_id>')
+def delete_internship(internship_id):
+
+    statement = "DELETE FROM table_name WHERE intern_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (internship_id))
+    cursor.close()
+
+    #back to manage
+    com_id = 1
+    search_statement = "SELECT intern_id, job_title, intern_salary FROM Internship WHERE com_id = %s"
+    search_cursor = db_conn.cursor()
+    search_cursor.execute(statement, (com_id))
+
+    result =  search_cursor.fetchall()
+    search_cursor.close()
+    
+    return render_template('manageIntern.html', data=result) 
 
         
 if __name__ == '__main__':
