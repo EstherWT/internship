@@ -141,21 +141,17 @@
 									  </select>
 										
 									  <script>
-										  document.addEventListener("DOMContentLoaded", function () {
-											    // Check if intern[8] is 'Yes' or 'No'
-											    var internValue = "{{intern[8]}}";
-											   console.log("internValue:", internValue);
+										  $(document).ready(function(){
+											    var internValue = "{{intern[8]}}"; // Assuming {{intern[8]}} contains "Yes" or "No"
 											    
-											    // Get the select element by its ID
-											    var selectElement = document.getElementById("default-select");
-											    
-											    // Set the value based on the condition
 											    if (internValue === "Yes") {
-											      selectElement.value = "2";
+											      $("div#default-select select").val("2").change();
 											    } else if (internValue === "No") {
-											      selectElement.value = "1";
+											      $("div#default-select select").val("1").change();
 											    }
-										});
+											
+											    alert("ready! " + $("div#default-select select").val());
+											  });
 									  </script>
 								</div>	
 							</div>
