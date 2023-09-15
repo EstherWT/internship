@@ -101,7 +101,7 @@ def edit_internship(internship_id):
     cursor.execute(statement, (internship_id))
     result = cursor.fetchone()
 
-    return render_template('viewIntern.html', intern=result)
+    return render_template('editIntern.html', intern=result)
 
         
 if __name__ == '__main__':
