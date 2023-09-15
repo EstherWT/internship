@@ -146,10 +146,10 @@
 							    var internValue = "{{intern[8]}}"; // Assuming {{intern[8]}} contains "Yes" or "No"
 							    
 							  if (internValue === "Yes") {
-							      $("#default-select select").val("2").change();
+							      $("select[name='accommodation']").val("2");
 							    } else if (internValue === "No") {
 								    console.log(internValue)
-							      $("#default-select select").val("1").change();
+							      $("select[name='accommodation']").val("1");
 							    }
 							
 							  
