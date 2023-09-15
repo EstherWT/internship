@@ -129,7 +129,7 @@ def update_internship():
 @app.route('/deleteIntern/<int:internship_id>')
 def delete_internship(internship_id):
 
-    statement = "DELETE FROM table_name WHERE intern_id = %s"
+    statement = "DELETE FROM Internship WHERE intern_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (internship_id))
     cursor.close()
