@@ -103,6 +103,38 @@ def edit_internship(internship_id):
 
     return render_template('editIntern.html', intern=result)
 
+@app.route('/updateIntern')
+def update_internship():
+
+    com_id = 1
+    intern_id =  request.form['intern_id']
+    job_title = request.form['job_title']
+    job_desc = request.form['job_description']
+    job_salary = request.form['job_salary']
+    job_location = request.form['job_location']
+    workingDay = request.form['workingDay']
+    workingHour = request.form['workingHour']
+    accommodation = request.form['accommodation']
+
+    statement = "UPDATE Internship SET job_title = %s, job_description = %, intern_salary = %s, location = %s, workingDay = %s, workingHour = %s, accommodation = %s WHERE intern_id = %s;"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (job_title, job_decs, job_salary, job_location, workingDay, workingHour, accommodation, intern_id))
+    db_conn.commit()  # Commit the changes to the database
+
+    if cursor.rowcount > 0:
+          return render_template('test.html')
+    else:
+        print("No rows were updated. It's possible that the intern_id does not exist.")
+
+    except mysql.connector.Error as err:
+        print("Error:", err)
+
+    finally:
+        cursor.close()
+        db_conn.close()
+        
+ 
+
         
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
