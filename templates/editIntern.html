@@ -135,7 +135,7 @@
                 
                             <div class="input-group-icon mt-10">
 								<div class="icon"><i class="fa fa-home" aria-hidden="true"></i></div>
-								<div class="form-select" id="default-select" name="accommodation" value="2">
+								<div class="form-select" id="default-select" name="accommodation">
 									  <select>
 									    <option value="1">Does Not Provide Accommodation</option>
 									    <option value="2">Provide Accommodation</option>
@@ -144,10 +144,8 @@
 									  <script>
 										  $(document).ready(function(){
 											    var internValue = "{{intern[8]}}"; // Assuming {{intern[8]}} contains "Yes" or "No"
-											    console.log(internValue)
-											    if (internValue === "Yes") {
-												    console.log(internValue)
-												    console.log(internValue)
+											    
+											  if (internValue === "Yes") {
 											      $("div#default-select select").val("2").change();
 											    } else if (internValue === "No") {
 												    console.log(internValue)
