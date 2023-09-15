@@ -91,7 +91,9 @@ def view_internship(internship_id):
     cursor.execute(statement, (internship_id))
     result = cursor.fetchone()
 
-    return render_template('viewIntern.html', intern=result)
+    comResult = getCompanyInfo(result[1])
+
+    return render_template('viewIntern.html', intern=result, com=comResult)
 
 @app.route('/editIntern/<int:internship_id>')
 def edit_internship(internship_id):
