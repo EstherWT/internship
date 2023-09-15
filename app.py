@@ -90,11 +90,13 @@ def view_internship(internship_id):
     cursor = db_conn.cursor()
     cursor.execute(statement, (internship_id))
     result = cursor.fetchone()
+    cursor.close()
 
-    com_statement = "SELECT * FROM Comapany WHERE com_id = %s"
+    com_statement = "SELECT * FROM Company WHERE com_id = %s"
     com_cursor = db_conn.cursor()
     com_cursor.execute(statement, (result[1]))
     com_result = com_cursor.fetchone()
+    com_cursor.close()
 
     return render_template('viewIntern.html', intern=result, com=com_result)
 
