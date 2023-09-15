@@ -134,16 +134,7 @@ def delete_internship(internship_id):
     cursor.execute(statement, (internship_id))
     cursor.close()
 
-    #back to manage
-    com_id = 1
-    search_statement = "SELECT intern_id, job_title, intern_salary FROM Internship WHERE com_id = %s"
-    search_cursor = db_conn.cursor()
-    search_cursor.execute(statement, (com_id))
-
-    result =  search_cursor.fetchall()
-    search_cursor.close()
-    
-    return render_template('manageIntern.html', data=result) 
+    return redirect("/goManageInternship")
 
         
 if __name__ == '__main__':
