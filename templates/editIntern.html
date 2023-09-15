@@ -107,7 +107,9 @@
                     <div class="col-1g-12 col-md-8 section-top-border">
                         <h3 class="text-heading mb-30">Edit Internship</h3>
                         
-                        <form action="#">
+                        <form action="/updateIntern" autocomplete="on" method="POST" enctype="multipart/form-data">
+
+				<input type="text" name="intern_id" value="{{intern[0]}}" hidden>
 
                             <div class="mt-10">
                                 <input type="text" name="job_title" placeholder="Job Title" required class="single-input" value="{{intern[2]}}">
@@ -142,14 +144,15 @@
 					  </select>
 				</div>	
 			</div>
+				
+	                        <div class="mt-30" style="text-align: center;">
+	                            <a href="submit" class="genric-btn success circle arrow">Save</a>
+	                            <a href="/goManageInternship" class="genric-btn danger circle arrow">Cancel</a>
+	                        </div>
 
 
                         </form>
 
-                        <div class="mt-30" style="text-align: center;">
-                            <a href="#" class="genric-btn success circle arrow">Save</a>
-                            <a href="#" class="genric-btn danger circle arrow">Cancel</a>
-                        </div>
                     </div>
 
                     <div class="col-1g-12 col-md-4 section-top-border">
