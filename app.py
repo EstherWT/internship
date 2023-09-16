@@ -40,7 +40,17 @@ def publichInternPage():
 
 @app.route("/goProfile", methods=['GET', 'POST'])
 def goProfile():
-    return render_template('viewCompany.html')
+
+    id = "1"
+    
+    #Company Profile
+    statement = "SELECT * FROM Company WHERE com_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (id))
+    result = cursor.fetchone()
+    cursor.close()
+    
+    return render_template('viewCompany.html', com=result)
 
 #---With function--------------------------------------------------------------------
 #==INTERNSHIP========================================================================
