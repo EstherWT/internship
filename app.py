@@ -174,6 +174,14 @@ def delete_internship(internship_id):
 
 
 #==ADMIN========================================================================
+@app.route("/StudentApp", methods=['GET', 'POST'])
+def ApprovingStudent():
+    return redirect('/studentapproval')
+
+@app.route("/CompanyApp", methods=['GET', 'POST'])
+def ApprovingCompany():
+    return redirect('/companyapproval')
+    
 #--view supervisor---
 @app.route("/viewsupervisor", methods=['GET'])
 def ViewSupervisor():
