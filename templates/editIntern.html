@@ -134,16 +134,31 @@
                             <div class="mt-10">
                                 <input type="text" name="workingHour" placeholder="Working Hour(s)" required class="single-input" value="{{intern[7]}}">
                             </div>
+
+			    {% if intern[8] == "Yes" %}
                 
-                            <div class="input-group-icon mt-10">
-				<div class="icon"><i class="fa fa-home" aria-hidden="true"></i></div>
-				<div class="form-select" id="default-select">
-				     <select name="accommodation">
-	                                        <option value="No">Does Not Provide Accommodation</option>
-	                                        <option value="Yes">Provide Accommodation</option>
-					</select>
-				</div>	
-			   </div>
+		                            <div class="input-group-icon mt-10">
+						<div class="icon"><i class="fa fa-home" aria-hidden="true"></i></div>
+						<div class="form-select" id="default-select">
+						     <select name="accommodation">
+							     <option value="Yes">Provide Accommodation</option>
+			                                        <option value="No">Does Not Provide Accommodation</option>
+							</select>
+						</div>	
+					   </div>
+				{% else %}
+
+				  	<div class="input-group-icon mt-10">
+						<div class="icon"><i class="fa fa-home" aria-hidden="true"></i></div>
+						<div class="form-select" id="default-select">
+						     <select name="accommodation">
+			                                        <option value="No">Does Not Provide Accommodation</option>
+			                                        <option value="Yes">Provide Accommodation</option>
+							</select>
+						</div>	
+					   </div>
+
+				{% endif %}
 				
 	                        <div class="mt-30" style="text-align: center;">
 	                           <button type="submit" class="genric-btn success circle arrow">Submit</button>
