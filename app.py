@@ -129,7 +129,7 @@ def update_internship():
     db_conn.commit()  # Commit the changes to the database
 
     if cursor.rowcount > 0:
-          return redirect("/viewIntern")
+          return redirect("/goManageInternship")
     else:
         print("No rows were updated. It's possible that the intern_id does not exist.")
 
