@@ -140,6 +140,7 @@ def delete_internship(internship_id):
     cursor = db_conn.cursor()
     cursor.execute(statement, (internship_id))
     cursor.close()
+    db_conn.commit()
 
     return redirect("/goManageInternship")
 
