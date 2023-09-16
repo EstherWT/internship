@@ -26,6 +26,8 @@ db_conn = connections.Connection(
 )
 output = {}
 
+#---Navigate to page only----------------------------------------------
+
 @app.route("/", methods=['GET', 'POST'])
 def home():
     return render_template('index.html')
@@ -34,6 +36,14 @@ def home():
 def publichInternPage():
     return render_template('publishIntern.html')
 
+#go profile with login check -------------------------------------------
+
+@app.route("/goProfile", methods=['GET', 'POST'])
+def goProfile():
+    return render_template('viewCompany.html')
+
+#---With function--------------------------------------------------------------------
+#==INTERNSHIP========================================================================
 @app.route("/addInternFormCom", methods=['POST'])
 def AddInternFormCom():
 
@@ -130,7 +140,6 @@ def update_internship():
 
     return redirect("/viewIntern/" + intern_id)
 
-
 @app.route('/deleteIntern/<int:internship_id>')
 def delete_internship(internship_id):
 
@@ -141,6 +150,8 @@ def delete_internship(internship_id):
     db_conn.commit()
 
     return redirect("/goManageInternship")
+
+#==COMPANY========================================================================
 
         
 if __name__ == '__main__':
