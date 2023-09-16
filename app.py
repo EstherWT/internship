@@ -128,10 +128,8 @@ def update_internship():
     cursor.execute(statement, (job_title, job_desc, job_salary, job_location, workingDay, workingHour, accommodation, intern_id))
     db_conn.commit()  # Commit the changes to the database
 
-    if cursor.rowcount > 0:
-          return redirect("/goManageInternship")
-    else:
-        print("No rows were updated. It's possible that the intern_id does not exist.")
+    return redirect("/viewIntern/" + intern_id)
+
 
 @app.route('/deleteIntern/<int:internship_id>')
 def delete_internship(internship_id):
