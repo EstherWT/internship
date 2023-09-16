@@ -1,3 +1,4 @@
+from flask_wtf.csrf import CSRFProtect, CSRFError
 from flask import Flask, render_template, request, redirect, flash, jsonify
 from pymysql import connections
 import os
@@ -13,6 +14,8 @@ customregion = "us-east-1"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'pdf'}
 
 app = Flask(__name__, static_folder='assets')
+#encrypt
+csrf = CSRFProtect(app)
 
 bucket = custombucket
 region = customregion
