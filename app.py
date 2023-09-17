@@ -292,7 +292,7 @@ def editCompany():
     result = cursor.fetchone()
     cursor.close()
     
-    return render_template('eidtCompany.html', com=result)
+    return render_template('editCompany.html', com=result)
 
 @app.route("/updateCompany", methods=['POST'])
 def updateCompany():
