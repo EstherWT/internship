@@ -311,7 +311,7 @@ def updateCompany():
     email =  request.form['email']
     password =  request.form['password']
 
-     if ssm_new.filename != "":
+    if com_id == 1:
         try:
             print("Data inserted in MySQL RDS... uploading pdf to S3...")
             s3.Bucket(custombucket).put_object(Key=ssm_in_s3, Body=ssm, ContentType=ssm.content_type)
