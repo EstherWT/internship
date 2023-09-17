@@ -42,37 +42,20 @@
         <div class="slider-area ">
             <!-- Mobile Menu -->
             <div class="slider-active">
-                <div class="single-slider slider-height d-flex align-items-center" data-background="assets/img/hero/h1_hero.jpg">
+                <div class="single-slider slider-height d-flex align-items-center" data-background="assets/img/TARUMT_Logo/tarumt_school.png">
                     <div class="container">
                         <div class="row">
+                            <div class="col-lg-6"></div>
                             <div class="col-xl-6 col-lg-9 col-md-10">
-                                <div class="hero__caption">
+                                <div class="hero__caption" style="text-align: right;">
                                     <h1>Find the most exciting startup jobs</h1>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Search Box -->
-                        <div class="row">
-                            <div class="col-xl-8">
-                                <!-- form -->
-                                <form action="#" class="search-box">
-                                    <div class="input-form">
-                                        <input type="text" placeholder="Job Tittle or keyword">
-                                    </div>
-                                    <div class="select-form">
-                                        <div class="select-itms">
-                                            <select name="select" id="select1">
-                                                <option value="">Location BD</option>
-                                                <option value="">Location PK</option>
-                                                <option value="">Location US</option>
-                                                <option value="">Location UK</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="search-form">
-                                        <a href="#">Find job</a>
-                                    </div>	
-                                </form>	
+                            <div class="col-lg-9"></div>
+                            <!-- Search Box -->
+                            <div class="button-group-area col-lg-3 " style="align-items: right;">
+                                <a href="#" class="genric-btn primary e-large" style="font-size: large;">View Internships Now</a>
+                            
                             </div>
                         </div>
                     </div>
@@ -80,76 +63,12 @@
             </div>
         </div>
         <!-- slider Area End-->
-        <!-- Our Services Start -->
-        <div class="our-services section-pad-t30">
-            <div class="container">
-                <!-- Section Tittle -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-tittle text-center">
-                            <h2>Browse Top Categories </h2>
-                        </div>
-                    </div>
-                </div>
-	    	
-                <div class="row d-flex justify-contnet-center">
-                    {% for row in category %}
-		    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-				<div class="services-ion">
-				    <img src ="{{ url_for('static', filename='img/icon/cate-' + row[0]|string + '.png') }}" alt = "Category" width="120" height="120">
-				</div>
-				<div class="services-cap">
-				    <h5><a href="{{ url_for('jobList', cate=row[0]) }}" style="align-content: center;">{{row[0]}}</a></h5>
-				</div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        <!-- Our Services End -->
-        <!-- Featured_job_start -->
-        <section class="featured-job-area feature-padding">
-            <div class="container">
-                <!-- Section Tittle -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-tittle text-center">
-                            <span>Recent Job</span>
-                            <h2>Featured Jobs</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <!-- single-job-content -->
-                        {% for row in internship %}
-                            <div class="single-job-items mb-30">
-                                <div class="job-items">
-                                    <div class="company-img">
-                                        <img src="{{ url_for('static', filename='img/icon/job-list' + row[0]|string + '.png') }}" alt="Internship">
-                                    </div>
-                                    <div class="job-tittle">
-                                        <h4>{{row[2]}}</h4>
-                                        <ul>
-                                            <li>{{row[1]}}</li>
-                                            <li><i class="fas fa-map-marker-alt"></i>{{row[6]}}</li>
-                                            <li>{{row[5]}}</li>
-                                            <li>{{row[7]}}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="items-link f-right">
-                                    <a href="{{ url_for('jobDetails', id=row[0]) }}">View details</a>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Featured_job_end -->
+       
+      
+      
+       
+       
+
     </main>
 	
     <div id="footer"></div>
