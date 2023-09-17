@@ -44,6 +44,75 @@ def home():
 def publichInternPage():
     return render_template('publishIntern.html')
 
+#---Register---------------------------------------------------------
+@app.route("/addstud", methods=['POST'])
+def AddStud():
+    stud_id = request.form['stud_id'] 
+    stud_name = request.form['stud_name']
+    ic = request.form['ic']
+    email = request.form['email']
+    gender = request.form['gender']
+    programme = request.form['programme']
+    group = request.form['group']
+    cgpa = request.form['cgpa']
+    password = request.form['password']
+    intern_batch = request.form['intern_batch']
+    ownTransport = request.form['ownTransport']
+    currentAddress = request.form['currentAddress']
+    contactNo = request.form['contactNo']
+    personalEmail = request.form['personalEmail']
+    homeAddress = request.form['homeAddress']
+    homePhone = request.form['homePhone']
+    profile_img = request.files['profile_img']
+    resume = request.files['resume']
+
+    insert_sql = "INSERT INTO Student VALUES (%s, %s, %s, %s, %s, %s, %d, %lf, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    cursor = db_conn.cursor()
+
+    if profile_img.filename == "":
+        return "Please select a file"
+    if resume.filename == "":
+        return "Please select a file"
+
+    try:
+        cursor = db_conn.cursor()
+        cursor.execute(insert_sql, (stud_id, stud_name, ic, email, gender, programme, group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo
+                                    , personalEmail, homeAddress, homeAddress, homePhone))
+        db_conn.commit()
+        cursor.close()
+    except Exception as e:
+        db_conn.rollback()  # Rollback the transaction in case of an error
+        print(f"Error: {str(e)}")  # Print the error for debugging
+
+        # Uplaod image file in S3 #
+        profile_img_in_s3 = "stud-id-" + str(stud_id) + "_image_file"
+        s3 = boto3.resource('s3')
+
+        try:
+            print("uploading image to S3...")
+            s3.Bucket(custombucket).put_object(Key=profile_img_in_s3, Body=profile_img)
+            bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
+            s3_location = (bucket_location['LocationConstraint'])
+
+            if s3_location is None:
+                s3_location = ''
+            else:
+                s3_location = '-' + s3_location
+
+            object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+                s3_location,
+                custombucket,
+                stud_image_file_name_in_s3)
+
+        except Exception as e:
+            return str(e)
+
+    finally:
+        cursor.close()
+
+    print("all modification done...")
+    return render_template('AddStudOutput.html', name=stud_name)
+
 #go profile with login check -------------------------------------------
 
 @app.route("/goProfile", methods=['GET', 'POST'])
