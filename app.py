@@ -170,6 +170,19 @@ def delete_internship(internship_id):
     return redirect("/goManageInternship")
 
 #==COMPANY========================================================================
+@app.route("/editCompany", methods=['GET', 'POST'])
+def editCompany():
+    id = "1"
+    
+    #Company Profile
+    statement = "SELECT * FROM Company WHERE com_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (id))
+    result = cursor.fetchone()
+    cursor.close()
+    
+    return render_template('eidtCompany.html', com=result)
+    return redirect('/studentapproval')
 
 
 
