@@ -45,10 +45,15 @@ def publichInternPage():
     return render_template('publishIntern.html')
 
 
-#-Naviaget to login page---
-@app.route("/goLogin", methods=['GET', 'POST'])
-def goLogin():
+#-Navigate to login page---
+@app.route("/login", methods=['GET', 'POST'])
+def Login():
     return render_template('login.html')
+
+#--- Navigate to register page ------
+@app.route("/chooseUser", methods=['GET'])
+def chooseUser():
+    return render_template('usertype.html')
 
 
 #---Register---------------------------------------------------------
