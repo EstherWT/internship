@@ -343,6 +343,14 @@ def ApprovingStudent():
 def ApprovingCompany():
     return redirect('/companyapproval')
 
+@app.route("/Supervisor", methods=['GET', 'POST'])
+def ManagingSupervisor():
+    return redirect('/viewsupervisor')
+
+@app.route("/Dashboard", methods=['GET', 'POST'])
+def AddingAdmin():
+    return render_template('Dashboard.html')
+
 #--Manage Admin---
 @app.route('/addadmin', methods=['POST', 'GET'])
 @csrf.exempt 
