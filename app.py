@@ -182,6 +182,20 @@ def ApprovingStudent():
 def ApprovingCompany():
     return redirect('/companyapproval')
 
+#--Manage Admin---
+@app.route('/viewadmin', methods=['GET'])
+def view_admin():
+    try:
+        cursor = db_conn.cursor()
+        cursor.execute("SELECT * FROM Admin")
+        admins = cursor.fetchall()
+        cursor.close()
+
+        return render_template('AdminIndex.html', admins=admins)
+
+    except Exception as e:
+        return str(e)
+
 #--Student Approval---
 @app.route("/studentapproval", methods=['GET'])
 def StudAproval():
