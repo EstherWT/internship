@@ -182,7 +182,7 @@ def editCompany():
     cursor.close()
     
     return render_template('eidtCompany.html', com=result)
-    return redirect('/studentapproval')
+
 
 
 
