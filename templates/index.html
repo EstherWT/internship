@@ -66,7 +66,14 @@
     <div id="footer"></div>
 
   <!-- JS here -->
-	
+
+	<script>
+	        $(function () {
+	            $("#header").load("{{ url_for('static', filename='templates/Header.html') }}");
+	            $("#footer").load("{{ url_for('static', filename='templates/Footer.html') }}");
+	        });
+    	</script>
+	   
 	<!-- All JS Custom Plugins Link Here here -->
         <script src="{{url_for('static', filename='js/vendor/modernizr-3.5.0.min.js')}}"></script>
 		<!-- Jquery, Popper, Bootstrap -->
@@ -106,12 +113,7 @@
 	<script src="{{url_for('static', filename='js/plugins.js')}}"></script>
 	<script src="{{url_for('static', filename='js/main.js')}}"></script>
 
-	<script>
-	        $(function () {
-	            $("#header").load("{{ url_for('static', filename='templates/Header.html') }}");
-	            $("#footer").load("{{ url_for('static', filename='templates/Footer.html') }}");
-	        });
-    	</script>
+	
         
     </body>
 </html>
