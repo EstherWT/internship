@@ -220,6 +220,24 @@ def ApprovingCompany():
     return redirect('/companyapproval')
 
 #--Manage Admin---
+@app.route('/addadmin', methods=['POST', 'GET'])
+@csrf.exempt 
+def add_admin():
+    if request.method == 'POST':
+        id = request.form['id']
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+
+        cursor = db_conn.cursor()
+        cursor.execute("INSERT INTO Admin (id, name, email, password) VALUES (%s, %s, %s, %s)", (id, name, email, password))
+        db_conn.commit()
+
+        # Redirect to a success page or do something else as needed
+        return redirect('/viewadmin')
+
+    return render_template('AdminIndex.html')  
+
 @app.route('/viewadmin', methods=['GET'])
 def view_admin():
     try:
@@ -232,6 +250,20 @@ def view_admin():
 
     except Exception as e:
         return str(e)
+
+@app.route('/deleteadmin', methods=['POST', 'GET'])
+def delete_admin():
+     if request.method == 'POST':
+        id=request.form['id']
+
+        delete_sql="DELETE FROM Admin WHERE id = %s"
+        cursor = db_conn.cursor()
+        cursor.execute(delete_sql, (id))
+        db_conn.commit()
+        cursor.close()
+
+        return redirect('/viewadmin')
+     return "Method Not Allowed", 405  # Handle GET requests with an error response
 
 #--Student Approval---
 @app.route("/studentapproval", methods=['GET'])
@@ -310,12 +342,99 @@ def ComApproval():
     finally:
         cursor.close()
 
+@app.route("/updatecompanystatus", methods=['POST', 'GET'])
+@csrf.exempt  
+def UpdateComStatus():
+    try:
+        id = request.form['id']
+        new_status = request.form['status']
+
+        # SQL statement to update the status of a StudApproval entry by id
+        update_sql = "UPDATE ComApproval SET status = %s WHERE id = %s"
+        cursor = db_conn.cursor()
+        cursor.execute(update_sql, (new_status, id))
+        db_conn.commit()
+        cursor.close()
+        
+        return redirect("/companyapproval")
+
+    except Exception as e:
+        return str(e)
 
 #--view and add supervisor---
 @app.route("/createsupervisor", methods=['GET', 'POST'])
 def AddingSupervisor():
     return render_template('AddSupervisor.html') 
     
+@app.route("/addsupervisor", methods=['POST'])
+@csrf.exempt  
+def AddSupervisor():
+    sv_id = request.form['sv_id']
+    sv_name = request.form['sv_name']
+    sv_email = request.form['sv_email']
+    programme = request.form['programme']
+    faculty = request.form['faculty']
+    age = request.form['age']
+    password = request.form['password']
+    profile_image = request.files['profile_image']
+
+    insert_sql = "INSERT INTO Supervisor VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+    cursor = db_conn.cursor()
+
+    if profile_image.filename == "":
+        return "Please add a profile picture"
+    
+    if not allowed_file(profile_image.filename):
+        return "File type not allowed. Only images (png, jpg, jpeg, gif) and PDFs are allowed."
+    
+    try:
+        cursor.execute(insert_sql, (sv_id, sv_name, sv_email, programme, faculty, age, profile_image, password))
+        db_conn.commit()
+        
+        profile_image_in_s3 = "sv_id-" + str(sv_id) + "_image_file"
+        s3 = boto3.resource('s3')
+
+        try:
+            print("Data inserted in MySQL RDS... uploading image to S3...")
+            s3.Bucket(custombucket).put_object(Key=profile_image_in_s3, Body=profile_image, ContentType=profile_image.content_type)
+            
+            # Generate the object URL
+            object_url = f"https://{custombucket}.s3.amazonaws.com/{profile_image_in_s3}"
+
+        except Exception as e:
+            return str(e)
+
+    finally:
+        cursor.close()
+
+    return redirect('/Supervisor')
+   # return render_template('AddSupOutput.html', name=sv_name, email=sv_email, programme=programme, faculty=faculty, age=age, object_url=object_url)
+
+
+@app.route("/searchsupervisor", methods=['POST'])
+def GetSupervisor():
+    try:
+        supe = request.form['search']
+        # Corrected SQL statement with placeholder
+        statement = "SELECT sv_id, sv_name FROM Supervisor WHERE sv_name = %s"
+        cursor = db_conn.cursor()
+        cursor.execute(statement, (supe,))
+
+        # Fetch the result
+        result = cursor.fetchone()
+
+        if result:
+            sv_id, sv_name = result
+            return render_template('searchSupervisor.html', name=sv_name, id=sv_id)
+        else:
+            return render_template('searchSupervisorError.html', id=supe)
+        
+    except Exception as e:
+        return str(e)
+
+    finally:
+        cursor.close()
+        
 @app.route("/viewsupervisor", methods=['GET'])
 def ViewSupervisor():
     try:
@@ -348,24 +467,22 @@ def ViewSupervisor():
     finally:
         cursor.close()
 
-@app.route("/updatecompanystatus", methods=['POST', 'GET'])
-@csrf.exempt  
-def UpdateComStatus():
-    try:
-        id = request.form['id']
-        new_status = request.form['status']
+@app.route("/deletesupervisor", methods=['POST', 'GET'])
+def DeleteSupervisor():
+    if request.method == 'POST':
+        sv_id = request.form['sv_id']
 
-        # SQL statement to update the status of a StudApproval entry by id
-        update_sql = "UPDATE ComApproval SET status = %s WHERE id = %s"
+        # SQL statement to delete a supervisor by sv_id
+        delete_sql = "DELETE FROM Supervisor WHERE sv_id = %s"
         cursor = db_conn.cursor()
-        cursor.execute(update_sql, (new_status, id))
+        cursor.execute(delete_sql, (sv_id,))
         db_conn.commit()
         cursor.close()
         
-        return redirect("/companyapproval")
+        return redirect("/viewsupervisor")
 
-    except Exception as e:
-        return str(e)
+    return "Method Not Allowed", 405  # Handle GET requests with an error response
+
 
 
 
