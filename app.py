@@ -47,7 +47,7 @@ def publichInternPage():
 
 #-Naviaget to login page---
 @app.route("/goLogin", methods=['GET', 'POST'])
-def publichInternPage():
+def goLogin():
     return render_template('login.html')
 
 
