@@ -1,0 +1,177 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+         <title>Job board HTML-5 Template </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+	<!-- CSS here -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}">
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/price_rangs.css') }}">
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.css') }}">
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}">
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/themify-icons.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+   </head>
+
+   <body>
+    
+    <header>
+        <!-- Header Start -->
+        <div id="header"></div>
+        <!-- Header End -->
+    </header>
+    <main>
+
+        <!-- Hero Area Start-->
+        <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ url_for('static', filename='images/requirementscs.png') }}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>{{internship[1]}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- Hero Area End -->
+        <!-- job post company Start -->
+        <div class="job-post-company pt-120 pb-120">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <!-- Left Content -->
+                    <div class="col-xl-4 col-lg-8">
+                        
+                        <!-- job single -->
+                        <div class="single-job-items mb-50">
+                            <div class="job-items">
+                                <div class="company-img company-img-details">
+					<img src="{{ url_for('static', filename='img/icon/job-list' + internship[0]|string + '.png') }}" alt="Internship">
+                                </div>
+                                <div class="job-tittle">
+                                        <!--Software Enginner-->
+                                        <h4>{{internship[2]}}</h4>
+                                    <ul>
+                                        <!--Location-->
+                                        <li><i class="fas fa-map-marker-alt"></i>{{internship[4]}}</li>
+                                        
+                                        <!--Working Day-->
+                                        <li>{{internship[5]}}</li>
+                                    
+                                        <!--Working Hours-->
+                                        <li>{{internship[6]}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                          <!-- job single End -->
+                       
+                        <div class="job-post-details">
+                            <div class="post-details1 mb-50">
+                                <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4>Job Description</h4>
+                                </div>
+                                <p>{{internship[8]}}</p>
+                            </div>
+                            <div class="post-details2  mb-50">
+                                 <!-- Requirement combine with description? -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Right Content -->
+                    <div class="col-xl-4 col-lg-4">
+                        <div class="post-details3  mb-50">
+                            <!-- Small Section Tittle -->
+                           <div class="small-section-tittle">
+                               <h4>Job Overview</h4>
+                           </div>
+                          <ul>
+                              <li>Job position  : <span>{{internship[2]}}</span></li>
+                              <li>Location      : <span>{{internship[4]}}</span></li>
+                              <li>Salary        : <span>RM {{internship[3]}}</span></li>
+                              <li>Accommodation : <span>{{internship[7]}}</span></li>
+                          </ul>
+                         <div class="apply-btn2">
+                            <a href="#" class="btn">Apply Now</a>
+                         </div>
+                       </div>
+                        <div class="post-details3  mb-50">
+                            <!-- Small Section Tittle -->
+                           <div class="small-section-tittle">
+                               <h4>Company Information</h4>
+                           </div>
+                            <ul>
+                                <li>Person Incharge : <span>{{internship[11]}} </span></li>
+                                <li>Email : <span>{{internship[12]}}</span></li>
+                                <li>Contact : <span>{{internship[13]}}</span></li>
+                                <li>Product Service : <span>{{internship[9]}}</span></li>
+                                <li>Industry Involve : <span>{{internship[10]}}</span></li>
+                            </ul>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- job post company End -->
+
+    </main>
+    <footer>
+        <!-- Footer Start-->
+        <div id="footer"></div>
+   	<!-- Footer END -->
+    </footer>
+
+	<!-- JS here -->
+	
+		<!-- All JS Custom Plugins Link Here here -->
+        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+		<!-- Jquery, Popper, Bootstrap -->
+		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="./assets/js/popper.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+	    <!-- Jquery Mobile Menu -->
+        <script src="./assets/js/jquery.slicknav.min.js"></script>
+
+		<!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <script src="./assets/js/slick.min.js"></script>
+        <script src="./assets/js/price_rangs.js"></script>
+        
+		<!-- One Page, Animated-HeadLin -->
+        <script src="./assets/js/wow.min.js"></script>
+		<script src="./assets/js/animated.headline.js"></script>
+        <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+		<!-- Scrollup, nice-select, sticky -->
+        <script src="./assets/js/jquery.scrollUp.min.js"></script>
+        <script src="./assets/js/jquery.nice-select.min.js"></script>
+		<script src="./assets/js/jquery.sticky.js"></script>
+        
+        <!-- contact js -->
+        <script src="./assets/js/contact.js"></script>
+        <script src="./assets/js/jquery.form.js"></script>
+        <script src="./assets/js/jquery.validate.min.js"></script>
+        <script src="./assets/js/mail-script.js"></script>
+        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+        
+		<!-- Jquery Plugins, main Jquery -->	
+        <script src="./assets/js/plugins.js"></script>
+        <script src="./assets/js/main.js"></script>
+        
+    </body>
+</html>
