@@ -594,6 +594,51 @@ def DeleteSupervisor():
 
     return "Method Not Allowed", 405  # Handle GET requests with an error response
 
+@app.route("/internship_index", methods=['GET'])
+def display_internship():
+
+    #Get All Internship
+    home_statement = """SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve 
+    FROM Internship i INNER JOIN Company c WHERE i.com_id = c.com_id"""
+    cursor = db_conn.cursor()
+    cursor.execute(home_statement)
+    result = cursor.fetchall()
+    cursor.close()
+
+    #Get Industry involve
+    indus_statement = "SELECT cate_name FROM Category"
+    cursor = db_conn.cursor()
+    cursor.execute(indus_statement)
+    indus = cursor.fetchall()
+    cursor.close()
+
+    return render_template('index.html', internship = result, category = indus)    
+
+@app.route('/internship_index/job_details/<int:id>')
+def jobDetails(id):
+
+    #Get Internship details
+    details_statement = """SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, i.accommodation, i.job_description, c.product_service, c.industry_involve, c.person_incharge, c.contact_no, c.email 
+    FROM Internship i INNER JOIN Company c WHERE i.com_id = c.com_id AND intern_id = %s"""
+    cursor = db_conn.cursor()
+    cursor.execute(details_statement, (id))
+    details = cursor.fetchone()
+    cursor.close()
+    
+    return render_template('job_details.html', internship = details)
+
+@app.route('/internship_index/job_listing/<string:cate>')
+def jobList(cate):
+
+    #Get Specific Listing 
+    cate_statement = """SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve 
+                        FROM Internship i INNER JOIN Company c WHERE i.com_id = c.com_id AND c.industry_involve = %s """
+    cursor = db_conn.cursor()
+    cursor.execute(cate_statement, (cate))
+    list = cursor.fetchall()
+    cursor.close()
+    
+    return render_template('job_listing.html', listing = list, type = cate)
 
 
 
