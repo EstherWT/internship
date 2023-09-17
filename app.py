@@ -4,8 +4,6 @@ from pymysql import connections
 import os
 import boto3
 
-#fuck me
-
 customhost = "internshipdatabase.cpkr5ofaey5p.us-east-1.rds.amazonaws.com"
 customuser = "admin"
 custompass = "admin123"
