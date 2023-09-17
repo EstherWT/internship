@@ -55,27 +55,32 @@ def Login():
 def chooseUser():
     return render_template('usertype.html')
 
-#---Navigatation (if choose student) --------
+#--- Navigation (if choose student / supervisor) ------
+@app.route("/chooseUser2", methods=['GET', 'POST'])
+def chooseUser2():
+    return render_template('usertype-2.html')
+
+#---Navigation (if choose student) --------
 @app.route("/chooseStud", methods=['GET', 'POST'])
 def chooseStud():
     return render_template('register-1.html')
 
-#---Navigatation (if choose student) --------
+#---Navigation (if choose student) --------
 @app.route("/chooseStud2", methods=['GET', 'POST'])
 def chooseStud2():
     return render_template('register-2.html')
 
-#---Navigatation (if choose supervisor)-------------
+#---Navigation (if choose supervisor)-------------
 @app.route("/chooseSV", methods=['GET', 'POST'])
 def chooseSV():
     return render_template('supervisor-register.html')
 
-#---Navigatation (if choose admin)-------------
+#---Navigation (if choose admin)-------------
 @app.route("/chooseAdmin", methods=['GET', 'POST'])
 def chooseAdmin():
     return render_template('admin-register.html')
 
-#---Navigatation (if choose company)-------------
+#---Navigation (if choose company)-------------
 @app.route("/chooseCompany", methods=['GET', 'POST'])
 def chooseCompany():
     return render_template('company-register.html')
