@@ -300,22 +300,35 @@ def updateCompany():
     com_id = 1
     com_name =  request.form['com_name']
     total_staff =  request.form['total_staff']
-    com_name =  request.form['com_name']
-    com_name =  request.form['com_name']
-    com_name =  request.form['com_name']
-    com_name =  request.form['com_name']
-    com_name =  request.form['com_name']
-    com_name =  request.form['com_name']
-    com_name =  request.form['com_name']
-    com_name =  request.form['com_name']
-    com_name =  request.form['com_name']
+    industry_invlove =  request.form['industry_invlove']
+    com_name =  request.form['product_service']
+    product_service =  request.form['product_service']
+    company_website =  request.form['company_website']
+    nearest_station =  request.form['nearest_station']
+    com_address =  request.form['com_address']
+    ssm_new = request.files['ssm_new']
+    person_incharge =  request.form['person_incharge']
+    email =  request.form['email']
+    password =  request.form['password']
+
+     if ssm_new.filename != "":
+        try:
+            print("Data inserted in MySQL RDS... uploading pdf to S3...")
+            s3.Bucket(custombucket).put_object(Key=ssm_in_s3, Body=ssm, ContentType=ssm.content_type)
     
-
-
-    statement = "UPDATE Internship SET job_title = %s, job_description = %s, intern_salary = %s, location = %s, workingDay = %s, workingHour = %s, accommodation = %s WHERE intern_id = %s;"
-    cursor = db_conn.cursor()
-    cursor.execute(statement, (job_title, job_desc, job_salary, job_location, workingDay, workingHour, accommodation, intern_id))
-    db_conn.commit()  # Commit the changes to the database
+            # Generate the object URL
+            object_url = f"https://{custombucket}.s3.amazonaws.com/{ssm_in_s3}"
+            statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, logo = %s, person_incharge = %s, contact_no = %s , password = %s WHERE com_id = %s;"
+            cursor.execute(statement, (ic, gender, programme, group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo, personalEmail, homeAddress, homePhone, object_url, stud_id))
+            db_conn.commit()  # Commit the changes to the database
+        except Exception as e:
+            return str(e)
+         
+     else:
+        statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, logo = %s, person_incharge = %s, contact_no = %s , password = %s WHERE com_id = %s;"
+        cursor = db_conn.cursor()
+        cursor.execute(statement, (job_title, job_desc, job_salary, job_location, workingDay, workingHour, accommodation, intern_id))
+        db_conn.commit()  # Commit the changes to the database
 
     return redirect("/goProfile/")
 
