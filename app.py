@@ -44,6 +44,13 @@ def home():
 def publichInternPage():
     return render_template('publishIntern.html')
 
+
+#-Naviaget to login page---
+@app.route("/goLogin", methods=['GET', 'POST'])
+def publichInternPage():
+    return render_template('login.html')
+
+
 #---Register---------------------------------------------------------
 @app.route("/addstud", methods=['POST'])
 def AddStud():
