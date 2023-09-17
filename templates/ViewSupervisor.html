@@ -27,12 +27,54 @@
 	<link rel="stylesheet" href="assets/css/slick.css">
 	<link rel="stylesheet" href="assets/css/nice-select.css">
 	<link rel="stylesheet" href="assets/css/style.css">
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
 
-	<div id="header"></div>
+	<header>
+		<div class="header-area header-transparrent">
+			<div class="headder-top header-sticky">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-3 col-md-2">
+							<!-- Logo -->
+							<div class="logo">
+								<a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+							</div>
+						</div>
+						<div class="col-lg-9 col-md-9">
+							<div class="menu-wrapper">
+								<!-- Main-menu -->
+								<div class="main-menu">
+									<nav class="d-none d-lg-block">
+										<ul id="navigation">
+											<li><a href="/">Home</a></li>
+											<li><a href="/Dashboard">Dashboard</a></li>
+											<li><a href="/viewsupervisor">Supervisor</a>
+												<ul class="submenu">
+													<li><a href="/Create">Create</a></li>
+												</ul>
+											</li>
+											<li><a>Approval</a>
+												<ul class="submenu">
+													<li><a href="/StudentApp">Student</a></li>
+													<li><a href="/CompanyApp">Company</a></li>
+												</ul>
+											</li>
+
+										</ul>
+									</nav>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</header>
 
 	<div class="container box_1170">
 
@@ -46,11 +88,12 @@
 							<div class="serial">No.</div>
 							<div class="serial">ID</div>
 							<div class="country">Name</div>
-							<div class="visit">Email</div>
-							<div class="percentage">Programme</div>
-							<div class="percentage">Faculty</div>
-							<div class="serial">Age</div>
-							<div class="visit">Profile Image</div>
+							<div class="percentage">Email</div>
+							<div class="country">Programme</div>
+							<div class="country">Faculty</div>
+							<div class="country">Age</div>
+							<div class="percentage">Profile Image</div>
+							<div class="percentage">Action</div>
 						</div>
 
 						{% for supervisor in supervisors %}
@@ -58,11 +101,11 @@
 							<div class="serial">{{ loop.index }}</div>
 							<div class="serial">{{ supervisor.sv_id }}</div>
 							<div class="country">{{ supervisor.sv_name }}</div>
-							<div class="visit">{{ supervisor.sv_email }}</div>
-							<div class="percentage">{{ supervisor.programme }}</div>
-							<div class="percentage">{{ supervisor.faculty }}</div>
-							<div class="serial">{{ supervisor.age }}</div>
-							<div class="visit"><img src="data:image/jpeg;base64,{{ supervisor.profile_image }}"
+							<div class="percentage">{{ supervisor.sv_email }}</div>
+							<div class="country">{{ supervisor.programme }}</div>
+							<div class="country">{{ supervisor.faculty }}</div>
+							<div class="country">{{ supervisor.age }}</div>
+							<div class="percentage"><img src="data:image/jpeg;base64,{{ supervisor.profile_image }}"
 									alt="Profile Image"></div>
 
 
@@ -87,16 +130,10 @@
 
 	</div>
 
-	<div id="footer"></div>
+
 
 
 	<!-- JS here -->
-	<script>
-		$(function () {
-		    $("#header").load("{{ url_for('static', filename='templates/Header.html') }}");
-		    $("#footer").load("{{ url_for('static', filename='templates/Footer.html') }}");
-		});
-	</script>
 	<!-- All JS Custom Plugins Link Here here -->
 	<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
 	<!-- Jquery, Popper, Bootstrap -->
