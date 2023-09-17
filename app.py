@@ -183,6 +183,30 @@ def editCompany():
     
     return render_template('eidtCompany.html', com=result)
 
+@app.route("/updateCompany", methods=['POST'])
+def updateCompany():
+    
+    com_id = 1
+    com_name =  request.form['com_name']
+    total_staff =  request.form['total_staff']
+    com_name =  request.form['com_name']
+    com_name =  request.form['com_name']
+    com_name =  request.form['com_name']
+    com_name =  request.form['com_name']
+    com_name =  request.form['com_name']
+    com_name =  request.form['com_name']
+    com_name =  request.form['com_name']
+    com_name =  request.form['com_name']
+    com_name =  request.form['com_name']
+    
+
+
+    statement = "UPDATE Internship SET job_title = %s, job_description = %s, intern_salary = %s, location = %s, workingDay = %s, workingHour = %s, accommodation = %s WHERE intern_id = %s;"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (job_title, job_desc, job_salary, job_location, workingDay, workingHour, accommodation, intern_id))
+    db_conn.commit()  # Commit the changes to the database
+
+    return redirect("/goProfile/")
 
 
 
@@ -287,7 +311,11 @@ def ComApproval():
         cursor.close()
 
 
-#--view supervisor---
+#--view and add supervisor---
+@app.route("/createsupervisor", methods=['GET', 'POST'])
+def AddingSupervisor():
+    return render_template('AddSupervisor.html') 
+    
 @app.route("/viewsupervisor", methods=['GET'])
 def ViewSupervisor():
     try:
