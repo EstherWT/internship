@@ -317,7 +317,7 @@ def updateCompany():
         cursor.execute(statement, (job_title, job_desc, job_salary, job_location, workingDay, workingHour, accommodation, intern_id))
         db_conn.commit()  # Commit the changes to the database
        
-     else:
+    else:
           try:
             print("Data inserted in MySQL RDS... uploading pdf to S3...")
             s3.Bucket(custombucket).put_object(Key=ssm_in_s3, Body=ssm, ContentType=ssm.content_type)
