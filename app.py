@@ -44,7 +44,7 @@ output = {}
 #---Navigate to page only----------------------------------------------
 
 @app.route("/", methods=['GET', 'POST'])
-def home():
+def homePage():
     return render_template('index.html')
 
 @app.route("/internshipPublication", methods=['GET', 'POST'])
