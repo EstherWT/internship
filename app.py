@@ -111,8 +111,9 @@ def userLogin():
         else:
             # Account doesnt exist or username/password incorrect
             msg = 'Incorrect ID or password!'
-            return render_template('login.html')
+            
     # Show the login form with message (if any)
+    return render_template('login.html')
 
 
 #---Register---------------------------------------------------------
