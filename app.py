@@ -615,7 +615,7 @@ def display_internship():
     indus = cursor.fetchall()
     cursor.close()
 
-    return render_template('index.html', internship = result, category = indus)    
+    return render_template('internship_index.html', internship = result, category = indus)    
 
 @app.route('/internship_index/job_details/<int:id>')
 def jobDetails(id):
