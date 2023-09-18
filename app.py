@@ -46,9 +46,9 @@ def publichInternPage():
 
 
 # #-Navigate to login page---
-# @app.route("/login", methods=['GET', 'POST'])
-# def Login():
-#     return render_template('login.html')
+@app.route("/login", methods=['GET', 'POST'])
+def Login():
+    return render_template('login.html')
 
 #--- Navigate to register page ------
 @app.route("/chooseUser", methods=['GET', 'POST'])
