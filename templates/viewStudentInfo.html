@@ -1,0 +1,156 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+</html>
+
+<!--Head -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Internship Publication </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    <!-- CSS here -->
+           <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/price_rangs.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/themify-icons.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <!--Header-->
+    <div id="header"></div>
+
+    <!--Pic-->
+    <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center"
+            data-background="assets/img/hero/about.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>View Student Info</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Main body-->
+    <div class="container box_1170">
+
+        <div class="section-top-border">
+            <div class="row-mt-3">
+                <div class="progress-table-wrap">
+                    <div class="progress-table">
+                        <div class="table-head">
+                            <div class="serial">Student ID</div>
+                            <div class="country">Student Name</div>
+                            <div class="visit">Programme</div>
+                            <div class="percentage">Action</div>
+                        </div>
+                        {% for row in data %}
+                        <div class="table-row">
+                            <div class="serial">{{row[0]}}</div>
+                            <div class="country">{{row[1]}}</div>
+                            <div class="visit">{{row[5]}}</div>
+                            <div class="percentage">
+                                <div class="button-group-area mt-10">
+                                    <a href="/viewStudentInfoDetails/{{ row[0] }}"
+                                        class="genric-btn success circle arrow">View</a>
+                                    <a href="/viewReport/{{ row[0] }}" 
+					class="genric-btn success circle arrow">Report</a>
+                                </div>
+                            </div>
+                        </div>
+                  
+                        {% endfor %}
+
+                    </div>
+                </div>
+		<div class="mt-30" style="text-align: center;">
+		    <a href="/" class="genric-btn danger circle arrow">Back</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <!-- Footer Start-->
+    <div id="footer"></div>
+
+    <!-- JS here -->
+    	<script>
+	        $(function () {
+	            $("#header").load("{{ url_for('static', filename='templates/Header.html') }}");
+	            $("#footer").load("{{ url_for('static', filename='templates/Footer.html') }}");
+	        });
+	</script>
+		<!-- All JS Custom Plugins Link Here here -->
+        <script src="{{url_for('static', filename='js/vendor/modernizr-3.5.0.min.js')}}"></script>
+		<!-- Jquery, Popper, Bootstrap -->
+	<script src="{{url_for('static', filename='js/vendor/jquery-1.12.4.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/vendor/popper.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/vendor/bootstrap.min.js')}}"></script>
+	
+
+	    <!-- Jquery Mobile Menu -->
+    <script src="{{url_for('static', filename='js/jquery.slicknav.min.js')}}"></script>
+
+		<!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="{{url_for('static', filename='js/owl.carousel.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/slick.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/price_rangs.js')}}"></script>
+        
+		<!-- One Page, Animated-HeadLin -->
+	<script src="{{url_for('static', filename='js/wow.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/animated.headline.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.magnific-popup.js')}}"></script>
+	    
+		<!-- Scrollup, nice-select, sticky -->
+	<script src="{{url_for('static', filename='js/jquery.scrollUp.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.nice-select.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.sticky.js')}}"></script>
+
+        
+        <!-- contact js -->
+	<script src="{{url_for('static', filename='js/contact.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.form.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.validate.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/mail-script.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.ajaxchimp.min.js')}}"></script>
+
+        
+		<!-- Jquery Plugins, main Jquery -->	
+	<script src="{{url_for('static', filename='js/plugins.js')}}"></script>
+	<script src="{{url_for('static', filename='js/main.js')}}"></script>
+</body>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Supervisor Main Page</title>
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+  
+  <!-- CSS here -->
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/price_rangs.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/themify-icons.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+   <!-- Preloader Start -->
+   <div id="preloader-active">
+      <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+               <div class="preloader-circle"></div>
+               <div class="preloader-img pere-text">
+                  <img src="assets/img/logo/logo.png" alt="">
+               </div>
+            </div>
+      </div>
+   </div>
+   <!-- Preloader Start-->
+	
+   <div id="header"></div>
+   <!-- Hero Area Start-->
+   <div class="slider-area ">
+      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
+          <div class="container">
+              <div class="row">
+                  <div class="col-xl-12">
+                      <div class="hero-cap text-center">
+                          <h2>Surpervisor Main Function</h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+   </div>
+   <!-- Hero Area End -->
+   <!--================Blog Area =================-->
+   <section class="blog_area single-post-area section-padding">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-8">
+               <div class="blog_right_sidebar">
+                  <aside class="single_sidebar_widget post_category_widget">
+                     <h4 class="widget_title">Task</h4>
+                     <ul class="list cat-list">
+                        <li>
+                           <a href="/viewStudentInfo" class="d-flex">
+                              <p>View Student Info</p>
+                           </a>
+                        </li>
+                     </ul>
+                  </aside>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <!--================ Blog Area end =================-->
+
+
+
+
+
+
+
+
+<div id="footer"></div>
+   
+<!-- JS here -->
+	<script>
+	        $(function () {
+	            $("#header").load("{{ url_for('static', filename='templates/Header.html') }}");
+	            $("#footer").load("{{ url_for('static', filename='templates/Footer.html') }}");
+	        });
+	</script>
+	
+		<!-- All JS Custom Plugins Link Here here -->
+        <script src="{{url_for('static', filename='js/vendor/modernizr-3.5.0.min.js')}}"></script>
+		<!-- Jquery, Popper, Bootstrap -->
+	<script src="{{url_for('static', filename='js/vendor/jquery-1.12.4.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/vendor/popper.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/vendor/bootstrap.min.js')}}"></script>
+	
+
+	    <!-- Jquery Mobile Menu -->
+        <script src="{{url_for('static', filename='js/jquery.slicknav.min.js')}}"></script>
+
+		<!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="{{url_for('static', filename='js/owl.carousel.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/slick.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/price_rangs.js')}}"></script>
+        
+		<!-- One Page, Animated-HeadLin -->
+	<script src="{{url_for('static', filename='js/wow.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/animated.headline.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.magnific-popup.js')}}"></script>
+	    
+		<!-- Scrollup, nice-select, sticky -->
+	<script src="{{url_for('static', filename='js/jquery.scrollUp.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.nice-select.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.sticky.js')}}"></script>
+
+        
+        <!-- contact js -->
+	<script src="{{url_for('static', filename='js/contact.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.form.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.validate.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/mail-script.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.ajaxchimp.min.js')}}"></script>
+
+        
+		<!-- Jquery Plugins, main Jquery -->	
+	<script src="{{url_for('static', filename='js/plugins.js')}}"></script>
+	<script src="{{url_for('static', filename='js/main.js')}}"></script>
+        
+</body>
+</html>
