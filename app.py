@@ -114,12 +114,22 @@ def userLogin():
             session['stud_id'] = account['stud_id']
             session['password'] = account['password']
             # Redirect to home page
-            return render_template('index.html', msg=msg)
+            return 'Logged in successfully!'
         else:
             # Account doesnt exist or username/password incorrect
             msg = 'Incorrect ID or password!'
     # Show the login form with message (if any)
     return render_template('login.html', msg=msg)
+
+#go home with login check --------
+@app.route('/goHome')
+def goHome():
+    # Check if the user is logged in
+    if 'loggedin' in session:
+        # User is loggedin show them the home page
+        return render_template('index.html', stud_id=session['stud_id'])
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
 
 
 #---Register---------------------------------------------------------
