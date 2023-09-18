@@ -306,7 +306,7 @@ def updateCompany():
     company_website =  request.form['company_website']
     nearest_station =  request.form['nearest_station']
     com_address =  request.form['com_address']
-    ssm_new = request.files['ssm_new']
+    ssm = request.files['ssm_new']
     person_incharge =  request.form['person_incharge']
     email =  request.form['email']
     password =  request.form['password']
@@ -320,7 +320,7 @@ def updateCompany():
     else:
           try:
             ssm_in_key = "con_id-" + str(com_id) + "_pdf"
-             s3 = boto3.resource('s3')
+            s3 = boto3.resource('s3')
               
             print("Data inserted in MySQL RDS... uploading pdf to S3...")
             s3.Bucket(custombucket).put_object(Key=ssm_in_s3, Body=ssm, ContentType=ssm.content_type)
