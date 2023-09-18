@@ -327,7 +327,7 @@ def updateCompany():
             statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, logo = %s, person_incharge = %s, contact_no = %s , password = %s WHERE com_id = %s;"
             cursor.execute(statement, (ic, gender, programme, group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo, personalEmail, homeAddress, homePhone, object_url, stud_id))
             db_conn.commit()  # Commit the changes to the database
-        except Exception as e:
+          except Exception as e:
             return str(e)
  
     return redirect("/goProfile/")
