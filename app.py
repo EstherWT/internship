@@ -91,13 +91,13 @@ def userLogin():
     # Output a message if something goes wrong...
     msg = 'Incorrect ID or password!'
     # Check if "username" and "password" POST requests exist (user submitted form)
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+    if request.method == 'POST' and 'stud_id' in request.form and 'password' in request.form:
         # Create variables for easy access
-        username = request.form['username']
+        stud_id = request.form['stud_id']
         password = request.form['password']
         # Check if account exists using MySQL
         cursor = db_conn.cursor()
-        cursor.execute('SELECT * FROM Student WHERE stud_id = %s AND password = %s', (username, password,))
+        cursor.execute('SELECT * FROM Student WHERE stud_id = %s AND password = %s', (stud_id, password,))
         # Fetch one record and return result
         account = cursor.fetchone()
         # If account exists in accounts table in out database
@@ -111,9 +111,8 @@ def userLogin():
         else:
             # Account doesnt exist or username/password incorrect
             msg = 'Incorrect ID or password!'
-            
     # Show the login form with message (if any)
-    return render_template('login.html')
+    return render_template('login.html', msg=msg)
 
 
 #---Register---------------------------------------------------------
