@@ -86,7 +86,7 @@ def chooseCompany():
     return render_template('company-register.html')
 
 # login ---------------------------
-@app.route("/userLogin1", methods=['GET', 'POST'])
+@app.route("/userLogin", methods=['GET', 'POST'])
 def userLogin():
     # Output a message if something goes wrong...
     msg = 'Incorrect ID or password!'
@@ -107,12 +107,12 @@ def userLogin():
             session['stud_id'] = account['stud_id']
             session['password'] = account['password']
             # Redirect to home page
-            return 'Logged in successfully!'
+            return render_template('index.html', msg=msg)
         else:
             # Account doesnt exist or username/password incorrect
             msg = 'Incorrect ID or password!'
+            return render_template('login.html')
     # Show the login form with message (if any)
-    return render_template('index.html', msg=msg)
 
 
 #---Register---------------------------------------------------------
