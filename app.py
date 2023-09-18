@@ -86,7 +86,7 @@ def chooseCompany():
     return render_template('company-register.html')
 
 # login ---------------------------
-@app.route("/userLogin", methods=['GET', 'POST'])
+@app.route("/userLogin1", methods=['GET', 'POST'])
 def userLogin():
     # Output a message if something goes wrong...
     msg = 'Incorrect ID or password!'
