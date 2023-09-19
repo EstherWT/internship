@@ -217,6 +217,7 @@ def AddStud():
 
 #----- Admin Register ------------------------
 @app.route("/addAdmin", methods=['POST'])
+@csrf.exempt
 def AddAdmin():
     id = request.form['id'] 
     name = request.form['name']
