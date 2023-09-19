@@ -289,6 +289,7 @@ def view_internship(internship_id):
     return render_template('viewIntern.html', intern=result, com=com_result)
 
 @app.route('/editIntern/<int:internship_id>')
+@csrf.exempt 
 def edit_internship(internship_id):
 
     statement = "SELECT * FROM Internship WHERE intern_id = %s"
@@ -305,6 +306,7 @@ def edit_internship(internship_id):
     return render_template('editIntern.html', intern=result, com=com_result)
 
 @app.route('/updateIntern', methods=['POST'])
+@csrf.exempt 
 def update_internship():
 
     com_id = 1
@@ -337,6 +339,7 @@ def delete_internship(internship_id):
 
 #==COMPANY========================================================================
 @app.route("/editCompany", methods=['GET', 'POST'])
+@csrf.exempt 
 def editCompany():
     id = "1"
     
@@ -350,6 +353,7 @@ def editCompany():
     return render_template('editCompany.html', com=result)
 
 @app.route("/updateCompany", methods=['POST'])
+@csrf.exempt 
 def updateCompany():
     
     com_id = 1
