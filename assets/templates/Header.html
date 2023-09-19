@@ -21,7 +21,7 @@
                                             <li><a href="/">Home</a></li>
                                             <li><a href="/internship_index">Find An Internship </a></li>
 						
-					{% if session.role == "3" %}
+					{% if session["role"] == "3" %}
                                             <li><a href="">Company</a>
                                                 <ul class="submenu">
                                                     <li><a href="/goProfile">Company Profile</a></li>
@@ -29,7 +29,7 @@
                                                      <li><a href="/internshipPublication">Internship Publication</a></li>
                                                 </ul>
                                             </li>
-					{% elif session.role == "4" %}
+					{% elif session["role"] == "4" %}
                                             <li><a href="">Supervisor</a>
                                                 <ul class="submenu">
                                                     <li><a href="blog.html">Supervisor Profile</a></li>
@@ -37,14 +37,14 @@
                                                 </ul>
                                             </li>
 
-					{% elif session.role == "1" %}
+					{% elif session["role"] == "1" %}
                                             <li><a href="">Student</a>
                                                 <ul class="submenu">
                                                     <li><a href="blog.html">Student Profile</a></li>
                                                     <li><a href="blog.html">Internship Application</a></li>
                                                 </ul>
                                             </li>
-					{% elif session.role == "2" %}
+					{% elif session["role"] == "2" %}
                                             <li><a href="">Admin</a>
                                                 <ul class="submenu">
                                                     <li><a href="/StudentApp">Student Approval</a></li>
@@ -61,7 +61,7 @@
                                     </nav>
                                 </div>          
                                 <!-- Header-btn -->
-				{% if session.name %}
+				{% if session["name"] %}
 					<div class="header-btn d-none f-right d-lg-block">
 					    <a href="/logout" class="btn head-btn1">Logout</a>
 					</div>
