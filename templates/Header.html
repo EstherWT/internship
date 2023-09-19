@@ -58,6 +58,13 @@
                                                 </ul>
                                             </li>
 					{% endif%}
+
+					{% if session['name'] %}
+					  	<li><a href="">Hi, {{session['name']}}</a>
+	                                              
+	                                            </li>
+
+					{% endif %}
                                          
                                         </ul>
                                     </nav>
