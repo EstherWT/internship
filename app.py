@@ -96,6 +96,7 @@ def chooseCompany():
 
 # login ---------------------------
 @app.route("/userLogin", methods=['GET', 'POST'])
+@csrf.exempt
 def userLogin():
     # Output a message if something goes wrong...
     msg = 'Incorrect ID or password!'
