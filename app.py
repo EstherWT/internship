@@ -224,7 +224,7 @@ def AddAdmin():
     email = request.form['email']
     password = request.form['password']
 
-    insert_sql = "INSERT INTO Student VALUES (%s, %s, %s, %s)"
+    insert_sql = "INSERT INTO Admin VALUES (%s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
 
