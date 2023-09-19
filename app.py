@@ -51,7 +51,14 @@ def homePage():
 
 @app.route("/internshipPublication", methods=['GET', 'POST'])
 def publichInternPage():
-    return render_template('publishIntern.html')
+
+    com_id = 1
+    com_statement = "SELECT * FROM Company WHERE com_id = %s"
+    com_cursor = db_conn.cursor()
+    com_cursor.execute(com_statement, com_id)
+    com_result = com_cursor.fetchone()
+    com_cursor.close()
+    return render_template('publishIntern.html', com = com_result)
 
 
 # #-Navigate to login page---
