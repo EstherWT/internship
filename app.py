@@ -357,7 +357,8 @@ def editCompany():
 @csrf.exempt 
 def updateCompany():
     
-    com_id = 1
+       com_id = 1
+    logo  = request.files['ssm_new']
     com_name =  request.form['com_name']
     total_staff =  request.form['total_staff']
     industry_involve =  request.form['industry_involve']
@@ -370,13 +371,47 @@ def updateCompany():
     person_incharge =  request.form['person_incharge']
     contact_no =  request.form['contact_no']
     password =  request.form['password']
-    
-    statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, person_incharge = %s, contact_no = %s, password = %s WHERE com_id = %s;"
-    cursor = db_conn.cursor()
-    cursor.execute(statement, (com_name, total_staff, industry_involve, product_service, company_website, ot_claim, nearest_station, com_address, person_incharge, contact_no, password, com_id))
-    db_conn.commit()  # Commit the changes to the database
-  
 
+    if ssm.filename != "":
+        ssm_in_s3 = "com_id-" + str(com_id) + "_pdf"
+        s3 = boto3.resource('s3')
+        s3.Bucket(custombucket).put_object(Key=ssm_in_s3, Body=ssm, ContentType=ssm.content_type)
+        ssm_url = f"https://{custombucket}.s3.amazonaws.com/{ssm_in_s3}"
+    
+    if logo.filename != "":
+        logo_in_s3 = "com_id-" + str(com_id) + "_png"
+        s3 = boto3.resource('s3')
+        s3.Bucket(custombucket).put_object(Key=logo_in_s3, Body=logo, ContentType=logo.content_type)
+        logo_url = f"https://{custombucket}.s3.amazonaws.com/{logo_in_s3}"
+        
+    #no change in logo and ssm
+    if ssm.filename == "" and logo.filename == "":
+        statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, person_incharge = %s, contact_no = %s, password = %s WHERE com_id = %s;"
+        cursor = db_conn.cursor()
+        cursor.execute(statement, (com_name, total_staff, industry_involve, product_service, company_website, ot_claim, nearest_station, com_address, person_incharge, contact_no, password, com_id))
+        db_conn.commit()  # Commit the changes to the database
+
+    #only change in logo
+    elif ssm.filename == "" and logo.filename != "":
+        statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, person_incharge = %s, contact_no = %s, password = %s, logo = %s WHERE com_id = %s;"
+        cursor = db_conn.cursor()
+        cursor.execute(statement, (com_name, total_staff, industry_involve, product_service, company_website, ot_claim, nearest_station, com_address, person_incharge, contact_no, password, logo_url, com_id))
+        db_conn.commit()  # Commit the changes to the database
+        
+    #only change in ssm
+    elif ssm.filename != "" and logo.filename == "":
+        statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, person_incharge = %s, contact_no = %s, password = %s, ssm = %s WHERE com_id = %s;"
+        cursor = db_conn.cursor()
+        cursor.execute(statement, (com_name, total_staff, industry_involve, product_service, company_website, ot_claim, nearest_station, com_address, person_incharge, contact_no, password, ssm_url, com_id))
+        db_conn.commit()  # Commit the changes to the database
+        
+    #change both
+    else:
+        statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, person_incharge = %s, contact_no = %s, password = %s, ssm = %s, logo = %s WHERE com_id = %s;"
+        cursor = db_conn.cursor()
+        cursor.execute(statement, (com_name, total_staff, industry_involve, product_service, company_website, ot_claim, nearest_station, com_address, person_incharge, contact_no, password, ssm_url, logo_url, com_id))
+        db_conn.commit()  # Commit the changes to the database
+         
     return redirect("/goProfile")
 
 
