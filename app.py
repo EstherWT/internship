@@ -225,7 +225,6 @@ def AddAdmin():
     password = request.form['password']
 
     insert_sql = "INSERT INTO Admin VALUES (%s, %s, %s, %s)"
-    cursor = db_conn.cursor()
 
 
     try:
