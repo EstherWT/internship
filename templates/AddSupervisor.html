@@ -25,16 +25,10 @@
 	    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-	    <script>
-	        $(function () {
-	            $("#header").load("{{ url_for('static', filename='templates/Header.html') }}");
-	            $("#footer").load("{{ url_for('static', filename='templates/Footer.html') }}");
-	        });
-    	</script>
    </head>
 
 	<body>
-		 <div id="header"></div>
+		   {% include 'Header.html' %}
     <main>
 <!--Main body-->
 <div class="container box_1170">
@@ -79,7 +73,7 @@
 
   </main>
 	
-    <div id="footer"></div>
+     {% include 'Footer.html' %}
 
   <!-- JS here -->
 
