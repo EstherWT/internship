@@ -360,7 +360,7 @@ def updateCompany():
     com_id = 1
     com_name =  request.form['com_name']
     total_staff =  request.form['total_staff']
-    industry_invlove =  request.form['industry_invlove']
+    industry_involve =  request.form['industry_involve']
     product_service =  request.form['product_service']
     company_website =  request.form['company_website']
     ot_claim =  request.form['OT_claim']
@@ -370,7 +370,6 @@ def updateCompany():
     person_incharge =  request.form['person_incharge']
     contact_no =  request.form['contact_no']
     password =  request.form['password']
-
     
     statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, person_incharge = %s, contact_no = %s, password = %s WHERE com_id = %s;"
     cursor = db_conn.cursor()
