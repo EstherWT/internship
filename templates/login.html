@@ -46,7 +46,7 @@
                 <h1 style="font-weight: bold;">Sign in</h1>
                 <div class="single-element-widget mt-20">
                     <div class="default-select" id="default-select">
-                        <select>
+                        <select name="role">
                             <option value=" 1">Student</option>
                             <option value="2">Admin</option>
                             <option value="3">Company</option>
@@ -55,10 +55,10 @@
                     </div>
                 </div>
 
-                <input type="text" placeholder="Student / Admin / Company ID" />
-                <input type="password" placeholder="Password" />
-                <a href="#">Forgot your password?</a>
-                <button class="button-1">Sign In</button>
+                <input type="text" name="email" placeholder="Email" />
+                <input type="password" name="password" placeholder="Password" />
+           
+                <button type="submit" class="button-1">Sign In</button>
             </form>
         </div>
 
