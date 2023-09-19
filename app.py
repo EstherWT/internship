@@ -143,12 +143,12 @@ def userLogin():
         cursor.execute(statement, (email, password))
         account = cursor.fetchone()
         
-         if account:
+        if account:
             session["role"] = "2"
             session["id"] = account[0]
             session["name"] = account[1]
             return redirect("/")
-         else 
+        else 
              return render_template('login.html', verify=False)
     
     elif role == "3": #Company
