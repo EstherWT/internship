@@ -53,7 +53,8 @@ def allowed_file(filename):
 
 @app.route("/", methods=['GET', 'POST'])
 def homePage():
-    return render_template('index.html')
+    role = session['role'];  
+    return render_template('index.html', r=role)
 
 @app.route("/internshipPublication", methods=['GET', 'POST'])
 def publichInternPage():
