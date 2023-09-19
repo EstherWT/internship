@@ -63,16 +63,17 @@
                                     </nav>
                                 </div>          
                                 <!-- Header-btn -->
-				
+				{% if session['name'] %}
 					<div class="header-btn d-none f-right d-lg-block">
 					    <a href="/logout" class="btn head-btn1">Logout</a>
 					</div>
-
+				{% else %}
 			
 	                                <div class="header-btn d-none f-right d-lg-block">
 	                                    <a href="/chooseUser" class="btn head-btn1">Register</a>
 	                                    <a href="/login" class="btn head-btn2">Login</a>
 	                                </div>
+				{% endif %}
 		
 				    
                             </div>
