@@ -128,7 +128,7 @@ def userLogin():
             cursor.execute(veri_statement, (account[0]))
             result = cursor.fetchone()
 
-            if result == "approved":
+            if result[0] == "approved":
                 session["role"] = "1"
                 session["id"] = account[0]
                 session["name"] = account[1]
@@ -162,7 +162,7 @@ def userLogin():
             result = cursor.fetchone()
 
             if result[0] == "approved":
-                session["role"] = "2"
+                session["role"] = "3"
                 session["id"] = account[0]
                 session["name"] = account[1]
                 return redirect("/")
