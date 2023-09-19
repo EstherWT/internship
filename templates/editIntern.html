@@ -33,7 +33,7 @@
     <body>
 
         <!--Header-->
-     <div id="header"></div>
+  {% include 'Header.html' %}
 
         <!--Pic-->
         <div class="slider-area ">
@@ -150,14 +150,9 @@
 
 
         <!-- Footer Start-->
-	<div id="footer"></div>
+  {% include 'Footer.html' %}
         <!-- JS here -->
-	    <script>
-		$(function () {
-		    $("#header").load("{{ url_for('static', filename='templates/Header.html') }}");
-		    $("#footer").load("{{ url_for('static', filename='templates/Footer.html') }}");
-		});
-	</script>
+
 	
 	<!-- All JS Custom Plugins Link Here here -->
         <script src="{{url_for('static', filename='js/vendor/modernizr-3.5.0.min.js')}}"></script>
