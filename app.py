@@ -211,6 +211,36 @@ def AddStud():
     print("all modification done...")
     return render_template('AddStudOutput.html', name=stud_name)
 
+
+# ---- Supervisor Register ---------------------
+
+
+#----- Admin Register ------------------------
+@app.route("/addAdmin", methods=['POST'])
+def AddAdmin():
+    id = request.form['id'] 
+    name = request.form['name']
+    password = request.form['password']
+    email = request.form['email']
+
+    insert_sql = "INSERT INTO Student VALUES (%s, %s, %s, %s)"
+    cursor = db_conn.cursor()
+
+
+    try:
+        cursor = db_conn.cursor()
+        cursor.execute(insert_sql, (id, name, email,password))
+        db_conn.commit()
+        cursor.close()
+    except Exception as e:
+        db_conn.rollback()  # Rollback the transaction in case of an error
+        print(f"Error: {str(e)}")  # Print the error for debugging
+
+
+    return render_template('login.html', admin=id)
+
+#------ Company register ------------------------
+
 #go profile with login check -------------------------------------------
 
 @app.route("/goProfile", methods=['GET', 'POST'])
