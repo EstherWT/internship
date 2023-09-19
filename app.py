@@ -21,7 +21,7 @@ customregion = "us-east-1"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'pdf'}
 
 app = Flask(__name__, static_folder='assets')
-#encrypt
+app.secret_key = 'cc_assignment'
 csrf = CSRFProtect(app)
 
 bucket = custombucket
