@@ -359,10 +359,10 @@ def updateCompany():
     contact_no =  request.form['contact_no']
     password =  request.form['password']
     
-        statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, person_incharge = %s, contact_no = %s, password = %s WHERE com_id = %s;"
-        cursor = db_conn.cursor()
-        cursor.execute(statement, (com_name, total_staff, industry_involve, product_service, company_website, ot_claim, nearest_station, com_address, person_incharge, contact_no, password, com_id))
-        db_conn.commit()  # Commit the changes to the database
+    statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, person_incharge = %s, contact_no = %s, password = %s WHERE com_id = %s;"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (com_name, total_staff, industry_involve, product_service, company_website, ot_claim, nearest_station, com_address, person_incharge, contact_no, password, com_id))
+    db_conn.commit()  # Commit the changes to the database
   
 
     return redirect("/goProfile")
