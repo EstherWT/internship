@@ -27,6 +27,7 @@
 
 	    <script>
 	        $(function () {
+		    $("#preload").load("{{ url_for('static', filename='templates/Preload.html') }}");
 	            $("#header").load("{{ url_for('static', filename='templates/Header.html') }}");
 	            $("#footer").load("{{ url_for('static', filename='templates/Footer.html') }}");
 	        });
@@ -34,7 +35,7 @@
    </head>
 
    <body>
-
+	 <div id="preload"></div>
       <div id="header"></div>
     <main>
 
