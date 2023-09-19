@@ -125,7 +125,7 @@ def userLogin():
 
         if account:
             veri_statement = 'SELECT status FROM StudApproval WHERE stud_id = %s'
-            cursor.execute(statement, (account[0]))
+            cursor.execute(veri_statement, (account[0]))
             result = cursor.fetchone()
 
             if result[0] == "approved":
@@ -158,7 +158,7 @@ def userLogin():
 
         if account:
             veri_statement = 'SELECT status FROM ComApproval WHERE com_id = %s'
-            cursor.execute(statement, (account[0]))
+            cursor.execute(veri_statement, (account[0]))
             result = cursor.fetchone()
 
             if result[0] == "approved":
