@@ -148,7 +148,7 @@ def userLogin():
             session["id"] = account[0]
             session["name"] = account[1]
             return redirect("/")
-        else 
+        else:
              return render_template('login.html', verify=False)
     
     elif role == "3": #Company
@@ -181,7 +181,7 @@ def userLogin():
             session["id"] = account[0]
             session["name"] = account[1]
             return redirect("/")
-        else 
+        else:
              return render_template('login.html', verify=False)
     else:
         return render_template('login.html', verify=False)
