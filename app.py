@@ -128,7 +128,7 @@ def userLogin():
             cursor.execute(veri_statement, (account[0]))
             result = cursor.fetchone()
 
-            if result[0] == "approved":
+            if result == "approved":
                 session["role"] = "1"
                 session["id"] = account[0]
                 session["name"] = account[1]
