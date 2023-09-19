@@ -357,8 +357,8 @@ def editCompany():
 @csrf.exempt 
 def updateCompany():
     
-       com_id = 1
-    logo  = request.files['ssm_new']
+    com_id = 1
+    logo  = request.files['logo']
     com_name =  request.form['com_name']
     total_staff =  request.form['total_staff']
     industry_involve =  request.form['industry_involve']
