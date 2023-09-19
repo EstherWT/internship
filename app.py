@@ -708,7 +708,7 @@ def DeleteSupervisor():
 def display_internship():
 
     #Get All Internship
-    home_statement = """SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve 
+    home_statement = """SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve, c.logo 
     FROM Internship i INNER JOIN Company c WHERE i.com_id = c.com_id"""
     cursor = db_conn.cursor()
     cursor.execute(home_statement)
