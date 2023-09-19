@@ -358,6 +358,7 @@ def updateCompany():
     person_incharge =  request.form['person_incharge']
     contact_no =  request.form['contact_no']
     password =  request.form['password']
+
     
     statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, person_incharge = %s, contact_no = %s, password = %s WHERE com_id = %s;"
     cursor = db_conn.cursor()
@@ -825,5 +826,4 @@ def viewReport(stud_id):
     return render_template('viewReport.html', report=result)
         
 if __name__ == '__main__':
-    app.secret_key = 'chunkit_key'
     app.run(host='0.0.0.0', port=80, debug=True)
