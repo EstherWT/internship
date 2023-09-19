@@ -222,6 +222,7 @@ def goProfile():
 #---With function--------------------------------------------------------------------
 #==INTERNSHIP========================================================================
 @app.route("/addInternFormCom", methods=['POST'])
+@csrf.exempt 
 def AddInternFormCom():
 
     com_id = 1
