@@ -186,7 +186,7 @@ def userLogin():
     else:
         return render_template('login.html', verify=False)
 
-@app.route("/logout", methods=['POST'])
+@app.route("/logout", methods=['GET', 'POST'])
 @csrf.exempt
 def logout():
     session.clear()
