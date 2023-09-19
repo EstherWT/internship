@@ -220,8 +220,8 @@ def AddStud():
 def AddAdmin():
     id = request.form['id'] 
     name = request.form['name']
-    password = request.form['password']
     email = request.form['email']
+    password = request.form['password']
 
     insert_sql = "INSERT INTO Student VALUES (%s, %s, %s, %s)"
     cursor = db_conn.cursor()
