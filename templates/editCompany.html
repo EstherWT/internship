@@ -51,6 +51,7 @@
         <div class="container box_1170">
           
            <form action="/updateCompany" autocomplete="on" method="POST" enctype="multipart/form-data">
+		    {{ csrf_token() }}
                 <div class="row whole-wrap" style="padding-left: 5%; padding-right:5%;">
                    
                     <div class="col-lg-6 col-md-8 section-top-border">
