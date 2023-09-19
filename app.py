@@ -741,7 +741,7 @@ def jobDetails(id):
 def jobList(cate):
 
     #Get Specific Listing 
-    cate_statement = """SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve 
+    cate_statement = """SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve, c.logo 
                         FROM Internship i INNER JOIN Company c WHERE i.com_id = c.com_id AND c.industry_involve = %s """
     cursor = db_conn.cursor()
     cursor.execute(cate_statement, (cate))
