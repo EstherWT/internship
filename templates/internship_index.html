@@ -25,18 +25,13 @@
 	    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-	    <script>
-	        $(function () {
-	            $("#header").load("{{ url_for('static', filename='templates/Header.html') }}");
-	            $("#footer").load("{{ url_for('static', filename='templates/Footer.html') }}");
-	        });
-  	    </script>
+	  
    </head>
 
    <body>
 
         <!-- Header Start -->
-	<div id="header"></div>
+	  {% include 'Header.html' %}
         <!-- Header End -->
     <main>
 
@@ -156,7 +151,7 @@
     </main>
  
         <!-- Footer Start-->
-        <div id="footer"></div>
+          {% include 'Footer.html' %}
    	<!-- Footer END -->
 
 
