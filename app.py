@@ -119,12 +119,12 @@ def userLogin():
     cursor = db_conn.cursor()
 
     if role == "1": #student
-        statement = 'SELECT stud_id, stud_name FROM Student WHERE email = %s AND password = %s')
+        statement = 'SELECT stud_id, stud_name FROM Student WHERE email = %s AND password = %s'
         cursor.execute(statement, (email, password))
         account = cursor.fetchone()
 
         if account:
-            veri_statement = 'SELECT status FROM StudApproval WHERE stud_id = %s')
+            veri_statement = 'SELECT status FROM StudApproval WHERE stud_id = %s'
             cursor.execute(statement, (account[0]))
             result = cursor.fetchone()
 
@@ -139,7 +139,7 @@ def userLogin():
              return render_template('login.html', verify=False)
             
     elif role == "2": #Admin
-        statement = 'SELECT id, name FROM Admin WHERE email = %s AND password = %s')
+        statement = 'SELECT id, name FROM Admin WHERE email = %s AND password = %s'
         cursor.execute(statement, (email, password))
         account = cursor.fetchone()
         
@@ -152,12 +152,12 @@ def userLogin():
              return render_template('login.html', verify=False)
     
     elif role == "3": #Company
-        statement = 'SELECT id, person_incharge FROM Company WHERE email = %s AND password = %s')
+        statement = 'SELECT id, person_incharge FROM Company WHERE email = %s AND password = %s'
         cursor.execute(statement, (email, password))
         account = cursor.fetchone()
 
         if account:
-            veri_statement = 'SELECT status FROM ComApproval WHERE com_id = %s')
+            veri_statement = 'SELECT status FROM ComApproval WHERE com_id = %s'
             cursor.execute(statement, (account[0]))
             result = cursor.fetchone()
 
@@ -172,7 +172,7 @@ def userLogin():
              return render_template('login.html', verify=False)
     
     elif role == "4": #Supervisor
-        statement = 'SELECT * FROM Supervisor WHERE sv_email = %s AND password = %s')
+        statement = 'SELECT * FROM Supervisor WHERE sv_email = %s AND password = %s'
         cursor.execute(statement, (email, password))
         account = cursor.fetchone()
 
