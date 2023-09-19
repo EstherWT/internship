@@ -359,10 +359,24 @@ def updateCompany():
     email =  request.form['email']
     password =  request.form['password']
     
-     statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, logo = %s, person_incharge = %s, contact_no = %s , password = %s WHERE com_id = %s;"
+   if ssm.filename == " ":
+        statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, logo = %s, person_incharge = %s, contact_no = %s , password = %s WHERE com_id = %s;"
         cursor = db_conn.cursor()
         cursor.execute(statement, (job_title, job_desc, job_salary, job_location, workingDay, workingHour, accommodation, intern_id))
         db_conn.commit()  # Commit the changes to the database
+       
+    else:
+            ssm_in_key = "con_id-" + str(com_id) + "_pdf"
+            s3 = boto3.resource('s3')
+              
+            print("Data inserted in MySQL RDS... uploading pdf to S3...")
+            s3.Bucket(custombucket).put_object(Key=ssm_in_s3, Body=ssm, ContentType=ssm.content_type)
+    
+            # Generate the object URL
+            object_url = f"https://{custombucket}.s3.amazonaws.com/{ssm_in_s3}"
+            statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, logo = %s, person_incharge = %s, contact_no = %s , password = %s WHERE com_id = %s;"
+            cursor.execute(statement, (ic, gender, programme, group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo, personalEmail, homeAddress, homePhone, object_url, stud_id))
+            db_conn.commit()  # Commit the changes to the database
          
     return redirect("/goProfile")
 
