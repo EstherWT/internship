@@ -1,5 +1,6 @@
 from curses import flash
 from flask_wtf.csrf import CSRFProtect, CSRFError
+from flask_session import Session #pip install Flask-Session
 from flask import Flask, render_template, request, redirect, flash, jsonify,session
 from pymysql import connections
 import os
@@ -23,6 +24,11 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'pdf'}
 app = Flask(__name__, static_folder='assets')
 app.secret_key = 'cc_assignment'
 csrf = CSRFProtect(app)
+
+#Session
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 bucket = custombucket
 region = customregion
@@ -59,12 +65,11 @@ def publichInternPage():
     com_result = com_cursor.fetchone()
     com_cursor.close()
     return render_template('publishIntern.html', com = com_result)
-
-
+    
 # #-Navigate to login page---
 @app.route("/login", methods=['GET', 'POST'])
 def Login():
-    return render_template('login.html')
+    return render_template('login.html', verify=True)
 
 #--- Navigate to register page ------
 @app.route("/chooseUser", methods=['GET', 'POST'])
@@ -105,32 +110,83 @@ def chooseCompany():
 @app.route("/userLogin", methods=['GET', 'POST'])
 @csrf.exempt
 def userLogin():
-    # Output a message if something goes wrong...
-    msg = 'Incorrect ID or password!'
-    # Check if "username" and "password" POST requests exist (user submitted form)
-    if request.method == 'POST' and 'stud_id' in request.form and 'password' in request.form:
-        # Create variables for easy access
-        stud_id = request.form['stud_id']
-        password = request.form['password']
-        # Check if account exists using MySQL
-        cursor = db_conn.cursor()
-        cursor.execute('SELECT * FROM Student WHERE stud_id = %s AND password = %s', (stud_id, password,))
-        # Fetch one record and return result
-        account = cursor.fetchone()
-        # If account exists in accounts table in out database
-        if account:
-            # Create session data, we can access this data in other routes
-            session['loggedin'] = True
-            session['stud_id'] = account['stud_id']
-            session['password'] = account['password']
-            # Redirect to home page
-            return render_template("index.html")
-        else:
-            # Account doesnt exist or username/password incorrect
-            msg = 'Incorrect ID or password!'
-    # Show the login form with message (if any)
-    return render_template("login.html")
 
+    # 1: Student, 2: Admin, 3: Company, 4:Supervisor
+    role = request.form['role']
+    email = request.form['email']
+    password = request.form['password']
+    
+    cursor = db_conn.cursor()
+
+    if role == "1": #student
+        statement = 'SELECT stud_id, stud_name FROM Student WHERE email = %s AND password = %s')
+        cursor.execute(statement, (email, password))
+        account = cursor.fetchone()
+
+        if account:
+            veri_statement = 'SELECT status FROM StudApproval WHERE stud_id = %s')
+            cursor.execute(statement, (account[0]))
+            result = cursor.fetchone()
+
+            if result[0] == "approved"
+                session["role"] = "1"
+                session["id"] = account[0]
+                session["name"] = account[1]
+                return redirect("/")
+            else:
+                 return render_template('login.html', verify=False)
+        else:
+             return render_template('login.html', verify=False)
+            
+    elif role == "2": #Admin
+        statement = 'SELECT id, name FROM Admin WHERE email = %s AND password = %s')
+        cursor.execute(statement, (email, password))
+        account = cursor.fetchone()
+        
+         if account:
+            session["role"] = "2"
+            session["id"] = account[0]
+            session["name"] = account[1]
+            return redirect("/")
+         else 
+             return render_template('login.html', verify=False)
+    
+    elif role == "3": #Company
+        statement = 'SELECT id, person_incharge FROM Company WHERE email = %s AND password = %s')
+        cursor.execute(statement, (email, password))
+        account = cursor.fetchone()
+
+        if account:
+            veri_statement = 'SELECT status FROM ComApproval WHERE com_id = %s')
+            cursor.execute(statement, (account[0]))
+            result = cursor.fetchone()
+
+            if result[0] == "approved"
+                session["role"] = "2"
+                session["id"] = account[0]
+                session["name"] = account[1]
+                return redirect("/")
+            else:
+                 return render_template('login.html', verify=False)
+        else:
+             return render_template('login.html', verify=False)
+    
+    elif role == "4": #Supervisor
+        statement = 'SELECT * FROM Supervisor WHERE sv_email = %s AND password = %s')
+        cursor.execute(statement, (email, password))
+        account = cursor.fetchone()
+
+        if account:
+            session["role"] = "4"
+            session["id"] = account[0]
+            session["name"] = account[1]
+            return redirect("/")
+        else 
+             return render_template('login.html', verify=False)
+    else:
+        return render_template('login.html', verify=False)
+    
+ 
 #go home with login check --------
 @app.route('/goHome')
 def goHome():
