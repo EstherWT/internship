@@ -25,14 +25,8 @@
 	    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-	    <script>
-	        $(function () {
-	            $("#header").load("{{ url_for('static', filename='templates/Header.html') }}");
-	            $("#footer").load("{{ url_for('static', filename='templates/Footer.html') }}");
-	        });
-    	</script>
    </head>
-
+  {% include 'Header.html' %}
    <body>
 		<div class="container box_1170">
 
@@ -80,7 +74,7 @@
 		</div>
 
 		
-
+  {% include 'Footer.html' %}
 	   
 	<!-- All JS Custom Plugins Link Here here -->
         <script src="{{url_for('static', filename='js/vendor/modernizr-3.5.0.min.js')}}"></script>
