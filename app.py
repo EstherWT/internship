@@ -185,7 +185,12 @@ def userLogin():
              return render_template('login.html', verify=False)
     else:
         return render_template('login.html', verify=False)
-    
+
+@app.route("/logout", methods=['POST'])
+@csrf.exempt
+def logout():
+    session.clear()
+    return redirect("/")
  
 #go home with login check --------
 @app.route('/goHome')
@@ -332,8 +337,12 @@ def AddInternFormCom():
     countstatement = "SELECT intern_id FROM Internship ORDER BY intern_id DESC LIMIT 1;"
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement)
-    result = count_cursor.fetchone()
-    intern_id = int(result[0]) + 1
+
+    if result is None or result[0] is None:
+        report_id = 1
+    else:
+        intern_id = int(result[0]) + 1
+  
     count_cursor.close()
 
     insert_sql = "INSERT INTO Internship VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
