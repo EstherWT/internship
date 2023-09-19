@@ -256,7 +256,7 @@ def AddInternFormCom():
         print(f"Error: {str(e)}")  # Print the error for debugging
 
     
-    return render_template('publishInternSuccess.html', intern=job_title)
+    return render_template('publishInternSuccess.html', intern=job_title, id=intern_id)
 
 
 @app.route("/goManageInternship", methods=['GET'])
