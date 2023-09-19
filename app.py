@@ -128,7 +128,7 @@ def userLogin():
             cursor.execute(statement, (account[0]))
             result = cursor.fetchone()
 
-            if result[0] == "approved"
+            if result[0] == "approved":
                 session["role"] = "1"
                 session["id"] = account[0]
                 session["name"] = account[1]
@@ -161,7 +161,7 @@ def userLogin():
             cursor.execute(statement, (account[0]))
             result = cursor.fetchone()
 
-            if result[0] == "approved"
+            if result[0] == "approved":
                 session["role"] = "2"
                 session["id"] = account[0]
                 session["name"] = account[1]
