@@ -107,7 +107,7 @@ def chooseCompany():
     return render_template('company-register.html')
 
 # login ---------------------------
-@app.route("/userLogin", methods=['GET', 'POST'])
+@app.route("/userLogin", methods=['POST'])
 @csrf.exempt
 def userLogin():
 
