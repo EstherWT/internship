@@ -23,10 +23,6 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'pdf'}
 app = Flask(__name__, static_folder='assets')
 #encrypt
 csrf = CSRFProtect(app)
-app.config.update(dict(
-    SECRET_KEY="powerful secretkey",
-    WTF_CSRF_SECRET_KEY="a csrf secret key"
-))
 
 bucket = custombucket
 region = customregion
@@ -40,6 +36,12 @@ db_conn = connections.Connection(
 
 )
 output = {}
+
+def allowed_file(filename):
+    # Get the file extension from the filename
+    _, file_extension = os.path.splitext(filename)
+    # Check if the file extension (without the dot) is in the allowed extensions set
+    return file_extension.lower()[1:] in ALLOWED_EXTENSIONS
 
 #---Navigate to page only----------------------------------------------
 
@@ -836,5 +838,5 @@ def viewReport(stud_id):
     return render_template('viewReport.html', report=result)
         
 if __name__ == '__main__':
-    app.secret_key = 'secret_key'
+    app.secret_key = 'chunkit_key'
     app.run(host='0.0.0.0', port=80, debug=True)
