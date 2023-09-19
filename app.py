@@ -357,7 +357,7 @@ def updateCompany():
     email =  request.form['email']
     password =  request.form['password']
 
-    if ssm.filename == " ":
+    if ssm.filename == "":
         statement = "UPDATE Company SET com_name = %s, total_staff = %s, industry_involve = %s, product_service = %s, company_website = %s, OT_claim = %s, nearest_station = %s, com_address = %s, logo = %s, person_incharge = %s, contact_no = %s , password = %s WHERE com_id = %s;"
         cursor = db_conn.cursor()
         cursor.execute(statement, (job_title, job_desc, job_salary, job_location, workingDay, workingHour, accommodation, intern_id))
