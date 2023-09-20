@@ -429,7 +429,7 @@ def AddInternFormCom():
     countstatement = "SELECT intern_id FROM Internship ORDER BY intern_id DESC LIMIT 1;"
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement)
-    result = cursor.fetchone()
+    result = count_cursor.fetchone()
 
     if result is None or result[0] is None:
         report_id = 1
