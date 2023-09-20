@@ -1217,6 +1217,32 @@ def update_Student(stud_id):
     
     return redirect('/viewStudent/' + stud_id)
 
+@app.route("/SupervisorStudPage/<string:stud_id>")
+def viewSupervisorStud(stud_id):
+
+    statement = "SELECT * FROM Student WHERE stud_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (stud_id))
+    result = cursor.fetchone()
+
+    statement = "SELECT sv_id FROM Student_List WHERE stud_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (stud_id,))
+    result1 = cursor.fetchone()
+
+    if result1 is not None:
+        sv_id = result1[0]
+
+        statement = "SELECT * FROM Supervisor WHERE sv_id = %s"
+        cursor.execute(statement, (sv_id,))
+        result2 = cursor.fetchone()
+
+        if result2 is not None:
+            return render_template('supervisorStud.html', student= result, supervisor=result2)
+
+    # Handle the case where no results were found or an error occurred
+    return "Supervisor not found."
+
 @app.route('/submitReport/<string:stud_id>', methods=['GET', 'POST'])
 @csrf.exempt 
 def submit_Report(stud_id):
