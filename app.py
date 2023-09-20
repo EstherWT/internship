@@ -390,7 +390,7 @@ def goProfile():
 
     id = session["id"]
 
-    if seesion["role"] == "1":
+    if seesion["role"] == "3":
     
         #Company Profile
         statement = "SELECT * FROM Company WHERE com_id = %s"
@@ -413,7 +413,7 @@ def AddInternFormCom():
     if session['role'] != "3":
         return redirect('/')
 
-    com_id = session['id']
+    com_id = session.get('id')
     job_title = request.form['job_title']
     job_desc = request.form['job_description']
     job_salary = request.form['job_salary']
@@ -456,7 +456,7 @@ def GoManageInternship():
      if session['role'] != "3":
         return redirect('/')
 
-    com_id = session['id']
+    com_id = session.get('id')
     statement = "SELECT intern_id, job_title, intern_salary FROM Internship WHERE com_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (com_id))
@@ -507,7 +507,7 @@ def update_internship():
      if session['role'] != "3":
         return redirect('/')
 
-    com_id = session['id']
+    com_id = session.get('id')
     intern_id =  request.form['intern_id']
     job_title = request.form['job_title']
     job_desc = request.form['job_description']
@@ -543,7 +543,7 @@ def editCompany():
      if session['role'] != "3":
         return redirect('/')
 
-    id = session['id']
+    id = session.get('id')
     
     #Company Profile
     statement = "SELECT * FROM Company WHERE com_id = %s"
@@ -561,7 +561,7 @@ def updateCompany():
      if session['role'] != "3":
         return redirect('/')
 
-    com_id = session['id']
+    com_id = session.get('id')
     logo  = request.files['logo']
     com_name =  request.form['com_name']
     total_staff =  request.form['total_staff']
