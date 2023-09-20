@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2>Internship Management</h2>
+                                <h2> Management</h2>
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                                     <div class="visit">Student Name</div>
                                     <div class="percentage">Status</div>
                                 </div>                              		
-                                   {% for row in not_pending %}
+                        	{% for row in not_pending %}
                                     <div class="table-row">
                                         <div class="serial">{{loop.index}}</div>
                                         <div class="country"><a href="/viewIntern/{{row[1]}}" style="color: black;">{{row[4]}}</a></div> <!--Title-->
