@@ -1295,6 +1295,41 @@ def submit_Report(stud_id):
               return "Invalid file format. Allowed formats are: " + ", ".join(ALLOWED_EXTENSIONS)
         
     return "No file uploaded."
+
+#----Apply Internship from Student -----------
+
+@app.route('/applyInternship/<int:intern_id>')
+@csrf.exempt 
+def applyInternship(intern_id):
+
+    if session["role"] != '1':
+         return render_template('index.html')
+
+    stud_id = session["id"]
+
+    get_statement = "SELECT com_id FROM Internship WHERE intern_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(get_statement, (intern_id))
+    com_id = cursor.fetchone()
+
+    #Get last ID
+    countstatement = "SELECT app_id FROM Application ORDER BY intern_id DESC LIMIT 1;"
+    count_cursor = db_conn.cursor()
+    count_cursor.execute(countstatement)
+    result = count_cursor.fetchone()
+
+    if result is None or result[0] is None:
+        app_id = 1
+    else:
+        app_id = int(result[0]) + 1
+
+    #insert new daat into application
+    insert_statement = "INSERT INTO Application VALUES (%s, %s, %s, %s, %s)"
+    cursor = db_conn.cursor()
+    cursor.execute(insert_statement, (app_id, stud_id, com_id, intern_id, "pending"))
+    db_conn.commit()
+
+    return render_template('applySuccess.html')
         
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
