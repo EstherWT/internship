@@ -348,22 +348,22 @@ def AddAdmin():
 def CompanyReg():
     com_id = request.form['com_id']
     com_name = request.form['com_name']
-    total_staff = request.form['total_staff']
     industry_involve = request.form['industry_involve']
     product_service = request.form['product_service']
     company_website = request.form['company_website']
-    ot_claim = request.form['ot_claim']
-    nearest_station = request.form['nearest_station']
     com_address = request.form['com_address']
-    logo = request.files['logo']
     ssm = request.form['ssm']
+    ot_claim = request.form['ot_claim']
+    total_staff = request.form['total_staff']
+    nearest_station = request.form['nearest_station']
+    logo = request.files['logo']
     person_incharge = request.form['person_incharge']
     contact_no = request.form['contact_no']
     email = request.form['email']
     password = request.form['password']
 
 
-    insert_sql = "INSERT INTO Company VALUES (%s, %s, %d, %s, %s, %s, %lf, %s, %s, %s, %s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO Company VALUES (%s, %s, %s, %s, %s, %s, %s, %lf, %d, %s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
     if logo.filename == "":
@@ -373,7 +373,7 @@ def CompanyReg():
         return "File type not allowed. Only images (png, jpg, jpeg, gif) and PDFs are allowed."
     
     try:
-        cursor.execute(insert_sql, (com_id, com_name, total_staff, industry_involve, product_service, company_website, ot_claim, nearest_station,com_address,logo,ssm,person_incharge,contact_no,email,password))
+        cursor.execute(insert_sql, (com_id, com_name,industry_involve,product_service,company_website,com_address,ssm,ot_claim, total_staff,nearest_station,logo,person_incharge,contact_no,email,password))
         db_conn.commit()
         
         compang_logo_in_s3 = "com_id-" + str(com_id) + "_image_file"
