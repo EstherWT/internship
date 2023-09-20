@@ -1339,7 +1339,7 @@ def appliedInternship():
         return render_template("index.html")
         
     stud_id = session["id"]
-    statement = "SELECT Company.logo, Company.com_name, Internship.job_title, Application.status FROM Application JOIN Company ON Application.company_id = Company.com_id JOIN Internship ON Application.intern_id = Internship.intern_id WHERE Application.stud_id = %s;"
+    statement = "SELECT Company.com_id, Company.logo, Company.com_name, Internship.job_title, Application.status FROM Application JOIN Company ON Application.company_id = Company.com_id JOIN Internship ON Application.intern_id = Internship.intern_id WHERE Application.stud_id = %s;"
     cursor = db_conn.cursor()
     cursor.execute(statement, (stud_id))
     result = cursor.fetchall()
