@@ -654,7 +654,7 @@ def acceptIntern(app_id):
     cursor.close()
     db_conn.commit()
 
-  return redirect("/applicationManagement")
+    return redirect("/applicationManagement")
 
 @app.route('/rejectIntern/<int:app_id>')
 @csrf.exempt 
@@ -666,7 +666,7 @@ def rejectIntern(app_id):
     cursor.close()
     db_conn.commit()
 
-  return redirect("/applicationManagement")
+    return redirect("/applicationManagement")
     
 #==ADMIN========================================================================
 @app.route("/StudentApp", methods=['GET', 'POST'])
