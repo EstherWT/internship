@@ -16,7 +16,7 @@ customhost = "internshipdatabase.cpkr5ofaey5p.us-east-1.rds.amazonaws.com"
 customuser = "admin"
 custompass = "admin123"
 customdb = "internshipDatabase"
-custombucket = "howenting-internship"
+custombucket = "howenting-bucket"
 customregion = "us-east-1"
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'pdf'}
