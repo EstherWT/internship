@@ -428,7 +428,7 @@ def AddInternFormCom():
     accommodation = request.form['accommodation']
     
     #Get last ID
-    countstatement = "SELECT intern_id FROM Internship ORDER BY intern_id DESC LIMIT 1;"
+    countstatement = "SELECT MAX(intern_id) FROM Internship;"
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement)
     result = count_cursor.fetchone()
@@ -437,7 +437,7 @@ def AddInternFormCom():
         intern_id = 1
     else:
         intern_id = int(result[0]) + 1
-  
+  n
     count_cursor.close()
 
     insert_sql = "INSERT INTO Internship VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
@@ -1247,8 +1247,8 @@ def viewSupervisorStud(stud_id):
 @csrf.exempt 
 def submit_Report(stud_id):
 
-    #Get last ID
-    countstatement = "SELECT report_id FROM Report ORDER BY report_id DESC LIMIT 1;"
+    #Get last ID 
+    countstatement = "SELECT MAX(report_id) FROM Report;"
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement)
     result = count_cursor.fetchone()
@@ -1312,8 +1312,8 @@ def applyInternship(intern_id):
     cursor.execute(get_statement, (intern_id))
     com_id = cursor.fetchone()
 
-    #Get last ID
-    countstatement = "SELECT app_id FROM Application ORDER BY app_id DESC LIMIT 1;"
+    #Get last ID 
+    countstatement = "SELECT MAX(app_id) FROM Application;"
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement)
     result = count_cursor.fetchone()
