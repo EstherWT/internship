@@ -274,9 +274,9 @@ def AddStud():
 
 
 # ---- Supervisor Register ---------------------
-@app.route("/addSupervisor", methods=['POST'])
+@app.route("/supervisorReg", methods=['POST'])
 @csrf.exempt  
-def AddSupervisor():
+def SupervisorReg():
     sv_id = request.form['sv_id']
     sv_name = request.form['sv_name']
     sv_email = request.form['sv_email']
