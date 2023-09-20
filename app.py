@@ -631,7 +631,7 @@ def applicationManagement():
         return redirect('/')
         
     com_id = session["id"]
-    statement = "SELECT A.app_id, A.intern_id, A.stud_id, S.stud_name, I.job_title, A.status FROM Application A JOIN Student S ON A.stud_id = S.stud_id JOIN Internship I ON A.intern_id = I.intern_id WHERE A.status == %s AND A.company_id = %s"
+    statement = "SELECT A.app_id, A.intern_id, A.stud_id, S.stud_name, I.job_title, A.status FROM Application A JOIN Student S ON A.stud_id = S.stud_id JOIN Internship I ON A.intern_id = I.intern_id WHERE A.status = %s AND A.company_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, ("pending",com_id))
     pending = cursor.fetchall
