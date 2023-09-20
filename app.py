@@ -1330,6 +1330,22 @@ def applyInternship(intern_id):
     db_conn.commit()
 
     return render_template('applySuccess.html')
+
+#----Apply Internship from Student -----------
+@app.route("/appliedIntern", methods=['GET', 'POST'])
+def appliedInternship():
+
+    if session["role"] != "1":
+        return render_template("index.html")
         
+    stud_id = session["id"]
+    statement = "SELECT Company.logo, Company.com_name, Internship.job_title, Application.status FROM Application JOIN Company ON Application.company_id = Company.com_id JOIN Internship ON Application.intern_id = Internship.intern_id WHERE Application.stud_id = %s;"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (stud_id))
+    result = cursor.fetchall()
+    
+    return render_template('appliedInternship.html', applied=result)
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
