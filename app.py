@@ -109,6 +109,11 @@ def chooseAdmin():
 def chooseCompany():
     return render_template('company-register.html')
 
+#---Company navigate to application management-------------
+@app.route("/applicationManagement", methods=['GET', 'POST'])
+def applicationManagement():
+    return render_template('applicationManagement.html')
+
 # login ---------------------------
 @app.route("/userLogin", methods=['POST'])
 @csrf.exempt
