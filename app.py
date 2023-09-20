@@ -410,7 +410,10 @@ def goProfile():
 @csrf.exempt 
 def AddInternFormCom():
 
-    com_id = 1
+    if session['role'] != "3":
+        return redirect('/')
+
+    com_id = session['id']
     job_title = request.form['job_title']
     job_desc = request.form['job_description']
     job_salary = request.form['job_salary']
@@ -450,7 +453,10 @@ def AddInternFormCom():
 @app.route("/goManageInternship", methods=['GET'])
 def GoManageInternship():
 
-    com_id = 1
+     if session['role'] != "3":
+        return redirect('/')
+
+    com_id = session['id']
     statement = "SELECT intern_id, job_title, intern_salary FROM Internship WHERE com_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (com_id))
@@ -498,7 +504,10 @@ def edit_internship(internship_id):
 @csrf.exempt 
 def update_internship():
 
-    com_id = 1
+     if session['role'] != "3":
+        return redirect('/')
+
+    com_id = session['id']
     intern_id =  request.form['intern_id']
     job_title = request.form['job_title']
     job_desc = request.form['job_description']
@@ -530,7 +539,11 @@ def delete_internship(internship_id):
 @app.route("/editCompany", methods=['GET', 'POST'])
 @csrf.exempt 
 def editCompany():
-    id = "1"
+    
+     if session['role'] != "3":
+        return redirect('/')
+
+    id = session['id']
     
     #Company Profile
     statement = "SELECT * FROM Company WHERE com_id = %s"
@@ -545,7 +558,10 @@ def editCompany():
 @csrf.exempt 
 def updateCompany():
     
-    com_id = 1
+     if session['role'] != "3":
+        return redirect('/')
+
+    com_id = session['id']
     logo  = request.files['logo']
     com_name =  request.form['com_name']
     total_staff =  request.form['total_staff']
