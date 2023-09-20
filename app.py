@@ -635,15 +635,15 @@ def applicationManagement():
     statement = "SELECT A.app_id, A.intern_id, A.stud_id, S.stud_name, I.job_title, A.status FROM Application A JOIN Student S ON A.stud_id = S.stud_id JOIN Internship I ON A.intern_id = I.intern_id WHERE A.status = %s AND A.company_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, ("pending",com_id))
-    pending = cursor.fetchall
+    pending_result = cursor.fetchall
 
     #not pending
     np_statement = "SELECT A.app.id, A.intern_id, A.stud_id, S.stud_name, I.job_title, A.status FROM Application A JOIN Student S ON A.stud_id = S.stud_id JOIN Internship I ON A.intern_id = I.intern_id WHERE A.status != %s AND A.company_id = %s"
     np_cursor = db_conn.cursor()
     np_cursor.execute(statement, ("pending",com_id))
-    not_pending = np_cursor.fetchall
+    not_pending_result = np_cursor.fetchall
     
-    return render_template('applicationManagement.html', pending=pending, not_pending = not_pending)
+    return render_template('applicationManagement.html', pending=pending_result, not_pending = not_pending_result)
 
 @app.route('/acceptIntern/<int:app_id>')
 @csrf.exempt 
