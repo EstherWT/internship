@@ -432,7 +432,7 @@ def AddInternFormCom():
     result = count_cursor.fetchone()
 
     if result is None or result[0] is None:
-        report_id = 1
+        intern_id = 1
     else:
         intern_id = int(result[0]) + 1
   
