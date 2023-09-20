@@ -343,6 +343,56 @@ def AddAdmin():
     return render_template('login.html', admin=id)
 
 #------ Company register ------------------------
+@app.route("/companyReg", methods=['POST'])
+@csrf.exempt  
+def CompanyReg():
+    com_id = request.form['com_id']
+    com_name = request.form['com_name']
+    total_staff = request.form['total_staff']
+    industry_involve = request.form['industry_involve']
+    product_service = request.form['product_service']
+    company_website = request.form['company_website']
+    ot_claim = request.form['ot_claim']
+    nearest_station = request.form['nearest_station']
+    com_address = request.form['com_address']
+    logo = request.files['logo']
+    ssm = request.form['ssm']
+    person_incharge = request.form['person_incharge']
+    contact_no = request.form['contact_no']
+    email = request.form['email']
+    password = request.form['password']
+
+
+    insert_sql = "INSERT INTO Company VALUES (%s, %s, %d, %s, %s, %s, %lf, %s, %s, %s, %s, %s, %s, %s, %s)"
+    cursor = db_conn.cursor()
+
+    if logo.filename == "":
+        return "Please add a logo"
+    
+    if not allowed_file(logo.filename):
+        return "File type not allowed. Only images (png, jpg, jpeg, gif) and PDFs are allowed."
+    
+    try:
+        cursor.execute(insert_sql, (com_id, com_name, total_staff, industry_involve, product_service, company_website, ot_claim, nearest_station,com_address,logo,ssm,person_incharge,contact_no,email,password))
+        db_conn.commit()
+        
+        compang_logo_in_s3 = "com_id-" + str(com_id) + "_image_file"
+        s3 = boto3.resource('s3')
+
+        try:
+            print("Data inserted in MySQL RDS... uploading image to S3...")
+            s3.Bucket(custombucket).put_object(Key=compang_logo_in_s3, Body=logo, ContentType=logo.content_type)
+            
+            # Generate the object URL
+            object_url = f"https://{custombucket}.s3.amazonaws.com/{compang_logo_in_s3}"
+
+        except Exception as e:
+            return str(e)
+
+    finally:
+        cursor.close()
+
+    return render_template('login.html',company=com_id)
 
 #go profile with login check -------------------------------------------
 
