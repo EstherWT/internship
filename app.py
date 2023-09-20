@@ -627,7 +627,7 @@ def updateCompany():
 @app.route("/applicationManagement", methods=['GET', 'POST'])
 def applicationManagement():
 
-    if session["role"] != 3:
+    if session["role"] != "3":
         return redirect('/')
         
     com_id = session["id"]
