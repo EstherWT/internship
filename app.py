@@ -203,7 +203,7 @@ def goHome():
     return render_template("login.html")
 
 
-#---Register---------------------------------------------------------
+#---student Register---------------------------------------------------------
 @app.route("/addstud", methods=['POST'])
 def AddStud():
     stud_id = request.form['stud_id'] 
@@ -274,6 +274,48 @@ def AddStud():
 
 
 # ---- Supervisor Register ---------------------
+@app.route("/addSupervisor", methods=['POST'])
+@csrf.exempt  
+def AddSupervisor():
+    sv_id = request.form['sv_id']
+    sv_name = request.form['sv_name']
+    sv_email = request.form['sv_email']
+    programme = request.form['programme']
+    faculty = request.form['faculty']
+    age = request.form['age']
+    password = request.form['password']
+    profile_image = request.files['profile_image']
+
+    insert_sql = "INSERT INTO Supervisor VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+    cursor = db_conn.cursor()
+
+    if profile_image.filename == "":
+        return "Please add a profile picture"
+    
+    if not allowed_file(profile_image.filename):
+        return "File type not allowed. Only images (png, jpg, jpeg, gif) and PDFs are allowed."
+    
+    try:
+        cursor.execute(insert_sql, (sv_id, sv_name, sv_email, programme, faculty, age, profile_image, password))
+        db_conn.commit()
+        
+        profile_image_in_s3 = "sv_id-" + str(sv_id) + "_image_file"
+        s3 = boto3.resource('s3')
+
+        try:
+            print("Data inserted in MySQL RDS... uploading image to S3...")
+            s3.Bucket(custombucket).put_object(Key=profile_image_in_s3, Body=profile_image, ContentType=profile_image.content_type)
+            
+            # Generate the object URL
+            object_url = f"https://{custombucket}.s3.amazonaws.com/{profile_image_in_s3}"
+
+        except Exception as e:
+            return str(e)
+
+    finally:
+        cursor.close()
+
+    return render_template('login.html',supervisor=sv_id)
 
 
 #----- Admin Register ------------------------
