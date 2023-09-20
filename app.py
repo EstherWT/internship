@@ -119,24 +119,19 @@ def userLogin():
     cursor = db_conn.cursor()
 
     if role == "1": #student
-        statement = 'SELECT stud_id, stud_name FROM Student WHERE email = %s AND password = %s'
-        cursor.execute(statement, (email, password))
+        st = "approved"
+        statement = 'SELECT s.stud_id, s.stud_name FROM Student s INNER JOIN StudApproval sa ON s.stud_id = sa.stud_id WHERE s.email = %s  AND s.password = %s AND sa.status = %s '
+        cursor.execute(statement, (email, password, st))
         account = cursor.fetchone()
 
         if account:
-            veri_statement = 'SELECT status FROM StudApproval WHERE stud_id = %s'
-            cursor.execute(veri_statement, (account[0]))
-            result = cursor.fetchone()
-
-            if result[0] == "approved":
                 session["role"] = "1"
                 session["id"] = account[0]
                 session["name"] = account[1]
                 return redirect("/")
-            else:
-                 return render_template('login.html', verify=False)
         else:
-             return render_template('login.html', verify=False)
+                return render_template('login.html', verify=False)
+     
             
     elif role == "2": #Admin
         statement = 'SELECT id, name FROM Admin WHERE email = %s AND password = %s'
@@ -152,24 +147,18 @@ def userLogin():
              return render_template('login.html', verify=False)
     
     elif role == "3": #Company
-        statement = 'SELECT id, person_incharge FROM Company WHERE email = %s AND password = %s'
-        cursor.execute(statement, (email, password))
+        st = "approved"
+        statement = 'SELECT c.com_id, c.com_name FROM Company c INNER JOIN ComApproval ca ON c.com_id = ca.com_id WHERE c.email = %s  AND c.password = %s AND ca.status = %s '
+        cursor.execute(statement, (email, password, st))
         account = cursor.fetchone()
 
         if account:
-            veri_statement = 'SELECT status FROM ComApproval WHERE com_id = %s'
-            cursor.execute(veri_statement, (account[0]))
-            result = cursor.fetchone()
-
-            if result[0] == "approved":
                 session["role"] = "3"
                 session["id"] = account[0]
                 session["name"] = account[1]
                 return redirect("/")
-            else:
-                 return render_template('login.html', verify=False)
         else:
-             return render_template('login.html', verify=False)
+                return render_template('login.html', verify=False)
     
     elif role == "4": #Supervisor
         statement = 'SELECT * FROM Supervisor WHERE sv_email = %s AND password = %s'
