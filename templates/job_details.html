@@ -114,9 +114,11 @@
                               <li>Salary        : <span>RM {{internship[3]}}</span></li>
                               <li>Accommodation : <span>{{internship[7]}}</span></li>
                           </ul>
-                         <div class="apply-btn2">
-                            <a href="#" class="btn">Apply Now</a>
-                         </div>
+			{% if session["role"] == '1' %}
+	                         <div class="apply-btn2">
+	                            <a href="#" class="btn">Apply Now</a>
+	                         </div>
+			{% endif %}
                        </div>
                         <div class="post-details3  mb-50">
                             <!-- Small Section Tittle -->
