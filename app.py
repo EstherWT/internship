@@ -109,10 +109,6 @@ def chooseAdmin():
 def chooseCompany():
     return render_template('company-register.html')
 
-#---Company navigate to application management-------------
-@app.route("/applicationManagement", methods=['GET', 'POST'])
-def applicationManagement():
-    return render_template('applicationManagement.html')
 
 # login ---------------------------
 @app.route("/userLogin", methods=['POST'])
@@ -627,6 +623,26 @@ def updateCompany():
          
     return redirect("/goProfile")
 
+#---Company navigate to application management-------------
+@app.route("/applicationManagement", methods=['GET', 'POST'])
+def applicationManagement():
+
+    if session["role"] != 3:
+        return redirect('/')
+        
+    com_id = session["id"]
+    statement = "SELECT A.intern_id, A.stud_id, S.stud_name, I.job_title, A.status FROM Application A JOIN Student S ON A.stud_id = S.stud_id JOIN Internship I ON A.intern_id = I.intern_id WHERE A.status == %s AND A.company_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, ("pending",com_id))
+    pending = cursor.fetchall
+
+    #not pending
+    np_statement = "SELECT A.intern_id, A.stud_id, S.stud_name, I.job_title, A.status FROM Application A JOIN Student S ON A.stud_id = S.stud_id JOIN Internship I ON A.intern_id = I.intern_id WHERE A.status != %s AND A.company_id = %s"
+    np_cursor = db_conn.cursor()
+    np_cursor.execute(statement, ("pending",com_id))
+    not_pending = np_cursor.fetchall
+    
+    return render_template('applicationManagement.html', pending=pending, not_pending = not_pending)
 
 
 #==ADMIN========================================================================
