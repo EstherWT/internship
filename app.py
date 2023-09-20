@@ -388,7 +388,7 @@ def CompanyReg():
 @app.route("/goProfile", methods=['GET', 'POST'])
 def goProfile():
 
-    id = session["id"]
+   id = session["id"]
 
     if seesion["role"] == "3":
     
@@ -507,7 +507,7 @@ def update_internship():
      if session['role'] != "3":
         return redirect('/')
 
-    com_id = session.get('id')
+    com_id = session["id"]
     intern_id =  request.form['intern_id']
     job_title = request.form['job_title']
     job_desc = request.form['job_description']
@@ -543,7 +543,7 @@ def editCompany():
      if session['role'] != "3":
         return redirect('/')
 
-    id = session.get('id')
+    id = session["id"]
     
     #Company Profile
     statement = "SELECT * FROM Company WHERE com_id = %s"
@@ -561,7 +561,7 @@ def updateCompany():
      if session['role'] != "3":
         return redirect('/')
 
-    com_id = session.get('id')
+    com_id = session["id"]
     logo  = request.files['logo']
     com_name =  request.form['com_name']
     total_staff =  request.form['total_staff']
