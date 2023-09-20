@@ -157,11 +157,14 @@
                             </div>
                         </form>
 
-                        <div class="button-group-area mt-10">
-                            <a href="/studentEditPage/{{ student[0] }}" class="genric-btn primary circle" id="editButton">Edit</a>
-                        </div>
+			{% if session["role"] == '1' %}
+	                        <div class="button-group-area mt-10">
+	                            <a href="/studentEditPage/{{ student[0] }}" class="genric-btn primary circle" id="editButton">Edit</a>
+	                        </div>
+			{% endif %}
 
                     </div>
+		{% if session["role"] == '1' %}
                     <div class="col-lg-6">
                         <div class="blog-info-link mt-3 mb-4 single-input" style="padding: 5%;">
                             <div class="" onclick="toggleList()">
@@ -181,6 +184,7 @@
                             </ul>
                         </div>
                     </div>
+		{% endif %}
                 </div>
             </div>
         </section>
