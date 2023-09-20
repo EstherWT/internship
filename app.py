@@ -148,7 +148,7 @@ def userLogin():
     
     elif role == "3": #Company
         st = "approved"
-        statement = 'SELECT c.com_id, c.com_name FROM Company c INNER JOIN ComApproval ca ON c.com_id = ca.com_id WHERE c.email = %s  AND c.password = %s AND ca.status = %s '
+        statement = 'SELECT c.com_id, c.person_incharge FROM Company c INNER JOIN ComApproval ca ON c.com_id = ca.com_id WHERE c.email = %s  AND c.password = %s AND ca.status = %s '
         cursor.execute(statement, (email, password, st))
         account = cursor.fetchone()
 
