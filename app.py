@@ -388,16 +388,21 @@ def CompanyReg():
 @app.route("/goProfile", methods=['GET', 'POST'])
 def goProfile():
 
-    id = "1"
+    id = session["id"]
+
+    if seesion["role"] == "1":
     
-    #Company Profile
-    statement = "SELECT * FROM Company WHERE com_id = %s"
-    cursor = db_conn.cursor()
-    cursor.execute(statement, (id))
-    result = cursor.fetchone()
-    cursor.close()
-    
-    return render_template('viewCompany.html', com=result)
+        #Company Profile
+        statement = "SELECT * FROM Company WHERE com_id = %s"
+        cursor = db_conn.cursor()
+        cursor.execute(statement, (id))
+        result = cursor.fetchone()
+        cursor.close()
+        
+        return render_template('viewCompany.html', com=result)
+
+    else:
+         return redirect('/')
 
 #---With function--------------------------------------------------------------------
 #==INTERNSHIP========================================================================
