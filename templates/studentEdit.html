@@ -1,0 +1,463 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Job board HTML-5 Template </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+
+ <!-- CSS here -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/price_rangs.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparrent">
+            <div class="headder-top header-sticky">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-2">
+                            <!-- Logo -->
+                            <div class="logo mt-10 mb-10">
+                                <a href="index.html"><img src="assets/img/logo/TARUMT.png"
+                                        style="width: 90%; height: auto;" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9">
+                            <div class="menu-wrapper">
+                                <!-- Main-menu -->
+                                <div class="main-menu">
+                                    <nav class="d-none d-lg-block">
+                                        <ul id="navigation">
+                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="job_listing.html">Find An Internship </a></li>
+                                            <li><a href="#">Company</a>
+                                                <ul class="submenu">
+                                                    <li><a href="blog.html">Company Profile</a></li>
+                                                    <li><a href="single-blog.html">Internship Management</a></li>
+                                                    <li><a href="elements.html">Internship Publication</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Supervisor</a>
+                                                <ul class="submenu">
+                                                    <li><a href="blog.html">Supervisor Profile</a></li>
+
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Student</a>
+                                                <ul class="submenu">
+                                                    <li><a href="blog.html">Student Profile</a></li>
+                                                    <li><a href="blog.html">Internship Application</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Admin</a>
+                                                <ul class="submenu">
+                                                    <li><a href="blog.html">Admin Profile</a></li>
+                                                    <li><a href="blog.html">Company Registration</a></li>
+                                                    <li><a href="single-blog.html">Student Registration</a></li>
+                                                </ul>
+                                            </li>
+
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- Header-btn -->
+                                <div class="header-btn d-none f-right d-lg-block">
+                                    <a href="#" class="btn head-btn1">Register</a>
+                                    <a href="#" class="btn head-btn2">Login</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <!-- Hero Area Start-->
+    <div class="slider-area">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center"
+            data-background="assets/img/hero/about.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Student Account</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero Area End -->
+        <!-- ================ Student info section start ================= -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <h3 class="mb-20">Student Information </h3>
+                        <form action="/updateStudent/{{ student[0] }}" autocomplete="on" method="POST" enctype="multipart/form-data">
+
+                            <div class="mt-15"> <!--Student Photo-->
+                                <label for="profile_img">Student Photo:</label>
+                                	<a href="{{student[16]}}" class="img-pop-up">
+	                                <img class="img-fluid" src="{{student[16]}}">
+	                            </a>
+                            </div>
+			    <div class="section-top-border single-input" style="padding: 3%; padding-left: 3%;">
+				    <label for="Photo">Upload New Photo: </label>
+                                    <input type="file" name="profile_img"  accept=".png">
+                                    <p><i>Accepted file format: PNG</i></p>
+                            </div>
+                            <div class="mt-15"> <!--Student ID-->
+                                <label for="stud_id">Student ID:</label>
+                                <span class="single-input">{{ student[0] }}</span>
+                            </div>
+                            <div class="mt-15"> <!--Name-->
+                                <label for="stud_name">Student Name:</label>
+                                <span class="single-input">{{ student[1] }}</span>
+                            </div>
+                            <div class="mt-15"> <!--IC number-->
+                                <label for="ic">IC Number:</label>
+                                <span class="single-input">{{ student[2] }}</span>
+                            </div>
+                            <div class="mt-15"> <!--Student Email-->
+                                <label for="email">Student Email:</label>
+                                <span class="single-input">{{ student[3] }}</span>
+                            </div>
+                            <div class="mt-15"> <!--Gender-->
+                                <label for="gender">Gender:</label>
+                                <span class="single-input"><i class="fa fa-user" aria-hidden="true"></i>
+                                    {% if student[4] == "M" %}
+                                    Male
+                                    {% else %}
+                                    Female
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="mt-15">
+                                <label for="studentProgramme">Programme:</label>
+                                {% if student[5] == "RSW" %}
+                                <div class="input-group-icon">
+                                    <div class="icon"><i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
+                                    <div class="form-select" id="default-select">
+                                        <select name="programme">
+                                            <option value="RSW">RSW</option>
+                                            <option value="RDS">RDS</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="input-group-icon ">
+                                    <div class="icon"><i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
+                                    <div class="form-select" id="default-select">
+                                        <select name="programme">
+                                            <option value="RDS">RDS</option>
+                                            <option value="RSW">RSW</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="single-element-widget mt-15">
+                                <label for="studentGroup">Group:</label>
+                                <input type="number" id="group_input" name="grp" placeholder="Group Number"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Group Number'" required
+                                    class="single-input" value="{{ student[6] }}" min="1">
+                            </div>
+                            <div class="single-element-widget mt-15" id="default-select">
+                                <label for="studentCgpa">CGPA:</label>
+                                <div class="default-select" id="default-select">
+                                    <input type="number" name="cgpa" id="cgpa_input" placeholder="CGPA"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'CGPA'" required
+                                        class="single-input" step="0.0001" min="0.0000" max="4.0000"
+                                        oninput="limitDecimals(this, 4)" value={{ student[7] }}>
+                                </div>
+                            </div>
+                            <div class="mt-15">
+                                <label for="sudentPassword">Password:</label>
+                                <input type="text" name="password" id="password_input" placeholder="Password"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
+                                    class="single-input" value={{ student[8] }}>
+                            </div>
+                            <div class="mt-15">
+                                <label for="intern-batch">Intern Batch:</label>
+                                {% if student[9] == "Y22July" %}
+                                <div class="input-group-icon">
+                                    <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                                    <div class="form-select" id="default-select">
+                                        <select name="intern_batch">
+                                            <option value="Y22July">Y22July</option>
+                                            <option value="Y22March">Y22March</option>
+                                            <option value="Y21Dec">Y21Dec</option>
+                                            <option value="Y21July">Y21July</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                {% elif student[9] == "Y22March" %}
+                                <div class="input-group-icon">
+                                    <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                                    <div class="form-select" id="default-select">
+                                        <select name="intern_batch">
+                                            <option value="Y22March">Y22March</option>
+                                            <option value="Y22July">Y22July</option>
+                                            <option value="Y21Dec">Y21Dec</option>
+                                            <option value="Y21July">Y21July</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                {% elif student[9] == "Y21Dec" %}
+                                <div class="input-group-icon">
+                                    <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                                    <div class="form-select" id="default-select">
+                                        <select name="intern_batch">
+                                            <option value="Y21Dec">Y21Dec</option>
+                                            <option value="Y22July">Y22July</option>
+                                            <option value="Y22March">Y22March</option>
+                                            <option value="Y21July">Y21July</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="input-group-icon">
+                                    <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                                    <div class="form-select" id="default-select">
+                                        <select name="intern_batch">
+                                            <option value="Y21July">Y21July</option>
+                                            <option value="Y22July">Y22July</option>
+                                            <option value="Y22March">Y22March</option>
+                                            <option value="Y21Dec">Y21Dec</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="mt-15">
+                                <label for="ownTransport">Own Transport:</label>
+                                <div class="default-select">
+                                    {% if student[10] == "No" %}
+                                    <select name="ownTransport">
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>
+                                    </select>
+                                    {% else %}
+                                    <select name="ownTransport">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="mt-15">
+                                <label for="currentAddress">Current Address:</label>
+                                <textarea class="single-textarea" name="currentAddress" id="currentAddress_input"
+                                    placeholder="Current Address" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Current Address'" required value={{ student[11]
+                                    }}>{{ student[11] }}</textarea>
+                            </div>
+                            <div class="mt-15">
+                                <label for="contactNo">Contact Number:</label>
+                                <input type="text" name="contactNo" id="contactNo_input" placeholder="Contact Number"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Contact Number'"
+                                    required value={{ student[12] }} class="single-input">
+                            </div>
+                            <div class="mt-15">
+                                <label for="personalEmail">Personal Email:</label>
+                                <input type="email" name="personalEmail" id="personalEmail_input"
+                                    placeholder="Personal Email" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Personal Email'" required class="single-input" value={{
+                                    student[13] }}>
+                            </div>
+                            <div class="mt-15">
+                                <label for="homeAddress">Home Address:</label>
+                                <textarea class="single-textarea" name="homeAddress" id="homeAddress_input"
+                                    placeholder="Homme Address" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Home Address'" required value={{ student[14]
+                                    }}>{{ student[14] }}</textarea>
+                            </div>
+                            <div class="mt-15">
+                                <label for="homePhone">Home Contact:</label>
+                                <input type="text" name="homePhone" id="homePhone_input" placeholder="Home Phone"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Home Phone'" required
+                                    value={{ student[15] }} class="single-input">
+                            </div>
+                            <div class="mt-15">
+                                <label for="resume">Upload Your Resume:
+                                    <iframe src="{{ student[17] }}" width="100%" height="600"></iframe>
+                                </label>
+                                <div class="section-top-border single-input" style="padding: 3%; padding-left: 3%;">
+                                    <input type="file" name="resume" id="resume" accept=".pdf" value={{ student[17] }}>
+                                    <p><i>Accepted file format: PDF</i></p>
+                                </div>
+                            </div>
+                            <div class="button-group-area mt-10">
+                                <button type="submit" id="saveButton" class="genric-btn primary circle">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ================ contact section end ================= -->
+        <div id="footer">
+            <!-- Footer Start-->
+            <div class="footer-area footer-bg pt-50">
+                <div class="container">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-footer-caption mb-50">
+                                <div class="single-footer-caption mb-30">
+                                    <div class="footer-tittle">
+                                        <h4>About Us</h4>
+                                        <div class="footer-pera">
+                                            <p>TARUMT ITP is a website to provide internship infomations to all the
+                                                TARCIAN.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Contact Info</h4>
+                                    <ul>
+                                        <li>
+                                            <p>Tunku Abdul Rahman University of Management and Technology, Jalan Genting
+                                                Kelang, Setapak,
+                                                53300 Kuala Lumpur, Malaysia.</p>
+                                        </li>
+                                        <li><a href="#">Phone : (6)03-41450123</a></li>
+                                        <li><a href="#">Email : info@tarc.edu.my</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Important Link</h4>
+                                    <ul>
+                                        <li><a href="#">Find an Internship</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--  -->
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- JS here -->
+	
+	<!-- All JS Custom Plugins Link Here here -->
+        <script src="{{url_for('static', filename='js/vendor/modernizr-3.5.0.min.js')}}"></script>
+		<!-- Jquery, Popper, Bootstrap -->
+	<script src="{{url_for('static', filename='js/vendor/jquery-1.12.4.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/vendor/popper.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/vendor/bootstrap.min.js')}}"></script>
+	
+
+	<!-- Jquery Mobile Menu -->
+        <script src="{{url_for('static', filename='js/jquery.slicknav.min.js')}}"></script>
+
+	<!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="{{url_for('static', filename='js/owl.carousel.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/slick.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/price_rangs.js')}}"></script>
+        
+	<!-- One Page, Animated-HeadLin -->
+	<script src="{{url_for('static', filename='js/wow.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/animated.headline.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.magnific-popup.js')}}"></script>
+	    
+	<!-- Scrollup, nice-select, sticky -->
+	<script src="{{url_for('static', filename='js/jquery.scrollUp.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.nice-select.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.sticky.js')}}"></script>
+
+        
+        <!-- contact js -->
+	<script src="{{url_for('static', filename='js/contact.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.form.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.validate.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/mail-script.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.ajaxchimp.min.js')}}"></script>
+
+        
+	<!-- Jquery Plugins, main Jquery -->	
+	<script src="{{url_for('static', filename='js/plugins.js')}}"></script>
+	<script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+
+
+        <!-- 4 Decimal Place -->
+        <script>
+            // Function to format the input value to 4 decimal places
+            function formatInput() {
+                var inputElement = document.getElementById('cgpaInput');
+                var value = parseFloat(inputElement.value);
+                if (!isNaN(value)) {
+                    inputElement.value = value.toFixed(4);
+                }
+            }
+
+            // Add an event listener to the input element
+            var inputElement = document.getElementById('cgpaInput');
+            inputElement.addEventListener('change', formatInput);
+
+            // Function to limit the number of decimal places
+            function limitDecimals(inputElement, maxDecimals) {
+                var value = inputElement.value;
+                var regex = new RegExp(`^-?\\d*(\\.\\d{0,${maxDecimals}})?$`);
+
+                if (!regex.test(value)) {
+                    inputElement.value = parseFloat(value).toFixed(maxDecimals);
+                }
+            }
+        </script>
+
+        <!-- List extend -->
+        <script>
+            function toggleList() {
+                var listItems = document.getElementById("listItems");
+
+                if (listItems.style.display === "none" || listItems.style.display === "") {
+                    listItems.style.display = "block";
+                } else {
+                    listItems.style.display = "none";
+                }
+            }
+        </script>
+
+</body>
+
+</html>

@@ -1,0 +1,288 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+   <title>Job board HTML-5 Template </title>
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+ <!-- CSS here -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/price_rangs.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+   <header>
+      <!-- Header Start -->
+      <div class="header-area header-transparrent">
+         <div class="headder-top header-sticky">
+            <div class="container">
+               <div class="row align-items-center">
+                  <div class="col-lg-3 col-md-2">
+                     <!-- Photo -->
+                     <div class="logo mt-10 mb-10"> <!--Supervisor Photo-->
+                        <a href="index.html"><img src="assets/img/logo/TARUMT.png" style="width: 90%; height: auto;"
+                              alt=""></a>
+                     </div>
+                  </div>
+                  <div class="col-lg-9 col-md-9">
+                     <div class="menu-wrapper">
+                        <!-- Main-menu -->
+                        <div class="main-menu">
+                           <nav class="d-none d-lg-block">
+                              <ul id="navigation">
+                                 <li><a href="index.html">Home</a></li>
+                                 <li><a href="job_listing.html">Find An Internship </a></li>
+                                 <li><a href="#">Company</a>
+                                    <ul class="submenu">
+                                       <li><a href="blog.html">Company Profile</a></li>
+                                       <li><a href="single-blog.html">Internship Management</a></li>
+                                       <li><a href="elements.html">Internship Publication</a></li>
+                                    </ul>
+                                 </li>
+                                 <li><a href="#">Supervisor</a>
+                                    <ul class="submenu">
+                                       <li><a href="blog.html">Supervisor Profile</a></li>
+
+                                    </ul>
+                                 </li>
+                                 <li><a href="#">Student</a>
+                                    <ul class="submenu">
+                                       <li><a href="blog.html">Student Profile</a></li>
+                                       <li><a href="blog.html">Internship Application</a></li>
+                                    </ul>
+                                 </li>
+                                 <li><a href="#">Admin</a>
+                                    <ul class="submenu">
+                                       <li><a href="blog.html">Admin Profile</a></li>
+                                       <li><a href="blog.html">Company Registration</a></li>
+                                       <li><a href="single-blog.html">Student Registration</a></li>
+                                    </ul>
+                                 </li>
+
+                              </ul>
+                           </nav>
+                        </div>
+                        <!-- Header-btn -->
+                        <div class="header-btn d-none f-right d-lg-block">
+                           <a href="#" class="btn head-btn1">Register</a>
+                           <a href="#" class="btn head-btn2">Login</a>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Mobile Menu -->
+                  <div class="col-12">
+                     <div class="mobile_menu d-block d-lg-none"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Header End -->
+   </header>
+   <!-- Hero Area Start-->
+   <div class="slider-area ">
+      <div class="single-slider section-overly slider-height2 d-flex align-items-center"
+         data-background="assets/img/hero/about.jpg">
+         <div class="container">
+            <div class="row">
+               <div class="col-xl-12">
+                  <div class="hero-cap text-center">
+                     <h2>Your Supervisor</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Hero Area End -->
+   <!--================Blog Area =================-->
+   <section class="blog_area single-post-area section-padding">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-8 posts-list">
+               <div class="single-post">
+		  <div class="feature-img">
+                     <img class="img-fluid" src="{{supervisor[6]}}" alt="">
+                  </div>
+                  <div class="mt-15"> <!--ID-->
+                     <label for="sv_id">Supervisor ID:</label>
+                     <span class="single-input">{{ supervisor[0] }}</span>
+                  </div>
+                  <div class="mt-15"> <!--Name-->
+                     <label for="sv_name">Supervisor Name:</label>
+                     <span class="single-input">{{ supervisor[1] }}</span>
+                  </div>
+                  <div class="mt-15"> <!--Age-->
+                     <label for="age">Age:</label>
+                     <span class="single-input">{{ supervisor[5] }}</span>
+                  </div>
+                  <div class="mt-15"> <!--Email-->
+                     <label for="sv_email">Student Email:</label>
+                     <span class="single-input">{{ supervisor[2] }}</span>
+                  </div>
+                  <div class="mt-15"> <!--Programme-->
+                     <label for="programme">Programme:</label>
+                     <span class="single-input">{{ supervisor[3] }}</span>
+                  </div>
+                  <div class="mt-15"> <!--Faculty-->
+                     <label for="faculty">Faculty:</label>
+                     <span class="single-input">{{ supervisor[4] }}</span>
+                  </div>
+
+                  <div class="mt-30">
+                     <h4>Report Submission</h4> 
+                     <form action="/submitReport/{{ student[0] }}" autocomplete="on" method="POST" enctype="multipart/form-data">
+                        <div class="blog-author mt-1">
+                           <div class="media-body">
+                              <label for="report_title">Report Title:</label>
+                                 <input type="text" class="form-control"  name="report_title" placeholder="Report Title" onfocus="
+                                    this.placeholder = ''" onblur="this.placeholder = 'Report Title'" required>
+                              </div>      
+                           <div class="media-body mt-15">
+                              <label for="report_type">Report Type:</label>
+                              <div>
+                                 <select name="report_type">
+                                    <option value="Weekly Report">Weekly Report</option>
+                                    <option value="Monthly Report">Monthly Report</option>
+                                    <option value="Final Report">Final Report</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="media-body mt-40">
+                              <br>
+                              <label for="report">Upload Your Report:</label>
+                              <div class="mt-10">
+                                 <form method="post" enctype="multipart/form-data">
+                                    <input type="file" name="report" accept=".pdf" required>
+                                    <p><i>Accepted file format: PDF</i></p>
+                                 </form>
+                              </div>
+                           </div>
+                           <div class="button-group-area mt-10">
+                              <button type ="submit" href="#" class="genric-btn primary circle" id="submitButton">Submit</button>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="button-group-area mt-20">
+            <a href="/viewStudent/{{ student[0] }}" class="genric-btn danger square" id="backButton">Back</a>
+         </div>
+   </section>
+   <!-- ================ Blog section end ================= -->
+   <footer>
+      <!-- Footer Start-->
+      <div class="footer-area footer-bg pt-50">
+         <div class="container">
+            <div class="row d-flex justify-content-between">
+               <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                  <div class="single-footer-caption mb-50">
+                     <div class="single-footer-caption mb-30">
+                        <div class="footer-tittle">
+                           <h4>About Us</h4>
+                           <div class="footer-pera">
+                              <p>TARUMT ITP is a website to provide internship infomations to all the TARCIAN.</p>
+                           </div>
+                        </div>
+                     </div>
+
+                  </div>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                  <div class="single-footer-caption mb-50">
+                     <div class="footer-tittle">
+                        <h4>Contact Info</h4>
+                        <ul>
+                           <li>
+                              <p>Tunku Abdul Rahman University of Management and Technology, Jalan Genting Kelang,
+                                 Setapak,
+                                 53300 Kuala Lumpur, Malaysia.</p>
+                           </li>
+                           <li><a href="#">Phone : (6)03-41450123</a></li>
+                           <li><a href="#">Email : info@tarc.edu.my</a></li>
+                        </ul>
+                     </div>
+
+                  </div>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                  <div class="single-footer-caption mb-50">
+                     <div class="footer-tittle">
+                        <h4>Important Link</h4>
+                        <ul>
+                           <li><a href="#">Find an Internship</a></li>
+
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+            <!--  -->
+
+         </div>
+      </div>
+
+   </footer>
+
+        <!-- JS here -->
+	
+	<!-- All JS Custom Plugins Link Here here -->
+        <script src="{{url_for('static', filename='js/vendor/modernizr-3.5.0.min.js')}}"></script>
+		<!-- Jquery, Popper, Bootstrap -->
+	<script src="{{url_for('static', filename='js/vendor/jquery-1.12.4.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/vendor/popper.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/vendor/bootstrap.min.js')}}"></script>
+	
+
+	<!-- Jquery Mobile Menu -->
+        <script src="{{url_for('static', filename='js/jquery.slicknav.min.js')}}"></script>
+
+	<!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="{{url_for('static', filename='js/owl.carousel.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/slick.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/price_rangs.js')}}"></script>
+        
+	<!-- One Page, Animated-HeadLin -->
+	<script src="{{url_for('static', filename='js/wow.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/animated.headline.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.magnific-popup.js')}}"></script>
+	    
+	<!-- Scrollup, nice-select, sticky -->
+	<script src="{{url_for('static', filename='js/jquery.scrollUp.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.nice-select.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.sticky.js')}}"></script>
+
+        
+        <!-- contact js -->
+	<script src="{{url_for('static', filename='js/contact.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.form.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.validate.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/mail-script.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.ajaxchimp.min.js')}}"></script>
+
+        
+	<!-- Jquery Plugins, main Jquery -->	
+	<script src="{{url_for('static', filename='js/plugins.js')}}"></script>
+	<script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+</body>
+
+</html>
