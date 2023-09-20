@@ -24,12 +24,6 @@
     	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-	<script>
-	$(function () {
-	    $("#header").load("{{ url_for('static', filename='templates/Header.html') }}");
-	    $("#footer").load("{{ url_for('static', filename='templates/Footer.html') }}");
-	});
-    	</script>
    </head>
 
    <body>
@@ -43,7 +37,7 @@
 
         <!-- Hero Area Start-->
         <div class="slider-area ">
-        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ url_for('static', filename='images/requirementscs.png') }}">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{internship[14]}}">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
