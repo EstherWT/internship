@@ -437,7 +437,7 @@ def AddInternFormCom():
         intern_id = 1
     else:
         intern_id = int(result[0]) + 1
-  n
+  
     count_cursor.close()
 
     insert_sql = "INSERT INTO Internship VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
