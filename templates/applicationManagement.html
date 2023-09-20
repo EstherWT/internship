@@ -101,7 +101,7 @@
         </div>
 
       <!------Not Pending----------->
-         <div class="container box_1170" id="notPending">
+         <div class="container box_1170" id="notPending" style="display: none;">
           
                 <div class="whole-wrap" style="padding-left: 5%; padding-right:5%;">
 			
@@ -142,6 +142,18 @@
 
         <!-- Footer Start-->
       	  {% include 'Footer.html' %}
+
+    	<script>
+	    function showPendingTable() {
+	        document.getElementById('pending').style.display = 'block';
+	        document.getElementById('notPending').style.display = 'none';
+	    }
+	
+	    function showHistoryTable() {
+	        document.getElementById('pending').style.display = 'none';
+	        document.getElementById('notPending').style.display = 'block';
+	    }
+	</script>
     
         <!-- JS here -->
 	<script>
