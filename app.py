@@ -390,7 +390,7 @@ def goProfile():
 
    id = session["id"]
 
-    if seesion["role"] == "3":
+    if session["role"] == "3":
     
         #Company Profile
         statement = "SELECT * FROM Company WHERE com_id = %s"
