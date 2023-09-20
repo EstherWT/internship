@@ -947,7 +947,7 @@ def search():
     results = cursor.fetchall()
     cursor.close()
 
-    return render_template('search_result.html', results=results)    `
+    return render_template('search_result.html', results=results)
 
 #==SUPERVISOR========================================================================
 def allowed_file(filename):
