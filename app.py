@@ -132,7 +132,7 @@ def userLogin():
                 session["role"] = "1"
                 session["id"] = account[0]
                 session["name"] = account[1]
-                return redirect("/")
+                return render_templete("index.html")
         else:
                 return render_template('login.html', verify=False)
      
@@ -146,7 +146,7 @@ def userLogin():
             session["role"] = "2"
             session["id"] = account[0]
             session["name"] = account[1]
-            return redirect("/")
+            return render_templete("index.html")
         else:
              return render_template('login.html', verify=False)
     
@@ -160,7 +160,7 @@ def userLogin():
                 session["role"] = "3"
                 session["id"] = account[0]
                 session["name"] = account[1]
-                return redirect("/")
+                return render_templete("index.html")
         else:
                 return render_template('login.html', verify=False)
     
@@ -173,7 +173,7 @@ def userLogin():
             session["role"] = "4"
             session["id"] = account[0]
             session["name"] = account[1]
-            return redirect("/")
+            return render_templete("index.html")
         else:
              return render_template('login.html', verify=False)
     else:
@@ -183,7 +183,8 @@ def userLogin():
 @csrf.exempt
 def logout():
     session.clear()
-    return redirect("/")
+    return render_templete("index.html")
+    
  
 #go home with login check --------
 @app.route('/goHome')
@@ -406,7 +407,7 @@ def goProfile():
         return render_template('viewCompany.html', com=result)
 
     else:
-         return redirect('/')
+         return render_templete("index.html")
 
 #---With function--------------------------------------------------------------------
 #==INTERNSHIP========================================================================
@@ -415,7 +416,7 @@ def goProfile():
 def AddInternFormCom():
 
     if session['role'] != "3":
-        return redirect('/')
+        return render_templete("index.html")
 
     com_id = session.get('id')
     job_title = request.form['job_title']
@@ -459,7 +460,7 @@ def AddInternFormCom():
 def GoManageInternship():
 
     if session['role'] != "3":
-        return redirect('/')
+        return render_templete("index.html")
 
     com_id = session.get('id')
     statement = "SELECT intern_id, job_title, intern_salary FROM Internship WHERE com_id = %s"
@@ -510,7 +511,7 @@ def edit_internship(internship_id):
 def update_internship():
 
     if session['role'] != "3":
-        return redirect('/')
+        return render_templete("index.html")
 
     com_id = session["id"]
     intern_id =  request.form['intern_id']
@@ -546,7 +547,7 @@ def delete_internship(internship_id):
 def editCompany():
     
     if session['role'] != "3":
-        return redirect('/')
+        return render_templete("index.html")
 
     id = session["id"]
     
@@ -564,7 +565,7 @@ def editCompany():
 def updateCompany():
     
     if session['role'] != "3":
-        return redirect('/')
+        return render_templete("index.html")
 
     com_id = session["id"]
     logo  = request.files['logo']
@@ -628,7 +629,7 @@ def updateCompany():
 def applicationManagement():
 
     if session["role"] != "3":
-        return redirect('/')
+        return render_templete("index.html")
         
     com_id = session["id"]
     statement = "SELECT A.app_id, A.intern_id, A.stud_id, S.stud_name, I.job_title, A.status FROM Application A JOIN Student S ON A.stud_id = S.stud_id JOIN Internship I ON A.intern_id = I.intern_id WHERE A.status = %s AND A.company_id = %s"
