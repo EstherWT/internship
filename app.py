@@ -58,7 +58,10 @@ def homePage():
 @app.route("/internshipPublication", methods=['GET', 'POST'])
 def publichInternPage():
 
-    com_id = 1
+    if session['role'] != "3":
+        return redirect('/')
+        
+    com_id = session["id"]
     com_statement = "SELECT * FROM Company WHERE com_id = %s"
     com_cursor = db_conn.cursor()
     com_cursor.execute(com_statement, com_id)
