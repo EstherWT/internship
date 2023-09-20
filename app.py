@@ -937,6 +937,18 @@ def jobList(cate):
     
     return render_template('job_listing.html', listing = list, type = cate)
 
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query')
+
+    # Execute a SQL query to search for the data
+    cursor = db_conn.cursor()
+    cursor.execute("SELECT * FROM Internship WHERE job_title LIKE %s", ('%' + query + '%',) )
+    results = cursor.fetchall()
+    cursor.close()
+
+    return render_template('search_result.html', results=results)    `
+
 #==SUPERVISOR========================================================================
 def allowed_file(filename):
     # Get the file extension from the filename
