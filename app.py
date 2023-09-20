@@ -363,7 +363,7 @@ def CompanyReg():
     password = request.form['password']
 
 
-    insert_sql = "INSERT INTO Company VALUES (%s, %s, %s, %s, %s, %s, %s, %lf, %d, %s, %s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO Company VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
     if logo.filename == "":
