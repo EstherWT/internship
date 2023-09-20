@@ -388,7 +388,7 @@ def CompanyReg():
 @app.route("/goProfile", methods=['GET', 'POST'])
 def goProfile():
 
-   id = session["id"]
+    id = session["id"]
 
     if session["role"] == "3":
     
@@ -453,7 +453,7 @@ def AddInternFormCom():
 @app.route("/goManageInternship", methods=['GET'])
 def GoManageInternship():
 
-     if session['role'] != "3":
+    if session['role'] != "3":
         return redirect('/')
 
     com_id = session.get('id')
@@ -504,7 +504,7 @@ def edit_internship(internship_id):
 @csrf.exempt 
 def update_internship():
 
-     if session['role'] != "3":
+    if session['role'] != "3":
         return redirect('/')
 
     com_id = session["id"]
@@ -540,7 +540,7 @@ def delete_internship(internship_id):
 @csrf.exempt 
 def editCompany():
     
-     if session['role'] != "3":
+    if session['role'] != "3":
         return redirect('/')
 
     id = session["id"]
@@ -558,7 +558,7 @@ def editCompany():
 @csrf.exempt 
 def updateCompany():
     
-     if session['role'] != "3":
+    if session['role'] != "3":
         return redirect('/')
 
     com_id = session["id"]
