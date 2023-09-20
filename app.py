@@ -1313,7 +1313,7 @@ def applyInternship(intern_id):
     com_id = cursor.fetchone()
 
     #Get last ID
-    countstatement = "SELECT app_id FROM Application ORDER BY intern_id DESC LIMIT 1;"
+    countstatement = "SELECT app_id FROM Application ORDER BY app_id DESC LIMIT 1;"
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement)
     result = count_cursor.fetchone()
@@ -1331,7 +1331,7 @@ def applyInternship(intern_id):
 
     return render_template('applySuccess.html')
 
-#----Apply Internship from Student -----------
+#----View Internship aplication from Student -----------
 @app.route("/appliedIntern", methods=['GET', 'POST'])
 def appliedInternship():
 
