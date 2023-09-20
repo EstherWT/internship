@@ -23,16 +23,14 @@
 	    <link rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}">
             <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">
 	    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-	     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-	  
    </head>
 
    <body>
-
+    <header>
         <!-- Header Start -->
-	  {% include 'Header.html' %}
+	<div id="header"></div>
         <!-- Header End -->
+    </header>
     <main>
 
         <!-- slider Area Start-->
@@ -48,7 +46,7 @@
                                 </div>
                             </div>
                         </div>
-                       <!-- Search Box -->
+                        <!-- Search Box -->
                         <div class="container search-table">
 			    <div class="search-box">
 				<div class="row">
@@ -60,6 +58,7 @@
 				    </div> 
 				</div>
 			    </div>
+			   <div id="result"></div>
 			</div>
                     </div>
                 </div>
@@ -114,16 +113,15 @@
                             <div class="single-job-items mb-30">
                                 <div class="job-items">
                                     <div class="company-img">
-                                        <img src="{{ row[8] }}" style="height:80px;" alt="Internship">
+                                        <img src="{{ url_for('static', filename='img/icon/job-list' + row[0]|string + '.png') }}" alt="Internship">
                                     </div>
                                     <div class="job-tittle">
                                         <h4>{{row[2]}}</h4>
                                         <ul>
-                                             <li>{{row[1]}}</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>{{row[4]}}</li>
-                                                <li>{{row[5]}}</li> <!--Day-->
-                                                <li>{{row[6]}}</li> <!--Time-->
-                                                <li>{{row[7]}}</li> <!--Industry-->
+                                            <li>{{row[1]}}</li>
+                                            <li><i class="fas fa-map-marker-alt"></i>{{row[6]}}</li>
+                                            <li>{{row[5]}}</li>
+                                            <li>{{row[7]}}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -138,11 +136,11 @@
         </section>
         <!-- Featured_job_end -->
     </main>
- 
+     <footer>
         <!-- Footer Start-->
-          {% include 'Footer.html' %}
+        <div id="footer"></div>
    	<!-- Footer END -->
-
+    </footer>
 
    <!-- JS here -->
 	
@@ -180,6 +178,6 @@
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="./assets/js/plugins.js"></script>
         <script src="./assets/js/main.js"></script>
-        
+
     </body>
 </html>
