@@ -1055,8 +1055,11 @@ def supervisorMainPage(sv_id):
     
     return render_template('supervisorMainPage.html')
 
-@app.route("/viewStudentInfo/<string:sv_id>")
-def viewStudentInfo(sv_id):
+@app.route("/viewStudentInfo", methods=['POST','GET'])
+def viewStudentInfo():
+
+    sv_id = session["id"]
+    
     statement = "SELECT s.* FROM Student s JOIN Student_List sl ON s.stud_id = sl.stud_id JOIN Supervisor sv ON sl.sv_id = sv.sv_id WHERE sl.sv_id = %s;"
     cursor = db_conn.cursor()
     cursor.execute(statement)
