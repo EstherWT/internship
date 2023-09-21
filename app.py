@@ -355,8 +355,8 @@ def CompanyReg():
     email = request.form['email']
     password = request.form['password']
     
-#Get last ID
-    countstatement = "SELECT com_id FROM Company ORDER BY com_id DESC LIMIT 1;"
+    #Get last ID
+    countstatement = "SELECT  MAX(com_id) FROM Company ;"
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement)
     result = count_cursor.fetchone()
