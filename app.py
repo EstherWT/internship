@@ -354,9 +354,10 @@ def CompanyReg():
     contact_no = request.form['contact_no']
     email = request.form['email']
     password = request.form['password']
+    status = "pending"
     
-    #Get last ID
-    countstatement = "SELECT  MAX(com_id) FROM Company ;"
+#Get last ID
+    countstatement = "SELECT com_id FROM Company ORDER BY com_id DESC LIMIT 1;"
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement)
     result = count_cursor.fetchone()
@@ -366,7 +367,19 @@ def CompanyReg():
     else:
         com_id = int(result[0]) + 1
 
+    #Approval ID
+    countstatement1 = "SELECT id FROM ComApproval ORDER BY id DESC LIMIT 1;"
+    count_cursor = db_conn.cursor()
+    count_cursor.execute(countstatement1)
+    result1 = count_cursor.fetchone()
+
+    if result1 is None or result1[0] is None:
+        id = 1
+    else:
+        id = int(result[0]) + 1
+
     insert_sql = "INSERT INTO Company VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    insert_app = "INSERT INTO ComApproval VALUES (%s,%s, %s)"
     cursor = db_conn.cursor()
 
     if logo.filename == "":
@@ -397,6 +410,7 @@ def CompanyReg():
         object_url = f"https://{custombucket}.s3.amazonaws.com/{compang_logo_in_s3}"
         ssm_url = f"https://{custombucket}.s3.amazonaws.com/{ssm_in_s3}"
         cursor.execute(insert_sql, (com_id, com_name,total_staff,industry_involve,product_service,company_website,ot_claim,nearest_station,com_address, object_url,ssm_url,person_incharge,contact_no,email,password))
+        cursor.execute(insert_app, (id,com_id,status ))
         db_conn.commit()
 
 
