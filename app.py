@@ -1047,7 +1047,7 @@ def search():
 
     # Execute a SQL query to search for the data
     cursor = db_conn.cursor()
-    cursor.execute("SELECT * FROM Internship WHERE job_title LIKE %s", ('%' + query + '%',) )
+    cursor.execute("SELECT * FROM Internship, Company WHERE job_title LIKE %s", ('%' + query + '%',) )
     results = cursor.fetchall()
     cursor.close()
 
