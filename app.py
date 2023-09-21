@@ -1051,7 +1051,9 @@ def allowed_file(filename):
 
 @app.route('/supervisorMainPage/<string:sv_id>')
 def supervisorMainPage(sv_id):
-    return render_template('supervisorMainPage.html',supervisor=result)
+    
+    
+    return render_template('supervisorMainPage.html')
 
 @app.route("/viewStudentInfo/<string:sv_id>")
 def viewStudentInfo(sv_id):
