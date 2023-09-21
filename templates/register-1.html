@@ -32,7 +32,7 @@
         <div class="title">Registration</div>
         <div class="content">
             <div class="title-2 mt-15">Personal Details</div>
-            <form action="/chooseStud2" method="POST" enctype="multipart/form-data">
+            <form action="/addStud" method="POST" enctype="multipart/form-data">
                 <div class="gender-details mt-20">
                     <input type="radio" name="gender" id="dot-1">
                     <input type="radio" name="gender" id="dot-2">
@@ -54,7 +54,7 @@
                 <div class="user-details">
                     
                     <div class="input-box">
-                        <span class="details">Student ID (Without alphabet)</span>
+                        <span class="details">Student ID (With alphabet)</span>
                         <input type="text" name="stud_id" placeholder="Enter your student ID" required>
                     </div>
                     <div class="input-box">
@@ -97,13 +97,54 @@
                         <span class="details">Profile Picture</span>
                         <input type="file" id="profile_img" name="profile_img">
                     </div>
-
-                   
-                      
-
                 </div>
+
+                <div class="title-2 mt-15">Person In Charge Details</div>
+                <div class="user-details">
+
+                    <div class="input-box">
+                        <span class="details">Programme</span>
+                        <input type="text" name="programme" placeholder="Enter your programme" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Tutorial Group</span>
+                        <input type="number"name="grp" placeholder="Group " required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Intern Batch</span>
+                        <input type="text"name="intern_batch" placeholder="Enter your intern batch" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">CGPA</span>
+                        <input type="text"name="cgpa" placeholder="Enter your CGPA" required>
+                    </div>
+                  
+                    <div class="file-box">
+                        <span class="details">Upload Your Resume</span>
+                        <input type="file" id="resume" name="resume">
+                    </div>
+                </div>
+
+                <div class="gender-details mt-10">
+                    <input type="radio" name="ownTransport" id="dot-1">
+                    <input type="radio" name="ownTransport" id="dot-2">
+                    <input type="radio" name="ownTransport" id="dot-3">
+                    <span class="gender-title">Has Own transport?</span>
+                    <div class="category">
+                        <label for="dot-1">
+                            <span class="dot one"></span>
+                            <span class="gender" value="Yes">Yes</span>
+                        </label>
+                        <label for="dot-2">
+                            <span class="dot two"></span>
+                            <span class="gender" value="No ">No</span>
+                        </label>
+
+                    </div>
+                </div>
+
                 <div class="button">
-                    <input type="submit" value="Next">
+                    <input type="submit" value="Register">
                 </div>
             </form>
         </div>
