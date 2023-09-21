@@ -349,7 +349,7 @@ def CompanyReg():
     nearest_station = request.form['nearest_station']
     com_address = request.form['com_address']
     logo = request.files['logo']
-    ssm = request.form['ssm']
+    ssm = request.files['ssm']
     person_incharge = request.form['person_incharge']
     contact_no = request.form['contact_no']
     email = request.form['email']
