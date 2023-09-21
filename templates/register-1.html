@@ -32,7 +32,7 @@
         <div class="title">Registration</div>
         <div class="content">
             <div class="title-2 mt-15">Personal Details</div>
-            <form action="/chooseStud2">
+            <form action="/chooseStud2" method="POST" enctype="multipart/form-data">
                 <div class="gender-details mt-20">
                     <input type="radio" name="gender" id="dot-1">
                     <input type="radio" name="gender" id="dot-2">
@@ -41,11 +41,11 @@
                     <div class="category">
                         <label for="dot-1">
                             <span class="dot one"></span>
-                            <span class="gender">Male</span>
+                            <span class="gender" value="M">Male</span>
                         </label>
                         <label for="dot-2">
                             <span class="dot two"></span>
-                            <span class="gender">Female</span>
+                            <span class="gender" value="F">Female</span>
                         </label>
 
                     </div>
