@@ -7,38 +7,25 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
-		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
-		<!-- CSS here -->
+	<!-- CSS here -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-	    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}">
-	    <link rel="stylesheet" href="{{ url_for('static', filename='css/price_rangs.css') }}">
-	    <link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.css') }}">
-	    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/price_rangs.css') }}">
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.css') }}">
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
-	    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}">
-
-	    <link rel="stylesheet" href="{{ url_for('static', filename='css/themify-icons.css') }}">
-	    <link rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}">
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/themify-icons.css') }}">
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">
-	    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-        <script>
-	        $(function () {
-	            $("#header").load("{{ url_for('static', filename='templates/Header.html') }}");
-	            $("#footer").load("{{ url_for('static', filename='templates/Footer.html') }}");
-	        });
-        </script>
-
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
    </head>
 
    <body>
-    <header>
-        <!-- Header Start -->
-	<div id="header"></div>
-        <!-- Header End -->
-    </header>    
+    {% include "Header.html" %}
     <main>   
        <h1>Search Results</h1>
     <ul>
@@ -70,11 +57,7 @@
 	    </div>
         </div>  
     </main>
-     <footer>
-        <!-- Footer Start-->
-        <div id="footer"></div>
-   	<!-- Footer END -->
-    </footer>
+    {% include "Footer.html" %}
 
    <!-- JS here -->
 	
