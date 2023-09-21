@@ -340,7 +340,6 @@ def AddAdmin():
 @app.route("/companyReg", methods=['POST'])
 @csrf.exempt  
 def CompanyReg():
-    com_id = request.form['com_id']
     com_name = request.form['com_name']
     total_staff = request.form['total_staff']
     industry_involve = request.form['industry_involve']
@@ -355,7 +354,17 @@ def CompanyReg():
     contact_no = request.form['contact_no']
     email = request.form['email']
     password = request.form['password']
+    
+#Get last ID
+    countstatement = "SELECT com_id FROM Company ORDER BY com_id DESC LIMIT 1;"
+    count_cursor = db_conn.cursor()
+    count_cursor.execute(countstatement)
+    result = count_cursor.fetchone()
 
+    if result is None or result[0] is None:
+        com_id = 1
+    else:
+        com_id = int(result[0]) + 1
 
     insert_sql = "INSERT INTO Company VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
@@ -366,6 +375,12 @@ def CompanyReg():
     if not allowed_file(logo.filename):
         return "File type not allowed. Only images (png, jpg, jpeg, gif) and PDFs are allowed."
     
+    if ssm.filename == "":
+        return "Please add a logo"
+    
+    if not allowed_file(ssm.filename):
+        return "File type not allowed. Only images (png, jpg, jpeg, gif) and PDFs are allowed."
+    
     try:
         cursor.execute(insert_sql, (com_id, com_name,total_staff,industry_involve,product_service,company_website,ot_claim,nearest_station,com_address, logo,ssm,person_incharge,contact_no,email,password))
         db_conn.commit()
@@ -373,12 +388,16 @@ def CompanyReg():
         compang_logo_in_s3 = "com_id-" + str(com_id) + "_image_file"
         s3 = boto3.resource('s3')
 
+        ssm_in_s3 = "com_id-" + str(com_id) + "_pdf"
+        s3 = boto3.resource('s3')
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
             s3.Bucket(custombucket).put_object(Key=compang_logo_in_s3, Body=logo, ContentType=logo.content_type)
+            s3.Bucket(custombucket).put_object(Key=ssm_in_s3, Body=ssm, ContentType=ssm.content_type)
             
             # Generate the object URL
             object_url = f"https://{custombucket}.s3.amazonaws.com/{compang_logo_in_s3}"
+            ssm_url = f"https://{custombucket}.s3.amazonaws.com/{ssm_in_s3}"
 
         except Exception as e:
             return str(e)
