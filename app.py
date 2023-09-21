@@ -199,9 +199,9 @@ def goHome():
 
 
 #---student Register---------------------------------------------------------
-@app.route("/addstud", methods=['POST'])
-@csrf.exempt
-def AddStud():
+@app.route("/studReg", methods=['POST'])
+@csrf.exempt  
+def StudReg():
     stud_id = request.form['stud_id'] 
     stud_name = request.form['stud_name']
     ic = request.form['ic']
