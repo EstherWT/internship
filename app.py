@@ -1062,7 +1062,7 @@ def viewStudentInfo():
     
     statement = "SELECT s.* FROM Student s JOIN Student_List sl ON s.stud_id = sl.stud_id JOIN Supervisor sv ON sl.sv_id = sv.sv_id WHERE sl.sv_id = %s;"
     cursor = db_conn.cursor()
-    cursor.execute(statement)
+    cursor.execute(statement, (sv_id))
     result = cursor.fetchall()
     return render_template('viewStudentInfo.html', data=result)
 
