@@ -290,8 +290,6 @@ def SupervisorReg():
         return "File type not allowed. Only images (png, jpg, jpeg, gif) and PDFs are allowed."
     
     try:
-        cursor.execute(insert_sql, (sv_id, sv_name, sv_email, programme, faculty, age, profile_image, password))
-        db_conn.commit()
         
         profile_image_in_s3 = "sv_id-" + str(sv_id) + "_image_file"
         s3 = boto3.resource('s3')
@@ -302,6 +300,8 @@ def SupervisorReg():
             
             # Generate the object URL
             object_url = f"https://{custombucket}.s3.amazonaws.com/{profile_image_in_s3}"
+            cursor.execute(insert_sql, (sv_id, sv_name, sv_email, programme, faculty, age, object_url, password))
+            db_conn.commit()
 
         except Exception as e:
             return str(e)
@@ -382,25 +382,26 @@ def CompanyReg():
         return "File type not allowed. Only images (png, jpg, jpeg, gif) and PDFs are allowed."
     
     try:
-        cursor.execute(insert_sql, (com_id, com_name,total_staff,industry_involve,product_service,company_website,ot_claim,nearest_station,com_address, logo,ssm,person_incharge,contact_no,email,password))
-        db_conn.commit()
+
         
         compang_logo_in_s3 = "com_id-" + str(com_id) + "_image_file"
         s3 = boto3.resource('s3')
-
         ssm_in_s3 = "com_id-" + str(com_id) + "_pdf"
         s3 = boto3.resource('s3')
-        try:
-            print("Data inserted in MySQL RDS... uploading image to S3...")
-            s3.Bucket(custombucket).put_object(Key=compang_logo_in_s3, Body=logo, ContentType=logo.content_type)
-            s3.Bucket(custombucket).put_object(Key=ssm_in_s3, Body=ssm, ContentType=ssm.content_type)
-            
-            # Generate the object URL
-            object_url = f"https://{custombucket}.s3.amazonaws.com/{compang_logo_in_s3}"
-            ssm_url = f"https://{custombucket}.s3.amazonaws.com/{ssm_in_s3}"
 
-        except Exception as e:
-            return str(e)
+        print("Data inserted in MySQL RDS... uploading image to S3...")
+        s3.Bucket(custombucket).put_object(Key=compang_logo_in_s3, Body=logo, ContentType=logo.content_type)
+        s3.Bucket(custombucket).put_object(Key=ssm_in_s3, Body=ssm, ContentType=ssm.content_type)
+            
+        # Generate the object URL
+        object_url = f"https://{custombucket}.s3.amazonaws.com/{compang_logo_in_s3}"
+        ssm_url = f"https://{custombucket}.s3.amazonaws.com/{ssm_in_s3}"
+        cursor.execute(insert_sql, (com_id, com_name,total_staff,industry_involve,product_service,company_website,ot_claim,nearest_station,com_address, object_url,ssm_url,person_incharge,contact_no,email,password))
+        db_conn.commit()
+
+
+    except Exception as e:
+         return str(e)
 
     finally:
         cursor.close()
