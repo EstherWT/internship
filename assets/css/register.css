@@ -6,7 +6,7 @@
   font-family: 'Poppins',sans-serif;
 }
 body{
-  height: 300vh;
+  height: 230vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,7 +132,9 @@ form .input-box span.details{
 }
  #dot-1:checked ~ .category label .one,
  #dot-2:checked ~ .category label .two,
- #dot-3:checked ~ .category label .three{
+ #dot-3:checked ~ .category label .three
+ #dot-4:checked ~ .category label .four
+ #dot-5:checked ~ .category label .five{
    background: #9b59b6;
    border-color: #d9d9d9;
  }
