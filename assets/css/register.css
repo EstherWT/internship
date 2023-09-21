@@ -6,7 +6,7 @@
   font-family: 'Poppins',sans-serif;
 }
 body{
-  height: 170vh;
+  height: 200vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,18 +121,6 @@ form .input-box span.details{
    align-items: center;
    cursor: pointer;
  }
- .category1{
-  display: flex;
-   align-items: center;
-   cursor: pointer;
-   height: 18px;
-  width: 18px;
-  border-radius: 50%;
-  margin-right: 10px;
-  background: #d9d9d9;
-  border: 5px solid transparent;
-  transition: all 0.3s ease;
- }
  form .category label .dot{
   height: 18px;
   width: 18px;
@@ -144,10 +132,7 @@ form .input-box span.details{
 }
  #dot-1:checked ~ .category label .one,
  #dot-2:checked ~ .category label .two,
- #dot-3:checked ~ .category label .three,
- #dot-4:checked ~ .category1 label .four,
- #dot-5:checked ~ .category1 label .five,
- #dot-6:checked ~ .category1 label .six{
+ #dot-3:checked ~ .category label .three{
    background: #9b59b6;
    border-color: #d9d9d9;
  }
