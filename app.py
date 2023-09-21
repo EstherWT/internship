@@ -1049,13 +1049,13 @@ def allowed_file(filename):
     # Check if the file extension (without the dot) is in the allowed extensions set
     return file_extension.lower()[1:] in ALLOWED_EXTENSIONS
 
-@app.route("/supervisorMainPage", methods=['GET', 'POST'])
-def home():
-    return render_template('supervisorMainPage.html')
+@app.route('/supervisorMainPage/<string:sv_id>')
+def supervisorMainPage(sv_id):
+    return render_template('supervisorMainPage.html',supervisor=result)
 
-@app.route("/viewStudentInfo", methods=['GET'])
-def viewStudentInfo():
-    statement = "SELECT s.* FROM Student s JOIN Student_List sl ON s.stud_id = sl.stud_id JOIN Supervisor sv ON sl.sv_id = sv.sv_id WHERE sl.sv_id = 1;"
+@app.route("/viewStudentInfo/<string:sv_id>')
+def viewStudentInfo(sv_id):
+    statement = "SELECT s.* FROM Student s JOIN Student_List sl ON s.stud_id = sl.stud_id JOIN Supervisor sv ON sl.sv_id = sv.sv_id WHERE sl.sv_id = %s;"
     cursor = db_conn.cursor()
     cursor.execute(statement)
     result = cursor.fetchall()
