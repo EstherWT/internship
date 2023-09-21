@@ -2,13 +2,13 @@
 <html lang="en" dir="ltr">
 
 <head>
- <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-     <title>TARUMT ITP </title>
+    <title>TARUMT ITP </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
-<link rel="shortcut icon" type="image/x-icon" href="assets/img/TARUMT_Logo/tarumt_sc.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/TARUMT_Logo/tarumt_sc.png">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -32,7 +32,7 @@
         <div class="title">Registration</div>
         <div class="content">
             <div class="title-2 mt-15">Personal Details</div>
-            <form action="/addStud" method="POST" enctype="multipart/form-data">
+            <form action="/studReg" method="POST" enctype="multipart/form-data">
                 <div class="gender-details mt-20">
                     <input type="radio" name="gender" id="dot-1">
                     <input type="radio" name="gender" id="dot-2">
@@ -50,9 +50,9 @@
 
                     </div>
                 </div>
-                
+
                 <div class="user-details">
-                    
+
                     <div class="input-box">
                         <span class="details">Student ID (With alphabet)</span>
                         <input type="text" name="stud_id" placeholder="Enter your student ID" required>
@@ -75,23 +75,23 @@
                     </div>
                     <div class="input-box">
                         <span class="details">Phone Number</span>
-                        <input type="text"name="contactNo" placeholder="Enter your phone number" required>
+                        <input type="text" name="contactNo" placeholder="Enter your phone number" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Home Phone Number</span>
-                        <input type="text"name="homePhone" placeholder="Enter your home phone number" required>
+                        <input type="text" name="homePhone" placeholder="Enter your home phone number" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Current Address</span>
-                        <input type="text"name="currentAddress" placeholder="Enter your current address" required>
+                        <input type="text" name="currentAddress" placeholder="Enter your current address" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Home Address</span>
-                        <input type="text"name="homeAddress" placeholder="Enter your home address" required>
+                        <input type="text" name="homeAddress" placeholder="Enter your home address" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Password</span>
-                        <input type="password"name="password" placeholder="Enter your password" required>
+                        <input type="password" name="password" placeholder="Enter your password" required>
                     </div>
                     <div class="file-box">
                         <span class="details">Profile Picture</span>
@@ -99,7 +99,7 @@
                     </div>
                 </div>
 
-                <div class="title-2 mt-15">Person In Charge Details</div>
+                <div class="title-2 mt-15">Education Details</div>
                 <div class="user-details">
 
                     <div class="input-box">
@@ -108,17 +108,17 @@
                     </div>
                     <div class="input-box">
                         <span class="details">Tutorial Group</span>
-                        <input type="number"name="grp" placeholder="Group " required>
+                        <input type="number" name="grp" placeholder="Group " required>
                     </div>
                     <div class="input-box">
                         <span class="details">Intern Batch</span>
-                        <input type="text"name="intern_batch" placeholder="Enter your intern batch" required>
+                        <input type="text" name="intern_batch" placeholder="Enter your intern batch" required>
                     </div>
                     <div class="input-box">
                         <span class="details">CGPA</span>
-                        <input type="text"name="cgpa" placeholder="Enter your CGPA" required>
+                        <input type="text" name="cgpa" placeholder="Enter your CGPA" required>
                     </div>
-                  
+
                     <div class="file-box">
                         <span class="details">Upload Your Resume</span>
                         <input type="file" id="resume" name="resume">
@@ -133,11 +133,11 @@
                     <div class="category">
                         <label for="dot-1">
                             <span class="dot one"></span>
-                            <span class="gender" value="Yes">Yes</span>
+                            <span class="transport" value="Yes">Yes</span>
                         </label>
                         <label for="dot-2">
                             <span class="dot two"></span>
-                            <span class="gender" value="No ">No</span>
+                            <span class="transport" value="No ">No</span>
                         </label>
 
                     </div>
