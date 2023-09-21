@@ -91,6 +91,7 @@ def chooseStud():
 
 #---Navigation (if choose student) --------
 @app.route("/chooseStud2", methods=['GET', 'POST'])
+@csrf.exempt
 def chooseStud2():
     return render_template('register-2.html')
 
