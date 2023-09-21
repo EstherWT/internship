@@ -1053,7 +1053,7 @@ def allowed_file(filename):
 def supervisorMainPage(sv_id):
     return render_template('supervisorMainPage.html',supervisor=result)
 
-@app.route("/viewStudentInfo/<string:sv_id>')
+@app.route("/viewStudentInfo/<string:sv_id>")
 def viewStudentInfo(sv_id):
     statement = "SELECT s.* FROM Student s JOIN Student_List sl ON s.stud_id = sl.stud_id JOIN Supervisor sv ON sl.sv_id = sv.sv_id WHERE sl.sv_id = %s;"
     cursor = db_conn.cursor()
