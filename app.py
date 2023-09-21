@@ -199,6 +199,7 @@ def goHome():
 
 #---student Register---------------------------------------------------------
 @app.route("/addstud", methods=['POST'])
+@csrf.exempt
 def AddStud():
     stud_id = request.form['stud_id'] 
     stud_name = request.form['stud_name']
@@ -206,7 +207,7 @@ def AddStud():
     email = request.form['email']
     gender = request.form['gender']
     programme = request.form['programme']
-    group = request.form['group']
+    grp = request.form['grp']
     cgpa = request.form['cgpa']
     password = request.form['password']
     intern_batch = request.form['intern_batch']
@@ -218,53 +219,62 @@ def AddStud():
     homePhone = request.form['homePhone']
     profile_img = request.files['profile_img']
     resume = request.files['resume']
+    status = "pending"
 
-    insert_sql = "INSERT INTO Student VALUES (%s, %s, %s, %s, %s, %s, %d, %lf, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO Student VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    insert_app = "INSERT INTO StudApproval VALUES (%s,%s, %s)"
     cursor = db_conn.cursor()
 
+     #Approval ID
+    countstatement = "SELECT id FROM StudApproval ORDER BY id DESC LIMIT 1;"
+    count_cursor = db_conn.cursor()
+    count_cursor.execute(countstatement)
+    result = count_cursor.fetchone()
+
+    if result is None or result[0] is None:
+        id = 1
+    else:
+        id = int(result[0]) + 1
+
     if profile_img.filename == "":
-        return "Please select a file"
+        return "Please add a image"
+    
+    if not allowed_file(profile_img.filename):
+        return "File type not allowed. Only images (png, jpg, jpeg, gif) and PDFs are allowed."
+    
     if resume.filename == "":
-        return "Please select a file"
-
+        return "Please add your resume"
+    
+    if not allowed_file(resume.filename):
+        return "File type not allowed. Only images (png, jpg, jpeg, gif) and PDFs are allowed."
+    
     try:
-        cursor = db_conn.cursor()
-        cursor.execute(insert_sql, (stud_id, stud_name, ic, email, gender, programme, group, cgpa, password, intern_batch, ownTransport, currentAddress, contactNo
-                                    , personalEmail, homeAddress, homeAddress, homePhone))
-        db_conn.commit()
-        cursor.close()
-    except Exception as e:
-        db_conn.rollback()  # Rollback the transaction in case of an error
-        print(f"Error: {str(e)}")  # Print the error for debugging
 
-        # Uplaod image file in S3 #
-        profile_img_in_s3 = "stud-id-" + str(stud_id) + "_image_file"
+        
+        profile_img_in_s3 = "stud_id-" + str(stud_id) + "_image_file"
+        s3 = boto3.resource('s3')
+        resume_in_s3 = "stud_id-" + str(stud_id) + "_pdf"
         s3 = boto3.resource('s3')
 
-        try:
-            print("uploading image to S3...")
-            s3.Bucket(custombucket).put_object(Key=profile_img_in_s3, Body=profile_img)
-            bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
-            s3_location = (bucket_location['LocationConstraint'])
+        print("Data inserted in MySQL RDS... uploading image to S3...")
+        s3.Bucket(custombucket).put_object(Key=profile_img_in_s3, Body=profile_img, ContentType=profile_img.content_type)
+        s3.Bucket(custombucket).put_object(Key=resume_in_s3, Body=resume, ContentType=resume.content_type)
+            
+        # Generate the object URL
+        object_url = f"https://{custombucket}.s3.amazonaws.com/{profile_img_in_s3}"
+        resume_url = f"https://{custombucket}.s3.amazonaws.com/{resume_in_s3}"
+        cursor.execute(insert_sql, (stud_id, stud_name,ic,email,gender,programme,grp,cgpa,password, intern_batch,ownTransport,currentAddress,contactNo,personalEmail,homeAddress,homePhone,object_url,resume_url))
+        cursor.execute(insert_app, (id,stud_id,status ))
+        db_conn.commit()
 
-            if s3_location is None:
-                s3_location = ''
-            else:
-                s3_location = '-' + s3_location
 
-            object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
-                s3_location,
-                custombucket,
-                stud_image_file_name_in_s3)
-
-        except Exception as e:
-            return str(e)
+    except Exception as e:
+         return str(e)
 
     finally:
         cursor.close()
 
-    print("all modification done...")
-    return render_template('AddStudOutput.html', name=stud_name)
+    return render_template('login.html',student=stud_id)
 
 
 # ---- Supervisor Register ---------------------
