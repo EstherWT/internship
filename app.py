@@ -227,7 +227,7 @@ def StudReg():
     cursor = db_conn.cursor()
 
      #Approval ID
-    countstatement = "SELECT id FROM StudApproval ORDER BY id DESC LIMIT 1;"
+    countstatement = "SELECT MAX(id) FROM StudApproval;"
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement)
     result = count_cursor.fetchone()
@@ -368,7 +368,7 @@ def CompanyReg():
     status = "pending"
     
 #Get last ID
-    countstatement = "SELECT com_id FROM Company ORDER BY com_id DESC LIMIT 1;"
+    countstatement = "SELECT MAX(com_id) FROM Company;"
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement)
     result = count_cursor.fetchone()
@@ -379,7 +379,7 @@ def CompanyReg():
         com_id = int(result[0]) + 1
 
     #Approval ID
-    countstatement1 = "SELECT id FROM ComApproval ORDER BY id DESC LIMIT 1;"
+    countstatement1 = "SELECT MAX(id) FROM ComApproval;"
     count_cursor = db_conn.cursor()
     count_cursor.execute(countstatement1)
     result1 = count_cursor.fetchone()
