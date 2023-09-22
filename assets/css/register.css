@@ -6,7 +6,7 @@
   font-family: 'Poppins',sans-serif;
 }
 body{
-  height: 200vh;
+  height: 170vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,10 +106,7 @@ form .input-box span.details{
   font-size: 16px;
   font-weight: 500;
  }
- form .transport-details .transport-title{
-  font-size: 16px;
-  font-weight: 500;
- }
+ 
  form .category{
    display: flex;
    width: 30%;
