@@ -1060,7 +1060,7 @@ def allowed_file(filename):
     # Check if the file extension (without the dot) is in the allowed extensions set
     return file_extension.lower()[1:] in ALLOWED_EXTENSIONS
 
-@app.route('/supervisorMainPage/<string:sv_id>')
+@app.route('/supervisorMainPage')
 def supervisorMainPage(sv_id):
     
     
